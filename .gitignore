@@ -6,3 +6,4 @@ TodoList.txt
 bookmarksh*.vsix
 .vscode/bookmarksh.json
 src/provider
+src/bookmark-provider

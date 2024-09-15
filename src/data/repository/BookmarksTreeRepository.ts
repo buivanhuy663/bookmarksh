@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { BookmarksTreeViewProvider } from "../../provider/BookmarkTreeViewProvider"
+import { BookmarksTreeViewProvider } from "../../bookmark-provider/BookmarkTreeViewProvider"
 import { fileHelper } from '../../util/FileHelper'
 import { logger } from '../../util/LoggerHelper'
 import { Bookmark } from "../model/Bookmark"

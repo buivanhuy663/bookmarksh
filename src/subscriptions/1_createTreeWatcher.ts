@@ -1,6 +1,6 @@
 
 import * as vscode from 'vscode'
-import { WatcherTreeViewProvider } from '../provider/WatcherTreeViewProvider'
+import { WatcherTreeViewProvider } from '../bookmark-provider/WatcherTreeViewProvider'
 import { Commands } from '../util/Commands'
 
 

@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/BookmarkTreeViewProvider'
 import { Bookmark } from '../data/model/Bookmark'
-import { BookmarksTreeViewProvider } from '../provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
 import { Helper } from '../util/Helper'
 

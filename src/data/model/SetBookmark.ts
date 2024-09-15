@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { TreeMode } from '../../provider/BookmarkTreeViewProvider'
+import { TreeMode } from '../../bookmark-provider/BookmarkTreeViewProvider'
 import { fileHelper } from '../../util/FileHelper'
 import { logger } from '../../util/LoggerHelper'
 import { Bookmark } from "./Bookmark"
