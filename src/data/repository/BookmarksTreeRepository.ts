@@ -47,7 +47,7 @@ class BookmarksTreeRepository {
 		}
 	}
 
-	exportBookmark(bookmark: Bookmark) {
+	exportBookmark(bookmark: Bookmark, fileName: string) {
 		const rootPath = fileHelper.getRootPath()
 		if (rootPath) {
 			const jsonData = bookmark.toJSON()
@@ -55,7 +55,7 @@ class BookmarksTreeRepository {
 				mode: 'single',
 				bookmarks: jsonData
 			}
-			const filePath = path.join(rootPath, '.vscode', bookmark.label + '.json')
+			const filePath = path.join(rootPath, '.vscode', fileName + '.json')
 			fileHelper.writeJsonFile(filePath, jsonAll)
 			logger.showMessage('Bookmarks have been exported to\n' + filePath)
 		}
