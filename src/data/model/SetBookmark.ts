@@ -3,6 +3,7 @@ import { TreeMode } from '../../bookmark-provider/BookmarkTreeViewProvider'
 import { fileHelper } from '../../util/FileHelper'
 import { logger } from '../../util/LoggerHelper'
 import { Bookmark } from "./Bookmark"
+import path = require('path')
 export class SetBookmark {
 	public values: Array<Bookmark> = new Array<Bookmark>()
 
@@ -152,14 +153,14 @@ export class SetBookmark {
 	}
 
 
-	public replaceLabelBookmark(bookmark: Bookmark) {
+	public replaceBookmark(bookmark: Bookmark) {
 		for (let i = 0; i < this.values.length; i++) {
 			if (this.values[i].equals(bookmark)) {
-				this.values[i] = this.values[i].copyWith({ label: bookmark.label })
+				this.values[i] = bookmark
 				return
 			}
 			if (this.values[i].subs.size > 0) {
-				this.values[i].subs.replaceLabelBookmark(bookmark)
+				this.values[i].subs.replaceBookmark(bookmark)
 			}
 		}
 
