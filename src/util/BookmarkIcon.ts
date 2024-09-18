@@ -26,19 +26,18 @@ export class BookmarkIcon {
 
 	static getIconBookmark(multible: boolean) {
 		return vscode.window.createTextEditorDecorationType({
-			gutterIconPath: BookmarkIcon.getIconPath(multible ? 'bookmarks' : 'bookmark', 'mid'),
+			gutterIconPath: BookmarkIcon.getIconTitile(multible ? 'bookmarks' : 'bookmark', 'mid'),
 			overviewRulerLane: vscode.OverviewRulerLane.Left,
 			overviewRulerColor: 'rgba(0,255,0, 0.7)', // Màu đỏ với độ mờ 70%
 			border: 'none', // Không có border để tránh làm nổi bật dòng
 		})
 	}
 
-	static getIconPath(icon: 'bookmark' | 'bookmarks' | 'bookmark_tag' | 'bookmark_sq' |
-		'edit' | 'delete' | 'view' |
-		'open_folder' | 'folder' |
-		'filter_all' | 'filter_file' | 'filter_tree' |
-		'remove_watcher' | 'remove_all' |
-		'import_json' | 'export_json'
+
+	static getIconTitile(icon:
+		'bookmark' | 'bookmarks' |
+		'bookmark_sq' | 'folder' | 'open_folder' | 'watcher' |
+		'class' | 'function' | 'call_function'
 
 		, iconMode?: 'mid' | 'dark' | 'light') {
 		const mode = vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ? 'dark' : 'light'

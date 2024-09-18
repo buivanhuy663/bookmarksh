@@ -8,8 +8,12 @@ enum BookmarkType {
 	None = 0,
 	File = 1,
 	Folder = 2,
-	Line = 3,
-	Text = 4
+	Function = 3,
+	Call = 4,
+	Variable = 5,
+	Class = 6,
+	Interface = 7,
+	Enum = 8,
 }
 
 
@@ -72,12 +76,16 @@ export class Bookmark extends vscode.TreeItem {
 		this.isOpened = param?.isOpened ?? false
 		this.tooltip = param?.tooltip
 		this.contextValue = this.isWatcher ? 'watcher' : 'bookmark'
-		this.iconPath = this.isOpened ?? false ?
-			BookmarkIcon.getIconPath('open_folder', 'mid') :
-			this.subs.size > 0 ?
-				BookmarkIcon.getIconPath('folder') :
-				BookmarkIcon.getIconPath('bookmark_sq', 'mid')
-		this.accessibilityInformation
+		this.iconPath = BookmarkIcon.getIconTitile('bookmark_sq', 'mid')
+		if (this.isOpened) {
+			this.iconPath = BookmarkIcon.getIconTitile('open_folder', 'mid')
+		}
+		else if (this.isWatcher) {
+			this.iconPath = BookmarkIcon.getIconTitile('watcher')
+		}
+		else if (this.subs.size > 0) {
+			this.iconPath = BookmarkIcon.getIconTitile('folder')
+		}
 
 		this.command = {
 			command: Commands.openBookmark, // Lệnh khi click vào item
