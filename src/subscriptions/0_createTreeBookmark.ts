@@ -1,8 +1,8 @@
 
 import * as vscode from 'vscode'
 import { ItemType } from '../bookmark-provider/data/model/Bookmark'
-import { Commands } from '../util/Commands'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
+import { Commands } from '../util/Commands'
 
 
 export function createTreeBookmark(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
