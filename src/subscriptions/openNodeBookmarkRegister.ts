@@ -23,12 +23,12 @@ export function openNodeBookmarkRegister(context: vscode.ExtensionContext, treeD
 						// get range of current line
 						range = editor.document.lineAt(start.line).range
 						const text = editor.document.lineAt(start.line).text
-						let startIdx = 0
+						let startid = 0
 						for (const i of text) {
 							if (i !== '\t' && i !== ' ') break
-							startIdx++
+							startid++
 						}
-						range = new vscode.Range(new vscode.Position(range.start.line, startIdx), range.end)
+						range = new vscode.Range(new vscode.Position(range.start.line, startid), range.end)
 					} else {
 						// Create a range from start to end position
 						range = new vscode.Range(start, end);

@@ -1,5 +1,6 @@
 
 import * as fs from 'fs'
+import * as os from 'os'
 import * as path from 'path'
 import * as vscode from 'vscode'
 
@@ -12,9 +13,16 @@ export class Helper {
 		return ''
 	}
 
-	// static handleUri(path: string): vscode.Uri {
+	static handleUri(fsPath: string): vscode.Uri {
+		return vscode.Uri.file(path.join(Helper.rootPath, fsPath));
+	}
 
-	// }
+	static handleTooltip(uri: vscode.Uri): string {
+		if (uri.fsPath.startsWith(os.homedir())) {
+			return `~${uri.fsPath.slice(os.homedir().length)}`; // Replace home directory with ~
+		}
+		return ''
+	}
 
 	static pathExists(p: string): boolean {
 		try {
