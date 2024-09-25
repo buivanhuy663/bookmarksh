@@ -1,0 +1,68 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Development",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}",
+                "--enable-proposed-api",
+                "huybui.devbookmarksh"
+            ],
+            "env": {
+                "BUILD_ENV": "Dev",
+            },
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/out/**/*.js"
+            ],
+            // "preLaunchTask": "pre launch dev"
+            "preLaunchTask": "npm: watch"
+        },
+        {
+            "name": "Launch Production",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}",
+                "--enable-proposed-api",
+                "huybui.devbookmarksh"
+            ],
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/out/**/*.js"
+            ],
+            // "preLaunchTask": "pre launch dev"
+            "preLaunchTask": "npm: watch"
+        },
+        {
+            "name": "Build Production",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceRoot}",
+                "--enable-proposed-api",
+                "huybui.bookmarksh"
+            ],
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/out/**/*.js"
+            ],
+            "preLaunchTask": "vsce: package"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Extension Host",
+            "port": 5870,
+            "restart": true,
+            "outFiles": [
+                "${workspaceRoot}/out"
+            ]
+        }
+    ]
+}

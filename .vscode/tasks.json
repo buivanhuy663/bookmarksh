@@ -1,0 +1,74 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "watch",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "npm: build",
+            "type": "shell",
+            "command": "npm run build:prod",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "npm run watch",
+            "type": "shell",
+            "command": "npm run watch",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "Packge product",
+            "type": "shell",
+            "command": "yes | vsce package",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "npm: build:prod"
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "vsce: package",
+            "type": "shell",
+            "command": "yes | vsce package",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "pre launch dev",
+            "type": "shell",
+            "command": "npm: build:dev",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "npm: watch"
+            ],
+            "problemMatcher": [],
+        },
+    ]
+}

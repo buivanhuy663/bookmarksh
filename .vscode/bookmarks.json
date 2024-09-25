@@ -1,0 +1,24 @@
+{
+	"files": [
+		{
+			"path": "src/data/model/Bookmark.ts",
+			"bookmarks": [
+				{
+					"line": 109,
+					"column": 18,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": ".vscode/bookmarks.json",
+			"bookmarks": [
+				{
+					"line": 6,
+					"column": 7,
+					"label": ""
+				}
+			]
+		}
+	]
+}
