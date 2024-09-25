@@ -1,6 +1,5 @@
 import path = require('path')
 import * as vscode from 'vscode'
-import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
 import { LinePath } from '../bookmark-provider/data/model/LinePath'
 
 export class BookmarkIcon {
@@ -37,22 +36,6 @@ export class BookmarkIcon {
 	// cần sử dụng biến static để lưu giữ các icon nếu không sẽ không thể thay đổi được
 	private _bookmarkMulti = this._getIconGutter(true)
 	private _bookmarkSigle = this._getIconGutter(false)
-
-
-	getTreeItem(element: Bookmark): vscode.TreeItem {
-		const treeItem = new vscode.TreeItem(element.label);
-
-		// Set the icon based on the file name or type
-		if (element.label === 'example.txt') {
-			treeItem.iconPath = new vscode.ThemeIcon('file-cpp'); // Use built-in icon for text files
-		} else if (element.label === 'image.png') {
-			treeItem.iconPath = new vscode.ThemeIcon('file-symlink-file'); // Use a different built-in icon
-		} else {
-			treeItem.iconPath = new vscode.ThemeIcon('file'); // Default file icon
-		}
-
-		return treeItem;
-	}
 }
 
 export enum IconType {

@@ -62,6 +62,7 @@ export class Helper {
 
 	static createNewId(): string {
 		let num = new Date().getTime()
+		num += this.countId++
 		const baseChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 		const base = 62
 		let result = ''
@@ -83,4 +84,6 @@ export class Helper {
 		});
 
 	}
+
+	static countId = 0;
 }

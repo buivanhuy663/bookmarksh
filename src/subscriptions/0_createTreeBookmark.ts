@@ -1,6 +1,6 @@
 
 import * as vscode from 'vscode'
-import { ItemType } from '../bookmark-provider/data/model/Bookmark'
+import { ContextValue } from '../bookmark-provider/data/model/Bookmark'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
 
@@ -19,7 +19,7 @@ export function createTreeBookmark(context: vscode.ExtensionContext, treeDataPro
 	treeView.onDidCollapseElement((event) => {
 		if (event) {
 			event.element.collapsibleState = vscode.TreeItemCollapsibleState.Collapsed
-			if (event.element.itemType === ItemType.Bookmark) {
+			if (event.element.contextValue === ContextValue.Bookmark) {
 				treeDataProvider.saveBookmarksToFile()
 			}
 		}
@@ -27,7 +27,7 @@ export function createTreeBookmark(context: vscode.ExtensionContext, treeDataPro
 	treeView.onDidExpandElement((event) => {
 		if (event) {
 			event.element.collapsibleState = vscode.TreeItemCollapsibleState.Expanded
-			if (event.element.itemType === ItemType.Bookmark) {
+			if (event.element.contextValue === ContextValue.Bookmark) {
 				treeDataProvider.saveBookmarksToFile()
 			}
 		}

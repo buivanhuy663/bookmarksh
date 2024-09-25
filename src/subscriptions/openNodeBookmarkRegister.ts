@@ -1,6 +1,6 @@
 
 import * as vscode from 'vscode'
-import { Bookmark, ItemType } from '../bookmark-provider/data/model/Bookmark'
+import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
 import { Helper } from '../util/Helper'
@@ -12,7 +12,7 @@ export function openNodeBookmarkRegister(context: vscode.ExtensionContext, treeD
 			const fileUri = vscode.Uri.file(Helper.rootPath + "/" + bookmark.path)
 			vscode.workspace.openTextDocument(fileUri).then(doc => {
 				vscode.window.showTextDocument(doc).then(editor => {
-					if (bookmark.itemType === ItemType.File) {
+					if (bookmark.isFile) {
 						editor.selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 0))
 						return
 					}
