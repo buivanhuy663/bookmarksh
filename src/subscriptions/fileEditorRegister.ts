@@ -17,10 +17,10 @@ export function fileEditorRegister(context: vscode.ExtensionContext, treeDataPro
 	/// watcher for file system changes
 	const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(Helper.rootPath, '**/*'))
 	watcher.onDidCreate((event) => {
-		treeDataProvider.onDidCreate(event)
+		treeDataProvider.onDidCreateFile(event)
 	})
 	watcher.onDidDelete((event) => {
-		treeDataProvider.onDidDelete(event)
+		treeDataProvider.onDidDeleteFile(event)
 	})
 	// end
 

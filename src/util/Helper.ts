@@ -12,6 +12,10 @@ export class Helper {
 		return ''
 	}
 
+	// static handleUri(path: string): vscode.Uri {
+
+	// }
+
 	static pathExists(p: string): boolean {
 		try {
 			fs.accessSync(p)
