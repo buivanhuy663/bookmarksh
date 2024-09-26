@@ -74,6 +74,13 @@ export class Commands {
 		},
 
 		// Top Bar Buttons
+		removeAllBookmark: {
+			'command': Commands.nameExtension + '.removeAllBookmark',
+			'title': 'Refresh',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.remove_all,
+			"group": "navigation@7",
+		},
 		removeAllWatcher: {
 			'command': Commands.nameExtension + '.removeAllWatcher',
 			'title': 'Refresh',

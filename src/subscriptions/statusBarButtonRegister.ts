@@ -11,59 +11,37 @@ export function statusBarButtonRegister(context: vscode.ExtensionContext,
 ) {
 	const filterAll = vscode.commands.registerCommand(Commands.commands.filterAll.command,
 		() => {
-			treeDataProvider.filterAll()
+			treeDataProvider.onFilterAll()
 		})
 	const filterFile = vscode.commands.registerCommand(Commands.commands.filterFile.command,
 		() => {
-			treeDataProvider.filterFile()
+			treeDataProvider.onFilterFolder()
 		})
 	const filterTree = vscode.commands.registerCommand(Commands.commands.filterTree.command,
 		() => {
-			treeDataProvider.filterTree()
+			treeDataProvider.onFilterTree()
 		})
 	const refresh = vscode.commands.registerCommand(Commands.commands.refresh.command,
 		() => {
-			treeDataProvider.refresh()
+			treeDataProvider.onRefresh()
 		})
 	const importBookmark = vscode.commands.registerCommand(Commands.commands.importBookmark.command,
 		() => {
-			treeDataProvider.importBookmark()
+			treeDataProvider.onImportBookmark()
 		})
 	const exportAllBookmark = vscode.commands.registerCommand(Commands.commands.exportAllBookmark.command,
 		() => {
-			treeDataProvider.exportAllBookmark()
+			treeDataProvider.onExportAllBookmark()
 		})
-
-	// const exportJson = vscode.commands.registerCommand(Commands.commands.exportJson.command,
-	// 	() => {
-	// 		const actions = [
-	// 			{
-	// 				label: 'Export data bookmarks to JSON file', action: () => {
-	// 					treeDataProvider.exportAllBookmark()
-	// 				}
-	// 			},
-	// 			{
-	// 				label: 'Import Bookmark from JSON', action: () => {
-	// 					treeDataProvider.importJson()
-	// 				}
-	// 			},
-	// 		]
-
-	// 		const quickPick = vscode.window.createQuickPick()
-	// 		quickPick.items = actions.map(action => ({ label: action.label }))
-	// 		quickPick.onDidAccept(() => {
-	// 			const selectedAction = actions.find(action => action.label === quickPick.selectedItems[0].label)
-	// 			if (selectedAction) {
-	// 				selectedAction.action()
-	// 			}
-	// 			quickPick.hide()
-	// 		})
-	// 		quickPick.show()
-	// 	})
 
 	const removeAllWatcher = vscode.commands.registerCommand(Commands.commands.removeAllWatcher.command,
 		() => {
-			watcherDataProvider.removeAllWatchers()
+			watcherDataProvider.onRemoveAllWatchers()
+		})
+
+	const removeAllBookmark = vscode.commands.registerCommand(Commands.commands.removeAllBookmark.command,
+		() => {
+			treeDataProvider.onRemoveAllBookmark()
 		})
 
 	context.subscriptions.push(
@@ -74,5 +52,6 @@ export function statusBarButtonRegister(context: vscode.ExtensionContext,
 		importBookmark,
 		exportAllBookmark,
 		removeAllWatcher,
+		removeAllBookmark
 	)
 }

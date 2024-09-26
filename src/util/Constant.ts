@@ -10,8 +10,8 @@ export class Icons {
 
 	static icon(name: string) {
 		return {
-			light: `${Icons.light}/${name}.svg`,
-			dark: `${Icons.dark}/${name}.svg`,
+			light: `${Icons.light}${name}.svg`,
+			dark: `${Icons.dark}${name}.svg`,
 		}
 	}
 

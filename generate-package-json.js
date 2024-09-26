@@ -36,6 +36,7 @@ const customPackageJson = {
     ],
     "menus": {
       "view/title": [
+        id.commands.removeAllBookmark,
         id.commands.exportAllBookmark,
         id.commands.importBookmark,
         id.commands.filterAll,

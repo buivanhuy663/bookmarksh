@@ -28,17 +28,17 @@ export function buttonItemRegister(context: vscode.ExtensionContext,
 
 	const exportBookmark = vscode.commands.registerCommand(Commands.commands.exportBookmark.command,
 		(bookmark: Bookmark) => {
-			treeDataProvider.exportBookmark(bookmark)
+			treeDataProvider.onExportBookmark(bookmark)
 		})
 
 	const addToWatcher = vscode.commands.registerCommand(Commands.commands.addToWatcher.command,
 		(bookmark: Bookmark) => {
-			watcherDataProvider.addWatcher(bookmark)
+			watcherDataProvider.onAddWatcher(bookmark)
 		})
 
 	const removeWatcher = vscode.commands.registerCommand(Commands.commands.removeWatcher.command,
 		(bookmark: Bookmark) => {
-			watcherDataProvider.removeWatcher(bookmark)
+			watcherDataProvider.onRemoveWatcher(bookmark)
 		})
 
 	context.subscriptions.push(
