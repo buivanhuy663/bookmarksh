@@ -1,7 +1,7 @@
 import * as fs from "fs"
 import * as vscode from 'vscode'
 import { SetBookmark } from "../bookmark-provider/data/model/SetBookmark"
-import { Helper } from "./Helper"
+import { logger } from "./LoggerHelper"
 import path = require("path")
 
 
@@ -10,20 +10,6 @@ class FileHelper {
 	readonly WATCHER_WORKSPACE = 'watcher'
 
 	hasDir = false
-
-	createDirectoryIfNotExist(filePath: string): boolean {
-		const file = path.join(this.getRootPath() ?? '', filePath)
-		if (!fs.existsSync(file)) {
-			fs.mkdirSync(file)
-			return true
-
-		}
-		return false
-	}
-
-	getRootPath(): string | undefined {
-		return vscode.workspace.workspaceFolders?.[0].uri.fsPath
-	}
 
 	readWorkspace(context: vscode.ExtensionContext, workspace: string): any {
 		try {
@@ -70,9 +56,9 @@ class FileHelper {
 				let doc: vscode.TextDocument | undefined
 				if (listPath.has(item.path)) {
 					doc = mapContent.get(item.path)
-
 				} else {
-					doc = await vscode.workspace.openTextDocument(Helper.rootPath + "/" + item.path)
+					doc = await vscode.workspace.openTextDocument(this.relativeToAbsolute(item.path))
+					logger.infor("Open file: " + this.relativeToAbsolute(item.path))
 				}
 				if (doc) {
 					if (item.start.equals(item.end)) {
@@ -101,6 +87,49 @@ class FileHelper {
 		if (editor) {
 			return editor.document
 		}
+	}
+
+
+
+	///////////////////////////////
+	get rootPath() {
+		const workspaceFolders = vscode.workspace.workspaceFolders
+		if (workspaceFolders) {
+			return workspaceFolders[0].uri.fsPath
+		}
+		return ''
+	}
+
+	createDirectoryIfNotExist(filePath: string): boolean {
+		const file = this.relativeToAbsolute(filePath)
+		if (!fs.existsSync(file)) {
+			fs.mkdirSync(file)
+			return true
+
+		}
+		return false
+	}
+
+	relativeToAbsolute(fsPath: string): string {
+		return path.join(this.rootPath, fsPath)
+	}
+
+	absoluteToRelative(fsPath: string): string {
+		return path.relative(this.rootPath, fsPath)
+	}
+
+	relativeToUri(fsPath: string): vscode.Uri {
+		return vscode.Uri.file(this.relativeToAbsolute(fsPath))
+	}
+
+	static pathExists(p: string): boolean {
+		try {
+			fs.accessSync(p)
+		} catch (err) {
+			return false
+		}
+
+		return true
 	}
 }
 

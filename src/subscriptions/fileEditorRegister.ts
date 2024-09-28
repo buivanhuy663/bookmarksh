@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
-import { Helper } from '../util/Helper'
+import { fileHelper } from '../util/FileHelper'
 
 export function fileEditorRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
 	const changeContent = vscode.workspace.onDidChangeTextDocument(event => {
@@ -15,7 +15,7 @@ export function fileEditorRegister(context: vscode.ExtensionContext, treeDataPro
 	})
 
 	/// watcher for file system changes
-	const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(Helper.rootPath, '**/*'))
+	const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(fileHelper.rootPath, '**/*'))
 	watcher.onDidCreate((event) => {
 		treeDataProvider.onDidCreateFile(event)
 	})

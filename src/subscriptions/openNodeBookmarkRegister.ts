@@ -3,13 +3,13 @@ import * as vscode from 'vscode'
 import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
-import { Helper } from '../util/Helper'
+import { fileHelper } from '../util/FileHelper'
 
 
 export function openNodeBookmarkRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
 	const openBookmark = vscode.commands.registerCommand(Commands.openBookmark,
 		(bookmark: Bookmark) => {
-			const fileUri = vscode.Uri.file(Helper.rootPath + "/" + bookmark.path)
+			const fileUri = fileHelper.relativeToUri(bookmark.path)
 			vscode.workspace.openTextDocument(fileUri).then(doc => {
 				vscode.window.showTextDocument(doc).then(editor => {
 					if (bookmark.isFile) {

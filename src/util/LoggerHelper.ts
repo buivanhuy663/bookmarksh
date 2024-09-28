@@ -3,17 +3,17 @@ import * as vscode from 'vscode';
 class LoggerHelper {
 	private canLog: boolean = true;
 
-	log(message: string) {
+	infor(message: any) {
 		if (this.canLog)
 			console.log(message);
 	}
 
-	error(message: string) {
+	error(message: any) {
 		if (this.canLog)
 			console.error(message);
 	}
 
-	warning(message: string) {
+	warning(message: any) {
 		if (this.canLog)
 			console.warn(message);
 	}
