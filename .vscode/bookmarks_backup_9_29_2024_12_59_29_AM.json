@@ -1,0 +1,54 @@
+{
+  "mode": "all",
+  "bookmarks": [
+    {
+      "id": "upnBP2d",
+      "label": "reFilterData",
+      "path": "src/bookmark-provider/provider/BookmarkTreeViewProvider.ts",
+      "params": "0,260,9,260,21",
+      "subs": []
+    },
+    {
+      "id": "upzlx7h",
+      "label": "//TODO: update tooltip",
+      "path": "src/bookmark-provider/data/model/SetBookmark.ts",
+      "params": "0,368,5,368,27",
+      "subs": []
+    },
+    {
+      "id": "upzlOJV",
+      "label": "removePath",
+      "path": "src/bookmark-provider/data/model/SetBookmark.ts",
+      "params": "0,332,1,332,11",
+      "subs": []
+    },
+    {
+      "id": "upzxoJw",
+      "label": "findFolderAndAddBookmark",
+      "path": "src/bookmark-provider/data/model/SetBookmark.ts",
+      "params": "0,462,1,462,25",
+      "subs": []
+    },
+    {
+      "id": "upzxskj",
+      "label": "onDidDeleteFile",
+      "path": "src/bookmark-provider/provider/BookmarkTreeViewProvider.ts",
+      "params": "0,293,7,293,22",
+      "subs": []
+    },
+    {
+      "id": "upzxwWI",
+      "label": "_createNewPathAndAddBookmark",
+      "path": "src/bookmark-provider/data/model/SetBookmark.ts",
+      "params": "0,478,9,478,37",
+      "subs": []
+    },
+    {
+      "id": "upG0Ibg",
+      "label": "changeLine",
+      "path": "src/bookmark-provider/data/model/SetBookmark.ts",
+      "params": "0,224,1,224,11",
+      "subs": []
+    }
+  ]
+}
