@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Bookmark extension for Visual Studio Code",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
@@ -132,7 +132,7 @@
       },
       {
         "command": "bookmarksh.removeAllBookmark",
-        "title": "Refresh",
+        "title": "Delete All Bookmarks",
         "when": "(view == bookmarkshTreeView) ",
         "icon": {
           "light": "resources/light/remove_all.svg",
@@ -225,7 +225,7 @@
       "view/title": [
         {
           "command": "bookmarksh.removeAllBookmark",
-          "title": "Refresh",
+          "title": "Delete All Bookmarks",
           "when": "(view == bookmarkshTreeView) ",
           "icon": {
             "light": "resources/light/remove_all.svg",
