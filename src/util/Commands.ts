@@ -12,6 +12,17 @@ export class Commands {
 	static bookmarkOrWatcherItem = '(viewItem == bookmark || viewItem == watcher)'
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
 
+	static indexStatusBarButton = {
+		removeAllWatcher: 1,
+		removeAllBookmark: 1,
+		exportAllBookmark: 2,
+		importBookmark: 3,
+		filterAll: 4,
+		filterFile: 5,
+		filterTree: 6,
+		refresh: 7,
+	}
+
 	static commands = {
 		// keyboard shortcut
 		toggleBookmark: {
@@ -74,61 +85,61 @@ export class Commands {
 		},
 
 		// Top Bar Buttons
-		removeAllBookmark: {
-			'command': Commands.nameExtension + '.removeAllBookmark',
-			'title': 'Refresh',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.remove_all,
-			"group": "navigation@7",
-		},
 		removeAllWatcher: {
 			'command': Commands.nameExtension + '.removeAllWatcher',
 			'title': 'Refresh',
 			'when': `${this.viewWatcherTreeView} `,
 			'icon': Icons.remove_all,
-			"group": "navigation@1",
+			"group": `navigation@${this.indexStatusBarButton.removeAllWatcher}`,
 		},
-		refresh: {
-			'command': Commands.nameExtension + '.refresh',
-			'title': 'Refresh',
+		removeAllBookmark: {
+			'command': Commands.nameExtension + '.removeAllBookmark',
+			'title': 'Delete All Bookmarks',
 			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.refresh,
-			"group": "navigation@6",
-		},
-		filterTree: {
-			'command': Commands.nameExtension + '.filterTree',
-			'title': 'Show bookmark tree',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.filter_tree,
-			"group": "navigation@5",
-		},
-		filterFile: {
-			'command': Commands.nameExtension + '.filterFile',
-			'title': 'Filter follow file',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.filter_file,
-			"group": "navigation@4",
-		},
-		filterAll: {
-			'command': Commands.nameExtension + '.filterAll',
-			'title': 'Show List All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.filter_all,
-			"group": "navigation@3",
-		},
-		importBookmark: {
-			'command': Commands.nameExtension + '.importBookmark',
-			'title': 'Import Bookmark',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.import_json,
-			"group": "navigation@2",
+			'icon': Icons.remove_all,
+			"group": `navigation@${this.indexStatusBarButton.removeAllBookmark}`,
 		},
 		exportAllBookmark: {
 			'command': Commands.nameExtension + '.exportAllBookmark',
 			'title': 'Export All Bookmarks',
 			'when': `${this.viewBookmarkTreeView} `,
 			'icon': Icons.export_json,
-			"group": "navigation@1",
+			"group": `navigation@${this.indexStatusBarButton.exportAllBookmark}`,
+		},
+		importBookmark: {
+			'command': Commands.nameExtension + '.importBookmark',
+			'title': 'Import Bookmark',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.import_json,
+			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
+		},
+		refresh: {
+			'command': Commands.nameExtension + '.refresh',
+			'title': 'Refresh',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.refresh,
+			"group": `navigation@${this.indexStatusBarButton.refresh}`,
+		},
+		filterTree: {
+			'command': Commands.nameExtension + '.filterTree',
+			'title': 'Show bookmark tree',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.filter_tree,
+			"group": `navigation@${this.indexStatusBarButton.filterTree}`,
+		},
+		filterFile: {
+			'command': Commands.nameExtension + '.filterFile',
+			'title': 'Filter follow file',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.filter_file,
+			"group": `navigation@${this.indexStatusBarButton.filterFile}`,
+		},
+		filterAll: {
+			'command': Commands.nameExtension + '.filterAll',
+			'title': 'Show List All Bookmarks',
+			'when': `${this.viewBookmarkTreeView} `,
+			'icon': Icons.filter_all,
+			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
 		},
 	}
 

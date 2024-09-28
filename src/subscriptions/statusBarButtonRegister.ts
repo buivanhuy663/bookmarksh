@@ -31,7 +31,7 @@ export function statusBarButtonRegister(context: vscode.ExtensionContext,
 		})
 	const exportAllBookmark = vscode.commands.registerCommand(Commands.commands.exportAllBookmark.command,
 		() => {
-			treeDataProvider.onExportAllBookmark()
+			treeDataProvider.onExportAllBookmark(false)
 		})
 
 	const removeAllWatcher = vscode.commands.registerCommand(Commands.commands.removeAllWatcher.command,
