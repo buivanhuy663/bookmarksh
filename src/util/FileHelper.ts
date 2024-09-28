@@ -29,8 +29,8 @@ class FileHelper {
 			const data = fs.readFileSync(filePath, 'utf8')
 			return JSON.parse(data)
 		} catch (error) {
-			console.error('Can not read file')
-			console.error(error)
+			logger.error('Can not read file')
+			logger.error(error)
 			return null
 		}
 	}
@@ -40,46 +40,49 @@ class FileHelper {
 			const jsonData = JSON.stringify(data, null, 2)
 			fs.writeFileSync(filePath, jsonData, 'utf8')
 		} catch (error) {
-			console.error('Can not write file')
-			console.error(error)
+			logger.error('Can not write file')
+			logger.error(error)
 		}
 	}
 
+	private mapDocumentBuf: Map<string, vscode.TextDocument> = new Map()
 	async readContentBookmarkInFile(
-		mapContent: Map<string, vscode.TextDocument>,
-		listPath: Set<String>,
 		bookmarks: SetBookmark,
 	) {
 		for (const item of bookmarks) {
 			try {
-				let des = item.description ?? ''
-				let doc: vscode.TextDocument | undefined
-				if (listPath.has(item.path)) {
-					doc = mapContent.get(item.path)
+				let content = item.description ?? ''
+				var doc: vscode.TextDocument | undefined
+				const keys = new Set(this.mapDocumentBuf.keys())
+				if (keys.has(item.path)) {
+					doc = this.mapDocumentBuf.get(item.path)
 				} else {
 					doc = await vscode.workspace.openTextDocument(this.relativeToAbsolute(item.path))
+					this.mapDocumentBuf.set(item.path, doc)
 					logger.infor("Open file: " + this.relativeToAbsolute(item.path))
 				}
 				if (doc) {
 					if (item.start.equals(item.end)) {
-						des = doc.lineAt(item.start.line).text
+						content = doc.lineAt(item.start.line).text
 					} else {
 						const selection = new vscode.Selection(
 							new vscode.Position(item.start.line, item.start.column),
 							new vscode.Position(item.end.line, item.end.column)
 						)
-						des = doc.getText(selection)
+						content = doc.getText(selection)
 					}
 				}
-				item.tooltip = des
+				item.content = content
 				if (item.subs.size > 0) {
-					await this.readContentBookmarkInFile(mapContent, listPath, item.subs)
+					await this.readContentBookmarkInFile(item.subs)
 				}
 			} catch (error) {
-				console.error('Can read content file')
-				console.error(error)
+				logger.error('Can read content file')
+				logger.error(error)
 			}
 		}
+
+		this.mapDocumentBuf.clear()
 	}
 
 	getDocumentCurrent(): vscode.TextDocument | undefined {
