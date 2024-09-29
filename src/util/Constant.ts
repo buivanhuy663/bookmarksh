@@ -27,6 +27,7 @@ export class Icons {
 	static readonly filter_all = this.icon('filter_all')
 	static readonly filter_file = this.icon('filter_file')
 	static readonly filter_tree = this.icon('filter_tree')
+	static readonly filter_tree_highligh = this.icon('filter_tree_highligh')
 	static readonly remove_watcher = this.icon('remove_watcher')
 	static readonly remove_all = this.icon('remove_all')
 	static readonly import_json = this.icon('import_json')

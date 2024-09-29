@@ -9,7 +9,8 @@ export class Commands {
 
 	static viewBookmarkTreeView = `(view == ${this.bookmarkTreeViewName})`
 	static viewWatcherTreeView = `(view == ${this.watcherTreeViewName})`
-	static bookmarkOrWatcherItem = '(viewItem == bookmark || viewItem == watcher)'
+	static bookmarkOnTree = '(viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) '
+	static bookmarkOnAll = '(viewItem == bookmark || viewItem == watcher) '
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
 
 	static indexStatusBarButton = {
@@ -49,21 +50,21 @@ export class Commands {
 			'command': Commands.nameExtension + '.deleteBookmark',
 			'title': 'Delete',
 			'icon': Icons.delete,
-			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOrWatcherItem}`,
+			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOnTree}`,
 			'group': 'inline@4'
 		},
 		editBookmark: {
 			'command': Commands.nameExtension + '.editBookmark',
 			'title': 'Edit Label',
 			'icon': Icons.edit,
-			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOrWatcherItem}`,
+			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOnTree}`,
 			'group': 'inline@3'
 		},
 		pinView: {
 			'command': Commands.nameExtension + '.pinView',
 			'title': 'View/UnView',
 			'icon': Icons.open_folder,
-			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOrWatcherItem}`,
+			'when': `${this.bookmarkOrWatcherView} && ${this.bookmarkOnAll}`,
 			'group': 'inline@2'
 		},
 		removeWatcher: {
@@ -76,12 +77,12 @@ export class Commands {
 		exportBookmark: {
 			'command': Commands.nameExtension + '.exportBookmark',
 			'title': 'Export Bookmark',
-			'when': `${this.viewBookmarkTreeView} && ${this.bookmarkOrWatcherItem}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.bookmarkOnTree}`,
 		},
 		addToWatcher: {
 			'command': Commands.nameExtension + '.addToWatcher',
 			'title': 'Add To Watcher',
-			'when': `${this.viewBookmarkTreeView} && ${this.bookmarkOrWatcherItem}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.bookmarkOnTree}`,
 		},
 
 		// Top Bar Buttons

@@ -35,5 +35,7 @@ export function createTreeBookmark(context: vscode.ExtensionContext, treeDataPro
 	// treeView.onDidChangeSelection((event) => {
 
 	// })
+
 	context.subscriptions.push(treeView)
+	return treeView
 }

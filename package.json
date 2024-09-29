@@ -77,7 +77,7 @@
           "light": "resources/light/delete.svg",
           "dark": "resources/dark/delete.svg"
         },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
         "group": "inline@4"
       },
       {
@@ -87,7 +87,7 @@
           "light": "resources/light/edit.svg",
           "dark": "resources/dark/edit.svg"
         },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
         "group": "inline@3"
       },
       {
@@ -97,7 +97,7 @@
           "light": "resources/light/open_folder.svg",
           "dark": "resources/dark/open_folder.svg"
         },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher) ",
         "group": "inline@2"
       },
       {
@@ -113,12 +113,12 @@
       {
         "command": "bookmarksh.exportBookmark",
         "title": "Export Bookmark",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher)"
+        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
       },
       {
         "command": "bookmarksh.addToWatcher",
         "title": "Add To Watcher",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher)"
+        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
       },
       {
         "command": "bookmarksh.removeAllWatcher",
@@ -312,7 +312,7 @@
             "light": "resources/light/open_folder.svg",
             "dark": "resources/dark/open_folder.svg"
           },
-          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher) ",
           "group": "inline@2"
         },
         {
@@ -322,7 +322,7 @@
             "light": "resources/light/edit.svg",
             "dark": "resources/dark/edit.svg"
           },
-          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
           "group": "inline@3"
         },
         {
@@ -332,18 +332,18 @@
             "light": "resources/light/delete.svg",
             "dark": "resources/dark/delete.svg"
           },
-          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher)",
+          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
           "group": "inline@4"
         },
         {
           "command": "bookmarksh.exportBookmark",
           "title": "Export Bookmark",
-          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher)"
+          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
         },
         {
           "command": "bookmarksh.addToWatcher",
           "title": "Add To Watcher",
-          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher)"
+          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
         },
         {
           "command": "bookmarksh.removeWatcher",

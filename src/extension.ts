@@ -20,13 +20,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const watcherProvider = new WatcherTreeViewProvider(context, bookmarkTreeProvider)
 	bookmarkTreeProvider.setWatcherTreeViewProvider(watcherProvider)
 
-	createTreeBookmark(context, bookmarkTreeProvider)
+	const treeViewBookmark = createTreeBookmark(context, bookmarkTreeProvider)
 	createTreeWatcher(context, watcherProvider)
 
 	fileEditorRegister(context, bookmarkTreeProvider)
 	buttonItemRegister(context, bookmarkTreeProvider, watcherProvider)
 	openNodeBookmarkRegister(context, bookmarkTreeProvider)
-	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider)
+	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
 	bookmarkTreeProvider.initViewEditor()
