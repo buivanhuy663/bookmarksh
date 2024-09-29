@@ -4,7 +4,7 @@ import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/Bookmar
 import { fileHelper } from '../util/FileHelper'
 
 export function fileEditorRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
-	 vscode.workspace.onDidChangeTextDocument(event => {
+	vscode.workspace.onDidChangeTextDocument(event => {
 		treeDataProvider.changeContentFile(event)
 	})
 
