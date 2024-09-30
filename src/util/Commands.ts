@@ -93,7 +93,7 @@ export class Commands {
 		// Top Bar Buttons
 		removeAllWatcher: {
 			'command': Commands.nameExtension + '.removeAllWatcher',
-			'title': 'Refresh',
+			'title': 'Remove All Watchers',
 			'when': `${this.viewWatcherTreeView} && ${this.hasWatcher}`,
 			'icon': Icons.remove_all,
 			"group": `navigation@${this.indexStatusBarButton.removeAllWatcher}`,
