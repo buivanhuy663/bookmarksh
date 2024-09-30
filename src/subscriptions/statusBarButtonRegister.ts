@@ -12,17 +12,14 @@ export function statusBarButtonRegister(
 ) {
 	const filterAll = vscode.commands.registerCommand(Commands.commands.filterAll.command,
 		() => {
-			treeView.title = 'Bookmarks All'
 			treeDataProvider.onFilterAll()
 		})
 	const filterFile = vscode.commands.registerCommand(Commands.commands.filterFile.command,
 		() => {
-			treeView.title = 'Bookmarks Explorer'
 			treeDataProvider.onFilterFolder()
 		})
 	const filterTree = vscode.commands.registerCommand(Commands.commands.filterTree.command,
 		() => {
-			treeView.title = 'Bookmarks Tree'
 			treeDataProvider.onFilterTree()
 		})
 	const refresh = vscode.commands.registerCommand(Commands.commands.refresh.command,

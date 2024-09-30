@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
-	bookmarkTreeProvider.initViewEditor()
+	bookmarkTreeProvider.init(treeViewBookmark)
 }
 
 export function deactivate() {
