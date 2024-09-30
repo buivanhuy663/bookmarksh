@@ -1,7 +1,12 @@
+import { TreeMode } from "../bookmark-provider/data/shared_data/TreeMode"
 import { Icons, KeyBinding } from "./Constant"
 
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
+
+	static readonly treeAsList = 'bookmarks.var.treeAsList'
+	static readonly hasBookmark = 'bookmarks.var.hasBookmark'
+	static readonly hasWatcher = 'bookmarks.var.hasWatcher'
 
 	static get watcherTreeViewName() { return Commands.nameExtension + 'WatcherTree' }
 	static get bookmarkTreeViewName() { return Commands.nameExtension + 'TreeView' }
@@ -19,8 +24,8 @@ export class Commands {
 		exportAllBookmark: 2,
 		importBookmark: 3,
 		filterAll: 4,
-		filterFile: 5,
-		filterTree: 6,
+		filterFile: 4,
+		filterTree: 4,
 		refresh: 7,
 	}
 
@@ -89,21 +94,21 @@ export class Commands {
 		removeAllWatcher: {
 			'command': Commands.nameExtension + '.removeAllWatcher',
 			'title': 'Refresh',
-			'when': `${this.viewWatcherTreeView} `,
+			'when': `${this.viewWatcherTreeView} && ${this.hasWatcher}`,
 			'icon': Icons.remove_all,
 			"group": `navigation@${this.indexStatusBarButton.removeAllWatcher}`,
 		},
 		removeAllBookmark: {
 			'command': Commands.nameExtension + '.removeAllBookmark',
 			'title': 'Delete All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} `,
+			'when': `${this.viewBookmarkTreeView} && ${this.hasBookmark}`,
 			'icon': Icons.remove_all,
 			"group": `navigation@${this.indexStatusBarButton.removeAllBookmark}`,
 		},
 		exportAllBookmark: {
 			'command': Commands.nameExtension + '.exportAllBookmark',
 			'title': 'Export All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} `,
+			'when': `${this.viewBookmarkTreeView} && ${this.hasBookmark}`,
 			'icon': Icons.export_json,
 			"group": `navigation@${this.indexStatusBarButton.exportAllBookmark}`,
 		},
@@ -121,24 +126,25 @@ export class Commands {
 			'icon': Icons.refresh,
 			"group": `navigation@${this.indexStatusBarButton.refresh}`,
 		},
+
 		filterTree: {
 			'command': Commands.nameExtension + '.filterTree',
 			'title': 'Show bookmark tree',
-			'when': `${this.viewBookmarkTreeView} `,
+			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.Tree}`,
 			'icon': Icons.filter_tree,
-			"group": `navigation@${this.indexStatusBarButton.filterTree}`,
+			"group": `navigation@${this.indexStatusBarButton.filterTree} `,
 		},
 		filterFile: {
 			'command': Commands.nameExtension + '.filterFile',
 			'title': 'Filter follow file',
-			'when': `${this.viewBookmarkTreeView} `,
-			'icon': Icons.filter_file,
+			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.File}`,
+			'icon': Icons.folder,
 			"group": `navigation@${this.indexStatusBarButton.filterFile}`,
 		},
 		filterAll: {
 			'command': Commands.nameExtension + '.filterAll',
 			'title': 'Show List All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} `,
+			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.All}`,
 			'icon': Icons.filter_all,
 			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
 		},
