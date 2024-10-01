@@ -46,7 +46,7 @@
       "activitybar": [
         {
           "id": "bookmarksh",
-          "title": "Bookmarks Tree",
+          "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg"
         }
       ]

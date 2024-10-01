@@ -51,7 +51,7 @@ class FileHelper {
 	) {
 		for (const item of bookmarks) {
 			try {
-				let content = item.description ?? ''
+				let content =  ''
 				var doc: vscode.TextDocument | undefined
 				const keys = new Set(this.mapDocumentBuf.keys())
 				if (keys.has(item.path)) {

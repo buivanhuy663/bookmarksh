@@ -22,7 +22,7 @@ const customPackageJson = {
       "activitybar": [
         {
           "id": id.nameExtension,
-          "title": "Bookmarks Tree",
+          "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg",
         }
       ]
