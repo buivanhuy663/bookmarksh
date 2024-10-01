@@ -52,8 +52,37 @@ const customPackageJson = {
         id.commands.exportBookmark,
         id.commands.addToWatcher,
         id.commands.removeWatcher,
-      ]
+      ],
+      "editor/context": [
+        {
+          "submenu": Commands_1.Commands.editorContext,
+          "group": "bookmarksh"
+        }
+      ],
+      "bookmarksh.editor.context": [
+        {
+          "command": id.commands.toggleBookmark.command,
+          "group": "bookmarksh@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": id.commands.forkAddBookmark.command,
+          "group": "bookmarksh@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": id.commands.forkDeleteBookmark.command,
+          "group": "bookmarksh@3",
+          "when": "editorTextFocus"
+        },
+      ],
     },
+    "submenus": [
+      {
+        "id": Commands_1.Commands.editorContext,
+        "label": "Bookmarks Tree"
+      }
+    ],
     "views": {
       "bookmarksh": id.bookmarksh
     }
@@ -62,7 +91,7 @@ const customPackageJson = {
 
 customPackageJson.name = "bookmarksh";
 customPackageJson.displayName = "Bookmarks Tree";
-customPackageJson.version = "0.0.16";
+customPackageJson.version = "0.0.17";
 
 fs.writeFileSync(customPackageJsonPath, JSON.stringify(customPackageJson, null, 2));
 

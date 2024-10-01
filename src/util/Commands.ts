@@ -4,6 +4,8 @@ import { Icons, KeyBinding } from "./Constant"
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
 
+	static readonly editorContext = 'bookmarksh.editor.context'
+
 	static readonly treeAsList = 'bookmarks.var.treeAsList'
 	static readonly hasBookmark = 'bookmarks.var.hasBookmark'
 	static readonly hasWatcher = 'bookmarks.var.hasWatcher'

@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Bookmark extension for Visual Studio Code",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
@@ -355,8 +355,37 @@
           "when": "(view == bookmarkshWatcherTree)  && viewItem == watcher",
           "group": "inline@1"
         }
+      ],
+      "editor/context": [
+        {
+          "submenu": "bookmarksh.editor.context",
+          "group": "bookmarksh"
+        }
+      ],
+      "bookmarksh.editor.context": [
+        {
+          "command": "bookmarksh.toggleBookmark",
+          "group": "bookmarksh@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "bookmarksh.forkAddBookmark",
+          "group": "bookmarksh@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "bookmarksh.forkDeleteBookmark",
+          "group": "bookmarksh@3",
+          "when": "editorTextFocus"
+        }
       ]
     },
+    "submenus": [
+      {
+        "id": "bookmarksh.editor.context",
+        "label": "Bookmarks Tree"
+      }
+    ],
     "views": {
       "bookmarksh": [
         {
