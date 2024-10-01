@@ -56,18 +56,21 @@
         "command": "bookmarksh.toggleBookmark",
         "title": "Toggle Bookmark",
         "key": "ctrl+alt+m",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forkAddBookmark",
         "title": "Fork and Add Bookmark",
         "key": "ctrl+alt+shift+m",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forkDeleteBookmark",
         "title": "Fork and Delete Bookmark",
         "key": "ctrl+alt+shift+d",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
@@ -128,6 +131,7 @@
           "light": "resources/light/remove_all.svg",
           "dark": "resources/dark/remove_all.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@1"
       },
       {
@@ -138,6 +142,7 @@
           "light": "resources/light/remove_all.svg",
           "dark": "resources/dark/remove_all.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@1"
       },
       {
@@ -148,6 +153,7 @@
           "light": "resources/light/export_json.svg",
           "dark": "resources/dark/export_json.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@2"
       },
       {
@@ -158,6 +164,7 @@
           "light": "resources/light/import_json.svg",
           "dark": "resources/dark/import_json.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@3"
       },
       {
@@ -168,36 +175,40 @@
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@7"
       },
       {
         "command": "bookmarksh.filterTree",
-        "title": "Show bookmark tree",
+        "title": "View as Bookmarks Tree",
         "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 1",
         "icon": {
           "light": "resources/light/filter_tree.svg",
           "dark": "resources/dark/filter_tree.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@4 "
       },
       {
         "command": "bookmarksh.filterFile",
-        "title": "Filter follow file",
+        "title": "View as Bookmarks Explorer",
         "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 3",
         "icon": {
           "light": "resources/light/folder.svg",
           "dark": "resources/dark/folder.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@4"
       },
       {
         "command": "bookmarksh.filterAll",
-        "title": "Show List All Bookmarks",
+        "title": "View as List of All Bookmarks",
         "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 2",
         "icon": {
           "light": "resources/light/filter_all.svg",
           "dark": "resources/dark/filter_all.svg"
         },
+        "category": "Bookmarks Tree",
         "group": "navigation@4"
       }
     ],
@@ -206,22 +217,60 @@
         "command": "bookmarksh.toggleBookmark",
         "title": "Toggle Bookmark",
         "key": "ctrl+alt+m",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forkAddBookmark",
         "title": "Fork and Add Bookmark",
         "key": "ctrl+alt+shift+m",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forkDeleteBookmark",
         "title": "Fork and Delete Bookmark",
         "key": "ctrl+alt+shift+d",
+        "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       }
     ],
     "menus": {
+      "commandPalette": [
+        {
+          "command": "bookmarksh.toggleBookmark"
+        },
+        {
+          "command": "bookmarksh.forkAddBookmark"
+        },
+        {
+          "command": "bookmarksh.forkDeleteBookmark"
+        },
+        {
+          "command": "bookmarksh.removeAllBookmark"
+        },
+        {
+          "command": "bookmarksh.exportAllBookmark"
+        },
+        {
+          "command": "bookmarksh.importBookmark"
+        },
+        {
+          "command": "bookmarksh.filterAll"
+        },
+        {
+          "command": "bookmarksh.filterFile"
+        },
+        {
+          "command": "bookmarksh.filterTree"
+        },
+        {
+          "command": "bookmarksh.refresh"
+        },
+        {
+          "command": "bookmarksh.removeAllWatcher"
+        }
+      ],
       "view/title": [
         {
           "command": "bookmarksh.removeAllBookmark",
@@ -231,6 +280,7 @@
             "light": "resources/light/remove_all.svg",
             "dark": "resources/dark/remove_all.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@1"
         },
         {
@@ -241,6 +291,7 @@
             "light": "resources/light/export_json.svg",
             "dark": "resources/dark/export_json.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@2"
         },
         {
@@ -251,36 +302,40 @@
             "light": "resources/light/import_json.svg",
             "dark": "resources/dark/import_json.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@3"
         },
         {
           "command": "bookmarksh.filterAll",
-          "title": "Show List All Bookmarks",
+          "title": "View as List of All Bookmarks",
           "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 2",
           "icon": {
             "light": "resources/light/filter_all.svg",
             "dark": "resources/dark/filter_all.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@4"
         },
         {
           "command": "bookmarksh.filterFile",
-          "title": "Filter follow file",
+          "title": "View as Bookmarks Explorer",
           "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 3",
           "icon": {
             "light": "resources/light/folder.svg",
             "dark": "resources/dark/folder.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@4"
         },
         {
           "command": "bookmarksh.filterTree",
-          "title": "Show bookmark tree",
+          "title": "View as Bookmarks Tree",
           "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 1",
           "icon": {
             "light": "resources/light/filter_tree.svg",
             "dark": "resources/dark/filter_tree.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@4 "
         },
         {
@@ -291,6 +346,7 @@
             "light": "resources/light/refresh.svg",
             "dark": "resources/dark/refresh.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@7"
         },
         {
@@ -301,6 +357,7 @@
             "light": "resources/light/remove_all.svg",
             "dark": "resources/dark/remove_all.svg"
           },
+          "category": "Bookmarks Tree",
           "group": "navigation@1"
         }
       ],

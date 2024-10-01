@@ -35,6 +35,41 @@ const customPackageJson = {
       id.commands.forkDeleteBookmark,
     ],
     "menus": {
+      "commandPalette": [
+        {
+          "command": id.commands.toggleBookmark.command,
+        },
+        {
+          "command": id.commands.forkAddBookmark.command,
+        },
+        {
+          "command": id.commands.forkDeleteBookmark.command,
+        },
+        {
+          "command": id.commands.removeAllBookmark.command,
+        },
+        {
+          "command": id.commands.exportAllBookmark.command,
+        },
+        {
+          "command": id.commands.importBookmark.command,
+        },
+        {
+          "command": id.commands.filterAll.command,
+        },
+        {
+          "command": id.commands.filterFile.command,
+        },
+        {
+          "command": id.commands.filterTree.command,
+        },
+        {
+          "command": id.commands.refresh.command,
+        },
+        {
+          "command": id.commands.removeAllWatcher.command,
+        },
+      ],
       "view/title": [
         id.commands.removeAllBookmark,
         id.commands.exportAllBookmark,

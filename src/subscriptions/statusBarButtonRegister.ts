@@ -12,6 +12,7 @@ export function statusBarButtonRegister(
 ) {
 	const filterAll = vscode.commands.registerCommand(Commands.commands.filterAll.command,
 		() => {
+			// vscode.commands.executeCommand('workbench.view.bookmarkshTreeView')
 			treeDataProvider.onFilterAll()
 		})
 	const filterFile = vscode.commands.registerCommand(Commands.commands.filterFile.command,
