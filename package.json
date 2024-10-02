@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Bookmark extension for Visual Studio Code",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
