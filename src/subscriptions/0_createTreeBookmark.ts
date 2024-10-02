@@ -32,6 +32,7 @@ export function createTreeBookmark(context: vscode.ExtensionContext, treeDataPro
 			}
 		}
 	})
+
 	// treeView.onDidChangeSelection((event) => {
 
 	// })

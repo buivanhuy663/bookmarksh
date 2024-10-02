@@ -1,0 +1,33 @@
+{
+  "mode": "all",
+  "bookmarks": [
+    {
+      "id": "uq2nOeN",
+      "label": "Bookmark",
+      "path": "__root__/src/bookmark-provider/data/model/Bookmark.ts",
+      "params": "0,61,13,61,21",
+      "subs": []
+    },
+    {
+      "id": "uq2o5mc",
+      "label": "constructor",
+      "path": "__root__/src/bookmark-provider/data/model/Bookmark.ts",
+      "params": "0,73,1,73,12",
+      "subs": []
+    },
+    {
+      "id": "uq2o7Le",
+      "label": "contextValue",
+      "path": "__root__/src/bookmark-provider/data/model/Bookmark.ts",
+      "params": "0,75,2,75,14",
+      "subs": []
+    },
+    {
+      "id": "uq2o8rX",
+      "label": "label",
+      "path": "__root__/src/bookmark-provider/data/model/Bookmark.ts",
+      "params": "0,77,2,77,7",
+      "subs": []
+    }
+  ]
+}
