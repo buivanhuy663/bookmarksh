@@ -1,8 +1,8 @@
 {
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
-  "description": "Bookmark extension for Visual Studio Code",
-  "version": "0.0.19",
+  "description": "Drag and Drop bookmark, group bookmark, watcher bookmark",
+  "version": "0.0.20",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
