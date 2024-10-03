@@ -28,7 +28,7 @@
   ![image1](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/add_bookmark.gif)
 
 - Group bookmark. Just drag and drop.
-  ![image2](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/add_bookmark.gif)
+  ![image2](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/move_group.gif)
 
 - Add bookmark to watcher
   ![image3](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/watcher.gif)
