@@ -5,7 +5,11 @@ class IconItem implements vscode.QuickPickItem {
 	label: string
 	iconId: number
 	constructor(label: string, index: number) {
-		this.label = `$(${label})   ${label.split('-').join(' ')}`
+		if (index > 0) {
+			this.label = `$(${label})   ${label.split('-').join(' ')}`
+		} else {
+			this.label = label
+		}
 		this.iconId = index
 	}
 }
@@ -20,6 +24,7 @@ class IconSymbolQuickPick {
 			options.splice(index, 1)
 			options.splice(0, 0, new IconItem(IconSymbol[i], i))
 		}
+		options.splice(0, 0, new IconItem('Remove Icon', 0))
 		const selected = await vscode.window.showQuickPick(options, { placeHolder: 'Select an Icon' })
 		return selected
 	}
@@ -32,15 +37,10 @@ class IconSymbolQuickPick {
 	addRegularly(index: number) {
 		if (this.regularly.includes(index)) {
 			this.regularly.splice(this.regularly.indexOf(index), 1)
-			this.regularly.push(index)
-			if (this.regularly.length > 10) {
-				this.regularly.slice(0, 1)
-			}
-		} else {
-			this.regularly.push(index)
-			if (this.regularly.length > 10) {
-				this.regularly.slice(0, 1)
-			}
+		}
+		this.regularly.push(index)
+		if (this.regularly.length > 10) {
+			this.regularly.slice(0, 1)
 		}
 	}
 }
@@ -51,7 +51,7 @@ export const iconSymbolQuickPick = new IconSymbolQuickPick()
 
 
 export const IconSymbol = [
-	''
+	'Remove Icon'
 	, 'account'
 	, 'activate-breakpoints'
 	, 'add'

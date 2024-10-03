@@ -50,6 +50,11 @@
 - Bookmark folder.
   ![image6](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image6.png)
 
+- Add Icon for bookmark.
+  ![image7](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/change_icon.gif)
+
+
+
 ## What's new?
 
 - Export single bookmark to json file
