@@ -31,8 +31,8 @@ const customPackageJson = {
     "commands": Object.values(id.commands),
     "keybindings": [
       id.commands.toggleBookmark,
-      id.commands.forkAddBookmark,
-      id.commands.forkDeleteBookmark,
+      id.commands.forceAddBookmark,
+      id.commands.forceDeleteBookmark,
     ],
     "menus": {
       "commandPalette": [
@@ -40,10 +40,10 @@ const customPackageJson = {
           "command": id.commands.toggleBookmark.command,
         },
         {
-          "command": id.commands.forkAddBookmark.command,
+          "command": id.commands.forceAddBookmark.command,
         },
         {
-          "command": id.commands.forkDeleteBookmark.command,
+          "command": id.commands.forceDeleteBookmark.command,
         },
         {
           "command": id.commands.removeAllBookmark.command,
@@ -101,12 +101,12 @@ const customPackageJson = {
           "when": "editorTextFocus"
         },
         {
-          "command": id.commands.forkAddBookmark.command,
+          "command": id.commands.forceAddBookmark.command,
           "group": "bookmarksh@2",
           "when": "editorTextFocus"
         },
         {
-          "command": id.commands.forkDeleteBookmark.command,
+          "command": id.commands.forceDeleteBookmark.command,
           "group": "bookmarksh@3",
           "when": "editorTextFocus"
         },

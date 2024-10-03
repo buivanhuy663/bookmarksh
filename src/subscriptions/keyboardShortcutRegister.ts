@@ -15,27 +15,27 @@ export function keyboardShortcutRegister(context: vscode.ExtensionContext, treeD
 			treeDataProvider.toggleBookmark(editor)
 		})
 
-	const forkAddBookmark = vscode.commands.registerCommand(Commands.commands.forkAddBookmark.command,
+	const forceAddBookmark = vscode.commands.registerCommand(Commands.commands.forceAddBookmark.command,
 		() => {
 			const editor = vscode.window.activeTextEditor
 			if (!editor) {
 				return
 			}
-			treeDataProvider.forkAddBookmark(editor)
+			treeDataProvider.forceAddBookmark(editor)
 		})
 
-	const forkDeleteBookmark = vscode.commands.registerCommand(Commands.commands.forkDeleteBookmark.command,
+	const forceDeleteBookmark = vscode.commands.registerCommand(Commands.commands.forceDeleteBookmark.command,
 		() => {
 			const editor = vscode.window.activeTextEditor
 			if (!editor) {
 				return
 			}
-			treeDataProvider.forkDeleteBookmark(editor)
+			treeDataProvider.forceDeleteBookmark(editor)
 		})
 
 	context.subscriptions.push(
 		toggleBookmark,
-		forkAddBookmark,
-		forkDeleteBookmark,
+		forceAddBookmark,
+		forceDeleteBookmark,
 	)
 }

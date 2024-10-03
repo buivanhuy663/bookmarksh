@@ -241,7 +241,7 @@ export const bookmarkIcon = new BookmarkIcon()
 {lable:'gear'}
 {lable:'gift'}
 {lable:'gist'}
-{lable:'gist-fork'}
+{lable:'gist-force'}
 {lable:'gist-new'}
 {lable:'gist-private'}
 {lable:'gist-secret'}
@@ -251,7 +251,7 @@ export const bookmarkIcon = new BookmarkIcon()
 {lable:'git-commit'}
 {lable:'git-compare'}
 {lable:'git-fetch'}
-{lable:'git-fork-private'}
+{lable:'git-force-private'}
 {lable:'git-merge'}
 {lable:'git-pull-request'}
 {lable:'git-pull-request-abandoned'}
@@ -417,7 +417,7 @@ export const bookmarkIcon = new BookmarkIcon()
 {lable:'repo-create'}
 {lable:'repo-delete'}
 {lable:'repo-force-push'}
-{lable:'repo-forked'}
+{lable:'repo-forceed'}
 {lable:'repo-pull'}
 {lable:'repo-push'}
 {lable:'repo-sync'}

@@ -60,15 +60,15 @@
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksh.forkAddBookmark",
-        "title": "Fork and Add Bookmark",
+        "command": "bookmarksh.forceAddBookmark",
+        "title": "Force and Add Bookmark",
         "key": "ctrl+alt+shift+m",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksh.forkDeleteBookmark",
-        "title": "Fork and Delete Bookmark",
+        "command": "bookmarksh.forceDeleteBookmark",
+        "title": "Force and Delete Bookmark",
         "key": "ctrl+alt+shift+d",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
@@ -221,15 +221,15 @@
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksh.forkAddBookmark",
-        "title": "Fork and Add Bookmark",
+        "command": "bookmarksh.forceAddBookmark",
+        "title": "Force and Add Bookmark",
         "key": "ctrl+alt+shift+m",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksh.forkDeleteBookmark",
-        "title": "Fork and Delete Bookmark",
+        "command": "bookmarksh.forceDeleteBookmark",
+        "title": "Force and Delete Bookmark",
         "key": "ctrl+alt+shift+d",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
@@ -241,10 +241,10 @@
           "command": "bookmarksh.toggleBookmark"
         },
         {
-          "command": "bookmarksh.forkAddBookmark"
+          "command": "bookmarksh.forceAddBookmark"
         },
         {
-          "command": "bookmarksh.forkDeleteBookmark"
+          "command": "bookmarksh.forceDeleteBookmark"
         },
         {
           "command": "bookmarksh.removeAllBookmark"
@@ -426,12 +426,12 @@
           "when": "editorTextFocus"
         },
         {
-          "command": "bookmarksh.forkAddBookmark",
+          "command": "bookmarksh.forceAddBookmark",
           "group": "bookmarksh@2",
           "when": "editorTextFocus"
         },
         {
-          "command": "bookmarksh.forkDeleteBookmark",
+          "command": "bookmarksh.forceDeleteBookmark",
           "group": "bookmarksh@3",
           "when": "editorTextFocus"
         }

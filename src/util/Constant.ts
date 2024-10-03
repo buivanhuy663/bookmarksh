@@ -1,7 +1,7 @@
 export class KeyBinding {
 	static readonly toggleBookmark = 'ctrl+alt+m'
-	static readonly forkAddBookmark = 'ctrl+alt+shift+m'
-	static readonly forkDeleteBookmark = 'ctrl+alt+shift+d'
+	static readonly forceAddBookmark = 'ctrl+alt+shift+m'
+	static readonly forceDeleteBookmark = 'ctrl+alt+shift+d'
 }
 
 export class Icons {

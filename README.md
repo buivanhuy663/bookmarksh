@@ -15,40 +15,23 @@
 * Export bookmark
 * Import bookmark
 * Watcher for a bookmark
+* Change icon for bookmark
 
 ## Shortcuts
 
 * ``Ctrl + Alt + m`` : Toggle a single bookmark
-* ``Ctrl + Alt + Shift + m`` : Fork add a bookmark
-* ``Ctrl + Alt + Shift + d`` : Fork delete a bookmark
+* ``Ctrl + Alt + Shift + m`` : Force add a bookmark
+* ``Ctrl + Alt + Shift + d`` : Force delete a bookmark
 
 ## Tips
+- Add or force add a bookmark. 
+  ![image1](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/add_bookmark.gif)
 
-- You can drag and drop one bookmark to another to group them.
-- You can pin view a bookmark. A new bookmark once added will be a child of this bookmark.
-- You can easily edit or delete the lable of a bookmark.
+- Group bookmark. Just drag and drop.
+  ![image2](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/add_bookmark.gif)
 
-![image1](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image1.png)
-`<br></br>`
-
-- Use ``Ctrl + Alt + Shift + m`` to fork add multible bookmark for one index.
-- The text selected will be the lable. If not, default lable is content of line.
-
-![image2](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image2.png)
-
-- If a bookmark have children. You will be prompted when you want to delete this bookmark.
-  You can choose to delete all or move child bookmarks outside the parent.
-
-![image3](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image3.png)
-
-- Add a bookmark to watcher or export that bookmark to json file.
-  ![image4](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image4.png)
-
-- Multiline content for a bookmark.
-  ![image5](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image5.png)
-
-- Bookmark folder.
-  ![image6](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/image6.png)
+- Add bookmark to watcher
+  ![image3](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/watcher.gif)
 
 - Add Icon for bookmark.
   ![image7](https://raw.githubusercontent.com/buivanhuy663/bookmarksh/main/resources/git/change_icon.gif)

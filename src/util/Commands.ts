@@ -40,17 +40,17 @@ export class Commands {
 			"category": "Bookmarks Tree",
 			'when': 'editorTextFocus',
 		},
-		forkAddBookmark: {
-			'command': Commands.nameExtension + '.forkAddBookmark',
-			'title': 'Fork and Add Bookmark',
-			'key': KeyBinding.forkAddBookmark,
+		forceAddBookmark: {
+			'command': Commands.nameExtension + '.forceAddBookmark',
+			'title': 'Force and Add Bookmark',
+			'key': KeyBinding.forceAddBookmark,
 			"category": "Bookmarks Tree",
 			'when': 'editorTextFocus',
 		},
-		forkDeleteBookmark: {
-			'command': Commands.nameExtension + '.forkDeleteBookmark',
-			'title': 'Fork and Delete Bookmark',
-			'key': KeyBinding.forkDeleteBookmark,
+		forceDeleteBookmark: {
+			'command': Commands.nameExtension + '.forceDeleteBookmark',
+			'title': 'Force and Delete Bookmark',
+			'key': KeyBinding.forceDeleteBookmark,
 			"category": "Bookmarks Tree",
 			'when': 'editorTextFocus',
 		},
