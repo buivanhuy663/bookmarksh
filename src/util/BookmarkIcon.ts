@@ -19,8 +19,8 @@ export class BookmarkIcon {
 		editor.setDecorations(this._bookmarkMulti, decorationMulti)
 	}
 
-	getIcon(icon: IconType): vscode.Uri {
-		const mode = vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ? 'dark' : 'light'
+	getIcon(icon: IconType, mode?: 'green' | 'dark' | 'light'): vscode.Uri {
+		mode = mode ?? (vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ? 'dark' : 'light')
 		return vscode.Uri.file(path.join(__dirname, '..', '..', 'resources', mode, `${icon}.svg`))
 	}
 
@@ -45,7 +45,6 @@ export enum IconType {
 	bookmarks = 'bookmarks',
 	watcher = 'watcher',
 	open_folder = 'open_folder',
-	open_folder_green = 'open_folder_green',
 	folder = 'folder'
 }
 export const bookmarkIcon = new BookmarkIcon()
