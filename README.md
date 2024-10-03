@@ -45,3 +45,4 @@
 - Replace new index to a bookmark (Click edit bookmark)
 - Bookmark multiline content
 - Folder bookmark
+- Add Icon for bookmark
