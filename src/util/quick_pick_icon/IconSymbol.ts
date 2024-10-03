@@ -1,23 +1,51 @@
 import * as vscode from 'vscode'
+import { bookmarkRepository } from '../../bookmark-provider/data/repository/BookmarksTreeRepository'
 
-export class IconSymbolQuickPick {
-	static regularly = new Set<number>()
-	static async show() {
-		const start = Array.from(this.regularly).map((index) => <vscode.QuickPickItem>{
-			label: `$(${IconSymbol[index]})  ${IconSymbol[index].split('-').join(' ')}`,
-			description: `${index},${IconSymbol[index]}`,
-			alwaysShow: true
-		})
-		const options = start.reverse()
-		const end = Array.from(IconSymbol.map((value, index) => <vscode.QuickPickItem>{
-			label: `$(${value})  ${value.split('-').join(' ')}`,
-			description: `${index},${value}`,
-		}))
-		options.push(...end)
+class IconItem implements vscode.QuickPickItem {
+	label: string
+	iconId: number
+	constructor(label: string, index: number) {
+		this.label = `$(${label})   ${label.split('-').join(' ')}`
+		this.iconId = index
+	}
+}
+
+class IconSymbolQuickPick {
+	regularly = new Array<number>()
+	async show() {
+		const options = Array.from(IconSymbol.map((value, index) => new IconItem(value, index)))
+		options.splice(0, 1)
+		for (const i of [...this.regularly]) {
+			const index = options.findIndex(item => item.iconId === i)
+			options.splice(index, 1)
+			options.splice(0, 0, new IconItem(IconSymbol[i], i))
+		}
 		const selected = await vscode.window.showQuickPick(options, { placeHolder: 'Select an Icon' })
 		return selected
 	}
+
+	loadAllRegularlyFromLocal(context: vscode.ExtensionContext) {
+		const data = bookmarkRepository.readRegularIcon(context)
+		this.regularly.push(...data)
+	}
+
+	addRegularly(index: number) {
+		if (this.regularly.includes(index)) {
+			this.regularly.splice(this.regularly.indexOf(index), 1)
+			this.regularly.push(index)
+			if (this.regularly.length > 10) {
+				this.regularly.slice(0, 1)
+			}
+		} else {
+			this.regularly.push(index)
+			if (this.regularly.length > 10) {
+				this.regularly.slice(0, 1)
+			}
+		}
+	}
 }
+
+export const iconSymbolQuickPick = new IconSymbolQuickPick()
 
 
 

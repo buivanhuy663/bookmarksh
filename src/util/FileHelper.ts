@@ -8,6 +8,7 @@ import path = require("path")
 class FileHelper {
 	readonly BOOKMARKS_WORKSPACE = 'bookmarks'
 	readonly WATCHER_WORKSPACE = 'watcher'
+	readonly ICONS_WORKSPACE = 'icons'
 
 	hasDir = false
 
@@ -51,7 +52,7 @@ class FileHelper {
 	) {
 		for (const item of bookmarks) {
 			try {
-				let content =  ''
+				let content = ''
 				var doc: vscode.TextDocument | undefined
 				const keys = new Set(this.mapDocumentBuf.keys())
 				if (keys.has(item.path)) {
