@@ -25,6 +25,18 @@ class FileHelper {
 		context.workspaceState.update(workspace, data)
 	}
 
+	writeGloble(context: vscode.ExtensionContext, workspace: string, data: any) {
+		context.globalState.update('bookmarksh_' + workspace, data)
+	}
+
+	readGloble(context: vscode.ExtensionContext, workspace: string) {
+		try {
+			const parsedData = context.globalState.get('bookmarksh_' + workspace)
+			return parsedData
+		} catch {
+		}
+	}
+
 	readJsonFile(filePath: string): any {
 		try {
 			const data = fs.readFileSync(filePath, 'utf8')

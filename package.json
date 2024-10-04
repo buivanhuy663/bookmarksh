@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Drag and Drop bookmark, group bookmark, watcher bookmark",
-  "version": "0.0.20",
+  "version": "0.1.0",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",

@@ -34,7 +34,7 @@ export function openNodeBookmarkRegister(context: vscode.ExtensionContext, treeD
 						range = new vscode.Range(start, end);
 					}
 					editor.selection = new vscode.Selection(range.start, range.end)
-					editor.revealRange(editor.selection)
+					editor.revealRange(editor.selection, vscode.TextEditorRevealType.InCenterIfOutsideViewport)
 
 				})
 			})
