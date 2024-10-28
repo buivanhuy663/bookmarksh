@@ -12,6 +12,7 @@ import { keyboardShortcutRegister } from './subscriptions/keyboardShortcutRegist
 import { openNodeBookmarkRegister } from './subscriptions/openNodeBookmarkRegister'
 import { statusBarButtonRegister } from './subscriptions/statusBarButtonRegister'
 import path = require('path')
+import { configurationRegister } from './subscriptions/configurationRegister'
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -25,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	fileEditorRegister(context, bookmarkTreeProvider)
 	buttonItemRegister(context, bookmarkTreeProvider, watcherProvider)
+	configurationRegister(context, bookmarkTreeProvider, watcherProvider)
 	openNodeBookmarkRegister(context, bookmarkTreeProvider)
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
