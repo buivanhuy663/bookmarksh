@@ -18,8 +18,8 @@ const customPackageJson = {
   ...basePackageJson,
   contributes: {
     ...basePackageJson.contributes,
-    "viewsContainers": {
-      "activitybar": [
+    viewsContainers: {
+      activitybar: [
         {
           "id": id.nameExtension,
           "title": "Bookmarks",
@@ -27,47 +27,47 @@ const customPackageJson = {
         }
       ]
     },
-    "views": {},
-    "commands": Object.values(id.commands),
-    "keybindings": [
+    views: {},
+    commands: Object.values(id.commands),
+    keybindings: [
       id.commands.toggleBookmark,
       id.commands.forceAddBookmark,
       id.commands.forceDeleteBookmark,
     ],
-    "menus": {
-      "commandPalette": [
+    menus: {
+      commandPalett: [
         {
-          "command": id.commands.toggleBookmark.command,
+          command: id.commands.toggleBookmark.command,
         },
         {
-          "command": id.commands.forceAddBookmark.command,
+          command: id.commands.forceAddBookmark.command,
         },
         {
-          "command": id.commands.forceDeleteBookmark.command,
+          command: id.commands.forceDeleteBookmark.command,
         },
         {
-          "command": id.commands.removeAllBookmark.command,
+          command: id.commands.removeAllBookmark.command,
         },
         {
-          "command": id.commands.exportAllBookmark.command,
+          command: id.commands.exportAllBookmark.command,
         },
         {
-          "command": id.commands.importBookmark.command,
+          command: id.commands.importBookmark.command,
         },
         {
-          "command": id.commands.filterAll.command,
+          command: id.commands.filterAll.command,
         },
         {
-          "command": id.commands.filterFile.command,
+          command: id.commands.filterFile.command,
         },
         {
-          "command": id.commands.filterTree.command,
+          command: id.commands.filterTree.command,
         },
         {
-          "command": id.commands.refresh.command,
+          command: id.commands.refresh.command,
         },
         {
-          "command": id.commands.removeAllWatcher.command,
+          command: id.commands.removeAllWatcher.command,
         },
       ],
       "view/title": [
@@ -90,37 +90,38 @@ const customPackageJson = {
       ],
       "editor/context": [
         {
-          "submenu": Commands_1.Commands.editorContext,
-          "group": "bookmarksh"
+          submenu: Commands_1.Commands.editorContext,
+          group: "bookmarksh"
         }
       ],
       "bookmarksh.editor.context": [
         {
-          "command": id.commands.toggleBookmark.command,
-          "group": "bookmarksh@1",
-          "when": "editorTextFocus"
+          command: id.commands.toggleBookmark.command,
+          group: "bookmarksh@1",
+          when: "editorTextFocus"
         },
         {
-          "command": id.commands.forceAddBookmark.command,
-          "group": "bookmarksh@2",
-          "when": "editorTextFocus"
+          command: id.commands.forceAddBookmark.command,
+          group: "bookmarksh@2",
+          when: "editorTextFocus"
         },
         {
-          "command": id.commands.forceDeleteBookmark.command,
-          "group": "bookmarksh@3",
-          "when": "editorTextFocus"
+          command: id.commands.forceDeleteBookmark.command,
+          group: "bookmarksh@3",
+          when: "editorTextFocus"
         },
       ],
     },
-    "submenus": [
+    submenus: [
       {
         "id": Commands_1.Commands.editorContext,
         "label": "Bookmarks Tree"
       }
     ],
-    "views": {
-      "bookmarksh": id.bookmarksh
-    }
+    views: {
+      bookmarksh: id.bookmarksh
+    },
+    configuration: id.configuration
   }
 };
 
