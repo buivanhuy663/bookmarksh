@@ -4,27 +4,36 @@ import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { WatcherTreeViewProvider } from '../bookmark-provider/provider/WatcherTreeViewProvider'
 import { Commands } from '../util/Commands'
-
+import { Config } from '../bookmark-provider/data/shared_data/Config'
 
 export function configurationRegister(context: vscode.ExtensionContext,
 	treeDataProvider: BookmarksTreeViewProvider,
 	watcherDataProvider: WatcherTreeViewProvider,
 ) {
+	const initEnableAutoExport = vscode.workspace.getConfiguration('bookmarksh').get('enableAutoExport');
+	switch (initEnableAutoExport) {
+		case true:
+			Config.autoBackupJson = true
+			// vscode.window.showInformationMessage('enableAutoExport is enabled.');
+			break;
+		case false:
+			Config.autoBackupJson = false
+			// vscode.window.showInformationMessage('enableAutoExport is disabled.');
+			break;
+	}
 
 	const enableAutoExport = vscode.workspace.onDidChangeConfiguration(event => {
-		// Check if the specific configuration was changed
 		if (event.affectsConfiguration('bookmarksh.enableAutoExport')) {
-			const config = vscode.workspace.getConfiguration('bookmarksh');
-			const isFeatureEnabled = config.get('enableAutoExport');
+			const enableAutoExport = vscode.workspace.getConfiguration('bookmarksh').get('enableAutoExport');
 
-			switch (isFeatureEnabled) {
+			switch (enableAutoExport) {
 				case true:
-					// Code to execute when the feature is enabled
-					vscode.window.showInformationMessage('Feature is enabled.');
+					Config.autoBackupJson = true
+					// vscode.window.showInformationMessage('enableAutoExport is enabled.');
 					break;
 				case false:
-					// Code to execute when the feature is disabled
-					vscode.window.showInformationMessage('Feature is disabled.');
+					Config.autoBackupJson = false
+					// vscode.window.showInformationMessage('enableAutoExport is disabled.');
 					break;
 			}
 		}

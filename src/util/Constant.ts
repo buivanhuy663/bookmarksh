@@ -1,6 +1,6 @@
 export class KeyBinding {
-	static readonly toggleBookmark = 'ctrl+alt+m'
-	static readonly forceAddBookmark = 'ctrl+alt+shift+m'
+	static readonly toggleBookmark = 'ctrl+alt+h'
+	static readonly forceAddBookmark = 'ctrl+alt+shift+h'
 	static readonly forceDeleteBookmark = 'ctrl+alt+shift+d'
 }
 

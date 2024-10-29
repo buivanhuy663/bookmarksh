@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Drag and Drop bookmark, group bookmark, watcher bookmark",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
@@ -55,14 +55,14 @@
       {
         "command": "bookmarksh.toggleBookmark",
         "title": "Toggle Bookmark",
-        "key": "ctrl+alt+m",
+        "key": "ctrl+alt+h",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forceAddBookmark",
         "title": "Force and Add Bookmark",
-        "key": "ctrl+alt+shift+m",
+        "key": "ctrl+alt+shift+h",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
@@ -216,14 +216,14 @@
       {
         "command": "bookmarksh.toggleBookmark",
         "title": "Toggle Bookmark",
-        "key": "ctrl+alt+m",
+        "key": "ctrl+alt+h",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },
       {
         "command": "bookmarksh.forceAddBookmark",
         "title": "Force and Add Bookmark",
-        "key": "ctrl+alt+shift+m",
+        "key": "ctrl+alt+shift+h",
         "category": "Bookmarks Tree",
         "when": "editorTextFocus"
       },

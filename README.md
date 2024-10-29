@@ -19,8 +19,8 @@
 
 ## Shortcuts
 
-* ``Ctrl + Alt + m`` : Toggle a single bookmark
-* ``Ctrl + Alt + Shift + m`` : Force add a bookmark
+* ``Ctrl + Alt + h`` : Toggle a single bookmark
+* ``Ctrl + Alt + Shift + h`` : Force add a bookmark
 * ``Ctrl + Alt + Shift + d`` : Force delete a bookmark
 
 ## Tips
@@ -39,10 +39,11 @@
 
 
 ## What's new?
-
+- Change shortcuts key
 - Export single bookmark to json file
 - Watcher for bookmark
 - Replace new index to a bookmark (Click edit bookmark)
 - Bookmark multiline content
 - Folder bookmark
 - Add Icon for bookmark
+- Add config enable Auto Export
