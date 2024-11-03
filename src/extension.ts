@@ -13,12 +13,15 @@ import { openNodeBookmarkRegister } from './subscriptions/openNodeBookmarkRegist
 import { statusBarButtonRegister } from './subscriptions/statusBarButtonRegister'
 import path = require('path')
 import { configurationRegister } from './subscriptions/configurationRegister'
+import { BookmarksHelpAndFeedback } from './sidebar/BookmarksHelpAndFeedback'
+import { createHelpAndFeedback } from './subscriptions/2_createHelpAndFeedback'
 
 
 export function activate(context: vscode.ExtensionContext) {
 
 	const bookmarkTreeProvider = new BookmarksTreeViewProvider(context)
 	const watcherProvider = new WatcherTreeViewProvider(context, bookmarkTreeProvider)
+	const bookmarksHelpAndFeedback = new BookmarksHelpAndFeedback()
 	bookmarkTreeProvider.setWatcherTreeViewProvider(watcherProvider)
 
 	const treeViewBookmark = createTreeBookmark(context, bookmarkTreeProvider)
@@ -30,6 +33,8 @@ export function activate(context: vscode.ExtensionContext) {
 	openNodeBookmarkRegister(context, bookmarkTreeProvider)
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
+
+	createHelpAndFeedback(context,bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
 }
