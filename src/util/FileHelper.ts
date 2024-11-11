@@ -147,6 +147,25 @@ class FileHelper {
 
 		return true
 	}
+
+	async getTodo(
+		filePath:string,
+		findTodo: () => void,
+	){
+		const regex = /todo(:)/i;
+		const fileStream = fs.createReadStream(filePath);
+		const readline = require('readline');
+		const rl = readline.createInterface({
+			input: fileStream,
+			crlfDelay: Infinity
+		});	
+		for await (const line of rl) {
+			if((line as string).match(regex)?.length??0 > 0){
+				console.log(`find: ${}`)
+				findTodo()
+			}
+		}
+	}
 }
 
 export const fileHelper = new FileHelper()
