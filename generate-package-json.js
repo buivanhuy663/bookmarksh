@@ -27,7 +27,6 @@ const customPackageJson = {
         }
       ]
     },
-    views: {},
     commands: Object.values(id.commands),
     keybindings: [
       id.commands.toggleBookmark,
@@ -112,6 +111,7 @@ const customPackageJson = {
         },
       ],
     },
+    
     submenus: [
       {
         "id": Commands_1.Commands.editorContext,

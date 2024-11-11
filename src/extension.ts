@@ -4,8 +4,6 @@ import * as vscode from 'vscode'
 
 import { BookmarksTreeViewProvider } from './bookmark-provider/provider/BookmarkTreeViewProvider'
 import { WatcherTreeViewProvider } from './bookmark-provider/provider/WatcherTreeViewProvider'
-import { createTreeBookmark } from './subscriptions/0_createTreeBookmark'
-import { createTreeWatcher } from './subscriptions/1_createTreeWatcher'
 import { buttonItemRegister } from './subscriptions/buttonItemRegister'
 import { fileEditorRegister } from './subscriptions/fileEditorRegister'
 import { keyboardShortcutRegister } from './subscriptions/keyboardShortcutRegister'
@@ -15,6 +13,10 @@ import path = require('path')
 import { configurationRegister } from './subscriptions/configurationRegister'
 import { BookmarksHelpAndFeedback } from './sidebar/BookmarksHelpAndFeedback'
 import { createHelpAndFeedback } from './subscriptions/2_createHelpAndFeedback'
+import { createTreeBookmark } from './bookmark-provider/features/bookmarks/createTreeBookmark'
+import { createTreeWatcher } from './bookmark-provider/features/watchers/createTreeWatcher'
+import { createTodosTree } from './bookmark-provider/features/todos/createTodosTree'
+import { TodosViewProvider } from './bookmark-provider/features/todos/TodosViewProvider'
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -22,6 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const bookmarkTreeProvider = new BookmarksTreeViewProvider(context)
 	const watcherProvider = new WatcherTreeViewProvider(context, bookmarkTreeProvider)
 	const bookmarksHelpAndFeedback = new BookmarksHelpAndFeedback()
+	const todosViewProvider = new TodosViewProvider(context)
 	bookmarkTreeProvider.setWatcherTreeViewProvider(watcherProvider)
 
 	const treeViewBookmark = createTreeBookmark(context, bookmarkTreeProvider)
@@ -34,7 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
-	createHelpAndFeedback(context,bookmarksHelpAndFeedback)
+	createTodosTree(context, todosViewProvider)
+
+	// createHelpAndFeedback(context,bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
 }

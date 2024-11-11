@@ -40,9 +40,7 @@
     "typescript": "^5.5.2",
     "cross-env": "^7.0.3"
   },
-  "dependencies": {
-    "vscode-ext-help-and-feedback-view": "^1.0.1"
-  },
+  "dependencies": {},
   "contributes": {
     "viewsContainers": {
       "activitybar": [
@@ -456,9 +454,8 @@
           "name": "Watcher"
         },
         {
-          "id": "bookmarkshHelpAndFeedback",
-          "name": "Help And Feedback",
-          "visibility": "collapsed"
+          "id": "bookmarkshTodos",
+          "name": "Todos"
         }
       ]
     },
