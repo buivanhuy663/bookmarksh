@@ -1,8 +1,8 @@
 
 import * as vscode from 'vscode'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
-import { WatcherTreeViewProvider } from '../bookmark-provider/provider/WatcherTreeViewProvider'
+import { WatcherTreeViewProvider } from '../bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { Commands } from '../util/Commands'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 
 export function statusBarButtonRegister(
 	context: vscode.ExtensionContext,

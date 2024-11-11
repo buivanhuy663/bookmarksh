@@ -12,7 +12,7 @@ export class Commands {
 
 	static get watcherTreeViewName() { return Commands.nameExtension + 'WatcherTree' }
 	static get bookmarkTreeViewName() { return Commands.nameExtension + 'TreeView' }
-	static get helpAndFeedbackTreeViewName() { return Commands.nameExtension + 'AndFeedback' }
+	static get helpAndFeedbackTreeViewName() { return Commands.nameExtension + 'HelpAndFeedback' }
 	static get todosTreeViewName() { return Commands.nameExtension + 'Todos' }
 	
 	static get openBookmark() { return Commands.nameExtension + '.openBookmark' }
@@ -178,6 +178,10 @@ export class Commands {
 		{
 			"id": Commands.todosTreeViewName,
 			"name": "Todos"
+		},
+		{
+			"id": Commands.helpAndFeedbackTreeViewName,
+			"name": "Help And Feedback"
 		},
 	]
 

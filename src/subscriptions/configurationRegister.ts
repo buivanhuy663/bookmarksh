@@ -1,10 +1,8 @@
 
 import * as vscode from 'vscode'
-import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
-import { WatcherTreeViewProvider } from '../bookmark-provider/provider/WatcherTreeViewProvider'
-import { Commands } from '../util/Commands'
+import { WatcherTreeViewProvider } from '../bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { Config } from '../bookmark-provider/data/shared_data/Config'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 
 export function configurationRegister(context: vscode.ExtensionContext,
 	treeDataProvider: BookmarksTreeViewProvider,

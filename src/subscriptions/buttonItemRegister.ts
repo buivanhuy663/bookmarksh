@@ -1,9 +1,9 @@
 
 import * as vscode from 'vscode'
 import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
-import { WatcherTreeViewProvider } from '../bookmark-provider/provider/WatcherTreeViewProvider'
+import { WatcherTreeViewProvider } from '../bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { Commands } from '../util/Commands'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 
 
 export function buttonItemRegister(context: vscode.ExtensionContext,

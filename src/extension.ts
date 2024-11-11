@@ -2,8 +2,7 @@
 
 import * as vscode from 'vscode'
 
-import { BookmarksTreeViewProvider } from './bookmark-provider/provider/BookmarkTreeViewProvider'
-import { WatcherTreeViewProvider } from './bookmark-provider/provider/WatcherTreeViewProvider'
+import { WatcherTreeViewProvider } from './bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { buttonItemRegister } from './subscriptions/buttonItemRegister'
 import { fileEditorRegister } from './subscriptions/fileEditorRegister'
 import { keyboardShortcutRegister } from './subscriptions/keyboardShortcutRegister'
@@ -11,12 +10,13 @@ import { openNodeBookmarkRegister } from './subscriptions/openNodeBookmarkRegist
 import { statusBarButtonRegister } from './subscriptions/statusBarButtonRegister'
 import path = require('path')
 import { configurationRegister } from './subscriptions/configurationRegister'
-import { BookmarksHelpAndFeedback } from './sidebar/BookmarksHelpAndFeedback'
-import { createHelpAndFeedback } from './subscriptions/2_createHelpAndFeedback'
+import { BookmarksHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/BookmarksHelpAndFeedback'
 import { createTreeBookmark } from './bookmark-provider/features/bookmarks/createTreeBookmark'
 import { createTreeWatcher } from './bookmark-provider/features/watchers/createTreeWatcher'
 import { createTodosTree } from './bookmark-provider/features/todos/createTodosTree'
 import { TodosViewProvider } from './bookmark-provider/features/todos/TodosViewProvider'
+import { BookmarksTreeViewProvider } from './bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
+import { createHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/createHelpAndFeedback'
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -33,13 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
 	fileEditorRegister(context, bookmarkTreeProvider)
 	buttonItemRegister(context, bookmarkTreeProvider, watcherProvider)
 	configurationRegister(context, bookmarkTreeProvider, watcherProvider)
-	openNodeBookmarkRegister(context, bookmarkTreeProvider)
+	openNodeBookmarkRegister(context)
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
 	createTodosTree(context, todosViewProvider)
 
-	// createHelpAndFeedback(context,bookmarksHelpAndFeedback)
+	createHelpAndFeedback(context,bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
 }

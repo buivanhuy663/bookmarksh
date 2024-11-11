@@ -1,12 +1,11 @@
 
 import * as vscode from 'vscode'
 import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
 import { fileHelper } from '../util/FileHelper'
 
 
-export function openNodeBookmarkRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
+export function openNodeBookmarkRegister(context: vscode.ExtensionContext) {
 	const openBookmark = vscode.commands.registerCommand(Commands.openBookmark,
 		(bookmark: Bookmark) => {
 			const fileUri = fileHelper.relativeToUri(bookmark.path)

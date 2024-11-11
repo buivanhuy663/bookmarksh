@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { Commands } from '../util/Commands'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 
 
 export function keyboardShortcutRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {

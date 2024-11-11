@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/provider/BookmarkTreeViewProvider'
 import { fileHelper } from '../util/FileHelper'
+import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 
 export function fileEditorRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
 	vscode.workspace.onDidChangeTextDocument(event => {
