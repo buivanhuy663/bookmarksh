@@ -473,6 +473,80 @@
           "description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
         }
       }
-    }
+    },
+    "colors": [
+      {
+        "id": "bookmarksh.color.Todo",
+        "defaults": {
+          "dark": "#00ff00",
+          "light": "#00ff00"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.InProgress",
+        "defaults": {
+          "dark": "#ffff00",
+          "light": "#ffff00"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.Hold",
+        "defaults": {
+          "dark": "#009eff",
+          "light": "#009eff"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.Warning",
+        "defaults": {
+          "dark": "#ffff00",
+          "light": "#ffff00"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.Error",
+        "defaults": {
+          "dark": "#ff0000",
+          "light": "#ff0000"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.Done",
+        "defaults": {
+          "dark": "#00ff00",
+          "light": "#00ff00"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.NeedReview",
+        "defaults": {
+          "dark": "#009eff",
+          "light": "#009eff"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.NeedRemove",
+        "defaults": {
+          "dark": "#ff0000",
+          "light": "#ff0000"
+        },
+        "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.NeedImprove",
+        "defaults": {
+          "dark": "#ffff00",
+          "light": "#ffff00"
+        },
+        "description": "green"
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 import { TreeMode } from "../bookmark-provider/data/shared_data/TreeMode"
-import { Icons, KeyBinding } from "./Constant"
+import { Color, Icons, KeyBinding } from "./Constant"
 
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
@@ -14,8 +14,9 @@ export class Commands {
 	static get bookmarkTreeViewName() { return Commands.nameExtension + 'TreeView' }
 	static get helpAndFeedbackTreeViewName() { return Commands.nameExtension + 'HelpAndFeedback' }
 	static get todosTreeViewName() { return Commands.nameExtension + 'Todos' }
-	
+
 	static get openBookmark() { return Commands.nameExtension + '.openBookmark' }
+	static get openTodo() { return Commands.nameExtension + '.openTodo' }
 
 	static viewBookmarkTreeView = `(view == ${this.bookmarkTreeViewName})`
 	static viewWatcherTreeView = `(view == ${this.watcherTreeViewName})`
@@ -196,4 +197,16 @@ export class Commands {
 			}
 		}
 	}
+
+	static allColor = [
+		Color.Todo,
+		Color.InProgress,
+		Color.Hold,
+		Color.Warning,
+		Color.Error,
+		Color.Done,
+		Color.NeedReview,
+		Color.NeedRemove,
+		Color.NeedImprove,
+	]
 }

@@ -3,6 +3,8 @@ import * as vscode from 'vscode'
 import { SetBookmark } from "../bookmark-provider/data/model/SetBookmark"
 import { logger } from "./LoggerHelper"
 import path = require("path")
+import { TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
+import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
 
 
 class FileHelper {
@@ -138,6 +140,10 @@ class FileHelper {
 		return vscode.Uri.file(this.relativeToAbsolute(fsPath))
 	}
 
+	absoluteToUri(fsPath: string): vscode.Uri {
+		return vscode.Uri.file(fsPath)
+	}
+
 	static pathExists(p: string): boolean {
 		try {
 			fs.accessSync(p)
@@ -148,22 +154,48 @@ class FileHelper {
 		return true
 	}
 
-	async getTodo(
-		filePath:string,
-		findTodo: () => void,
+	 getAllTodoInRoot(
+		root:string,
+		findTodo: (todo: TodoNode) => void,
 	){
-		const regex = /todo(:)/i;
-		const fileStream = fs.createReadStream(filePath);
-		const readline = require('readline');
+		const items = fs.readdirSync(root);
+		items.forEach(async item => {
+			const fullPath = path.join(root, item);
+			const stat = fs.statSync(fullPath);
+
+			if (stat.isDirectory()) {
+				// Nếu là thư mục, đệ quy vào bên trong
+				this.getAllTodoInRoot(fullPath, findTodo);
+			} else {
+				// Nếu là file, thêm vào danh sách
+				if(todoSupporEx.has(path.extname(fullPath))){
+					await this.getTodoInfile(fullPath,findTodo)
+				}
+			}
+		});
+	}
+
+
+
+	async getTodoInfile(
+		filePath:string,
+		findTodo: (todo: TodoNode) => void,
+	){
+		const regex = /todo\s*(?:\[.*\])?\s*:.*/i
+		const fileStream = fs.createReadStream(filePath)
+		const readline = require('readline')
 		const rl = readline.createInterface({
 			input: fileStream,
-			crlfDelay: Infinity
-		});	
+			crlfDelay: Infinity,
+		})
+		let lineNumber = 0
 		for await (const line of rl) {
 			if((line as string).match(regex)?.length??0 > 0){
-				console.log(`find: ${}`)
-				findTodo()
+				console.log(`find: ${line}`)
+				const todoNode = new TodoNode({path: filePath, line: lineNumber,content: line})
+				findTodo(todoNode)
 			}
+			lineNumber++
 		}
 	}
 }

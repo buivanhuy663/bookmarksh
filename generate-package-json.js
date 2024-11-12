@@ -121,7 +121,8 @@ const customPackageJson = {
     views: {
       bookmarksh: id.bookmarksh
     },
-    configuration: id.configuration
+    configuration: id.configuration,
+    colors: id.allColor
   }
 };
 

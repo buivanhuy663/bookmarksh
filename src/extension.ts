@@ -17,6 +17,7 @@ import { createTodosTree } from './bookmark-provider/features/todos/createTodosT
 import { TodosViewProvider } from './bookmark-provider/features/todos/TodosViewProvider'
 import { BookmarksTreeViewProvider } from './bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 import { createHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/createHelpAndFeedback'
+import { openTodoNodeRegister } from './bookmark-provider/features/todos/register/openTodoNodeRegister'
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -38,6 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
 	createTodosTree(context, todosViewProvider)
+	openTodoNodeRegister(context)
 
 	createHelpAndFeedback(context,bookmarksHelpAndFeedback)
 
