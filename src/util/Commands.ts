@@ -1,5 +1,6 @@
 import { TreeMode } from "../bookmark-provider/data/shared_data/TreeMode"
 import { Color, Icons, KeyBinding } from "./Constant"
+import { ContextBookmark } from "./ContextValue"
 
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
@@ -20,8 +21,8 @@ export class Commands {
 
 	static viewBookmarkTreeView = `(view == ${this.bookmarkTreeViewName})`
 	static viewWatcherTreeView = `(view == ${this.watcherTreeViewName})`
-	static bookmarkOnTree = '(viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) '
-	static bookmarkOnAll = '(viewItem == bookmark || viewItem == watcher) '
+	static bookmarkOnTree = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher} || viewItem == ${ContextBookmark.BookmarkFolder} || viewItem == ${ContextBookmark.BookmarkInvalid}}) `
+	static bookmarkOnAll = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher}) `
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
 
 	static indexStatusBarButton = {
@@ -85,7 +86,7 @@ export class Commands {
 			'command': Commands.nameExtension + '.removeWatcher',
 			'title': 'Remove watcher',
 			'icon': Icons.remove_watcher,
-			'when': `${this.viewWatcherTreeView}  && viewItem == watcher`,
+			'when': `${this.viewWatcherTreeView}  && viewItem == ${ContextBookmark.Watcher}`,
 			'group': 'inline@1'
 		},
 		exportBookmark: {
@@ -208,5 +209,7 @@ export class Commands {
 		Color.NeedReview,
 		Color.NeedRemove,
 		Color.NeedImprove,
+
+		Color.Red,
 	]
 }

@@ -80,7 +80,7 @@
           "light": "resources/light/delete.svg",
           "dark": "resources/dark/delete.svg"
         },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
+        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
         "group": "inline@4"
       },
       {
@@ -90,7 +90,7 @@
           "light": "resources/light/edit.svg",
           "dark": "resources/dark/edit.svg"
         },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
+        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
         "group": "inline@3"
       },
       {
@@ -116,12 +116,12 @@
       {
         "command": "bookmarksh.exportBookmark",
         "title": "Export Bookmark",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
+        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
       },
       {
         "command": "bookmarksh.addToWatcher",
         "title": "Add To Watcher",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
+        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
       },
       {
         "command": "bookmarksh.removeAllWatcher",
@@ -379,7 +379,7 @@
             "light": "resources/light/edit.svg",
             "dark": "resources/dark/edit.svg"
           },
-          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
+          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
           "group": "inline@3"
         },
         {
@@ -389,18 +389,18 @@
             "light": "resources/light/delete.svg",
             "dark": "resources/dark/delete.svg"
           },
-          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) ",
+          "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
           "group": "inline@4"
         },
         {
           "command": "bookmarksh.exportBookmark",
           "title": "Export Bookmark",
-          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
+          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
         },
         {
           "command": "bookmarksh.addToWatcher",
           "title": "Add To Watcher",
-          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder) "
+          "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
         },
         {
           "command": "bookmarksh.removeWatcher",
@@ -546,6 +546,14 @@
           "light": "#ffff00"
         },
         "description": "green"
+      },
+      {
+        "id": "bookmarksh.color.Red",
+        "defaults": {
+          "dark": "#ff0000",
+          "light": "#ff0000"
+        },
+        "description": "red"
       }
     ]
   }

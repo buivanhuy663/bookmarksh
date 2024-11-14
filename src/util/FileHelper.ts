@@ -5,6 +5,7 @@ import { logger } from "./LoggerHelper"
 import path = require("path")
 import { TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
 import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
+import { ContextBookmark } from "./ContextValue"
 
 
 class FileHelper {
@@ -77,6 +78,9 @@ class FileHelper {
 					logger.infor("Open file: " + this.relativeToAbsolute(item.path))
 				}
 				if (doc) {
+					if(doc.lineCount <= item.start.line){
+						item.contextValue = ContextBookmark.BookmarkInvalid
+					}
 					if (item.start.equals(item.end)) {
 						content = doc.lineAt(item.start.line).text
 					} else {

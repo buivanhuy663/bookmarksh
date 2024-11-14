@@ -14,6 +14,11 @@ export class Color {
 		green : '#00ff00',
 		blue : '#009eff',
 	}
+	static readonly Red = {
+		id: this.prefix + 'Red',
+		defaults: { dark: this.value.red, light: this.value.red },
+		description: "red",
+	}
 	static readonly Todo = {
 		id: this.prefix + 'Todo',
 		defaults: { dark: this.value.green, light: this.value.green },

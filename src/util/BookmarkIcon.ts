@@ -7,6 +7,7 @@ export class BookmarkIcon {
 		const decorationSigle: vscode.DecorationOptions[] = []
 		const decorationMulti: vscode.DecorationOptions[] = []
 		for (const line of set) {
+			if(editor.document.lineCount <= line.line) continue
 			const content = editor.document.lineAt(line.line)
 			const range = new vscode.Range(content.range.start, content.range.end)
 			if (line.ids.length > 1) {
