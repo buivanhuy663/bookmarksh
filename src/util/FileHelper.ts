@@ -80,6 +80,7 @@ class FileHelper {
 				if (doc) {
 					if(doc.lineCount <= item.start.line){
 						item.contextValue = ContextBookmark.BookmarkInvalid
+						continue
 					}
 					if (item.start.equals(item.end)) {
 						content = doc.lineAt(item.start.line).text
