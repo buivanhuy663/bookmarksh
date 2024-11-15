@@ -2,25 +2,31 @@
 import * as vscode from 'vscode'
 import { fileHelper } from '../util/FileHelper'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
+import { TodosViewProvider } from '../bookmark-provider/features/todos/TodosViewProvider'
 
-export function fileEditorRegister(context: vscode.ExtensionContext, treeDataProvider: BookmarksTreeViewProvider) {
+export function fileEditorRegister(context: vscode.ExtensionContext,
+	bookmarkProvider: BookmarksTreeViewProvider,
+	todoProvider: TodosViewProvider,
+) {
 	vscode.workspace.onDidChangeTextDocument(event => {
-		treeDataProvider.changeContentFile(event)
+		bookmarkProvider.changeContentFile(event)
+		// todoProvider.onChangeFile(event)
+
 	})
 
 	const focusEditor = vscode.window.onDidChangeActiveTextEditor(editor => {
 		if (editor) {
-			treeDataProvider.refreshGutter(editor)
+			bookmarkProvider.refreshGutter(editor)
 		}
 	})
 
 	/// watcher for file system changes
 	const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(fileHelper.rootPath, '**/*'))
 	watcher.onDidCreate((event) => {
-		treeDataProvider.onDidCreateFile(event)
+		bookmarkProvider.onDidCreateFile(event)
 	})
 	watcher.onDidDelete((event) => {
-		treeDataProvider.onDidDeleteFile(event)
+		bookmarkProvider.onDidDeleteFile(event)
 	})
 	// end
 

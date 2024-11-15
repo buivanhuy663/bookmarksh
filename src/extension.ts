@@ -31,17 +31,17 @@ export function activate(context: vscode.ExtensionContext) {
 	const treeViewBookmark = createTreeBookmark(context, bookmarkTreeProvider)
 	createTreeWatcher(context, watcherProvider)
 
-	fileEditorRegister(context, bookmarkTreeProvider)
+	fileEditorRegister(context, bookmarkTreeProvider, todosViewProvider)
 	buttonItemRegister(context, bookmarkTreeProvider, watcherProvider)
 	configurationRegister(context, bookmarkTreeProvider, watcherProvider)
 	openNodeBookmarkRegister(context)
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
-	createTodosTree(context, todosViewProvider)
-	openTodoNodeRegister(context)
+	// createTodosTree(context, todosViewProvider)
+	// openTodoNodeRegister(context)
 
-	createHelpAndFeedback(context,bookmarksHelpAndFeedback)
+	createHelpAndFeedback(context, bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
 }
