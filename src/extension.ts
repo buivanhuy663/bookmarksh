@@ -44,6 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
 	createHelpAndFeedback(context, bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
+	// todosViewProvider.initTreeView()
 }
 
 export function deactivate() {

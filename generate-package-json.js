@@ -128,7 +128,7 @@ const customPackageJson = {
 
 customPackageJson.name = "bookmarksh";
 customPackageJson.displayName = "Bookmarks Tree";
-customPackageJson.version = "0.1.3";
+customPackageJson.version = "0.1.5";
 
 fs.writeFileSync(customPackageJsonPath, JSON.stringify(customPackageJson, null, 2));
 
