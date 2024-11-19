@@ -16,7 +16,7 @@ fi
 
 cd -
 git add .
-git commit -a -m "$currentTime $3"
+git commit -a -m "$currentTime $2"
 if [ "$3" == "p" ]; then
     git push
 	echo "Pushing to remote"

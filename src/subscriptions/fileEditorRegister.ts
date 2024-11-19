@@ -10,7 +10,7 @@ export function fileEditorRegister(context: vscode.ExtensionContext,
 ) {
 	vscode.workspace.onDidChangeTextDocument(event => {
 		bookmarkProvider.changeContentFile(event)
-		// todoProvider.onChangeFile(event)
+		todoProvider.onChangeFile(event)
 
 	})
 

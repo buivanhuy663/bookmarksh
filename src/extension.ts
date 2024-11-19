@@ -38,13 +38,13 @@ export function activate(context: vscode.ExtensionContext) {
 	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
 	keyboardShortcutRegister(context, bookmarkTreeProvider)
 
-	// createTodosTree(context, todosViewProvider)
-	// openTodoNodeRegister(context)
+	createTodosTree(context, todosViewProvider)
+	openTodoNodeRegister(context)
 
 	createHelpAndFeedback(context, bookmarksHelpAndFeedback)
 
 	bookmarkTreeProvider.init(treeViewBookmark)
-	// todosViewProvider.initTreeView()
+	todosViewProvider.initTreeView()
 }
 
 export function deactivate() {
