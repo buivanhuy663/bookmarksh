@@ -2,6 +2,7 @@ const Commands_1 = require("./out/util/Commands");
 
 const fs = require('fs');
 const path = require('path');
+const { title } = require("process");
 
 const env = process.env.BUILD_ENV || '';
 
@@ -27,7 +28,9 @@ const customPackageJson = {
         }
       ]
     },
-    commands: Object.values(id.commands),
+    commands: Object.values(id.commands).map((e) => { 
+      return { "command": e.command, "title": e.title, "icon": e.icon} 
+    }),
     keybindings: [
       id.commands.toggleBookmark,
       id.commands.forceAddBookmark,
@@ -60,9 +63,9 @@ const customPackageJson = {
           when: "editorTextFocus"
         },
       ],
-      "bookmarksh.todo.changeState.submenu" : id.bookmarksh_todo_changeState_submenu,
+      "bookmarksh.todo.changeState.submenu": id.bookmarksh_todo_changeState_submenu,
     },
-    
+
     submenus: [
       {
         "id": Commands_1.Commands.editorContext,

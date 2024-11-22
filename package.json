@@ -54,24 +54,15 @@
     "commands": [
       {
         "command": "bookmarksh.toggleBookmark",
-        "title": "Toggle Bookmark",
-        "key": "ctrl+alt+h",
-        "category": "Bookmarks Tree",
-        "when": "editorTextFocus"
+        "title": "Toggle Bookmark"
       },
       {
         "command": "bookmarksh.forceAddBookmark",
-        "title": "Force and Add Bookmark",
-        "key": "ctrl+alt+shift+h",
-        "category": "Bookmarks Tree",
-        "when": "editorTextFocus"
+        "title": "Force and Add Bookmark"
       },
       {
         "command": "bookmarksh.forceDeleteBookmark",
-        "title": "Force and Delete Bookmark",
-        "key": "ctrl+alt+shift+d",
-        "category": "Bookmarks Tree",
-        "when": "editorTextFocus"
+        "title": "Force and Delete Bookmark"
       },
       {
         "command": "bookmarksh.deleteBookmark",
@@ -79,9 +70,7 @@
         "icon": {
           "light": "resources/light/delete.svg",
           "dark": "resources/dark/delete.svg"
-        },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
-        "group": "inline@4"
+        }
       },
       {
         "command": "bookmarksh.editBookmark",
@@ -89,9 +78,7 @@
         "icon": {
           "light": "resources/light/edit.svg",
           "dark": "resources/dark/edit.svg"
-        },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) ",
-        "group": "inline@3"
+        }
       },
       {
         "command": "bookmarksh.pinView",
@@ -99,9 +86,7 @@
         "icon": {
           "light": "resources/light/open_folder.svg",
           "dark": "resources/dark/open_folder.svg"
-        },
-        "when": "((view == bookmarkshTreeView) || (view == bookmarkshWatcherTree)) && (viewItem == bookmark || viewItem == watcher) ",
-        "group": "inline@2"
+        }
       },
       {
         "command": "bookmarksh.removeWatcher",
@@ -109,112 +94,83 @@
         "icon": {
           "light": "resources/light/remove_watcher.svg",
           "dark": "resources/dark/remove_watcher.svg"
-        },
-        "when": "(view == bookmarkshWatcherTree)  && viewItem == watcher",
-        "group": "inline@1"
+        }
       },
       {
         "command": "bookmarksh.exportBookmark",
-        "title": "Export Bookmark",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
+        "title": "Export Bookmark"
       },
       {
         "command": "bookmarksh.addToWatcher",
-        "title": "Add To Watcher",
-        "when": "(view == bookmarkshTreeView) && (viewItem == bookmark || viewItem == watcher || viewItem == bookmarkFolder || viewItem == bookmarkInvalid}) "
+        "title": "Add To Watcher"
       },
       {
         "command": "bookmarksh.removeAllWatcher",
         "title": "Remove All Watchers",
-        "when": "(view == bookmarkshWatcherTree) && bookmarks.var.hasWatcher",
         "icon": {
           "light": "resources/light/remove_all.svg",
           "dark": "resources/dark/remove_all.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@1"
+        }
       },
       {
         "command": "bookmarksh.removeAllBookmark",
         "title": "Delete All Bookmarks",
-        "when": "(view == bookmarkshTreeView) && bookmarks.var.hasBookmark",
         "icon": {
           "light": "resources/light/remove_all.svg",
           "dark": "resources/dark/remove_all.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@1"
+        }
       },
       {
         "command": "bookmarksh.exportAllBookmark",
         "title": "Export All Bookmarks",
-        "when": "(view == bookmarkshTreeView) && bookmarks.var.hasBookmark",
         "icon": {
           "light": "resources/light/export_json.svg",
           "dark": "resources/dark/export_json.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@2"
+        }
       },
       {
         "command": "bookmarksh.importBookmark",
         "title": "Import Bookmark",
-        "when": "(view == bookmarkshTreeView) ",
         "icon": {
           "light": "resources/light/import_json.svg",
           "dark": "resources/dark/import_json.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@3"
+        }
       },
       {
         "command": "bookmarksh.refresh",
         "title": "Refresh",
-        "when": "(view == bookmarkshTreeView) ",
         "icon": {
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@7"
+        }
       },
       {
         "command": "bookmarksh.filterTree",
         "title": "View as Bookmarks Tree",
-        "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 1",
         "icon": {
           "light": "resources/light/filter_tree.svg",
           "dark": "resources/dark/filter_tree.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@4 "
+        }
       },
       {
         "command": "bookmarksh.filterFile",
         "title": "View as Bookmarks Explorer",
-        "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 3",
         "icon": {
           "light": "resources/light/folder.svg",
           "dark": "resources/dark/folder.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@4"
+        }
       },
       {
         "command": "bookmarksh.filterAll",
         "title": "View as List of All Bookmarks",
-        "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 2",
         "icon": {
           "light": "resources/light/filter_all.svg",
           "dark": "resources/dark/filter_all.svg"
-        },
-        "category": "Bookmarks Tree",
-        "group": "navigation@4"
+        }
       },
       {
         "command": "bookmarksh.changeStateTodo",
-        "title": "Change state",
-        "when": "(view == bookmarkshTodos)"
+        "title": "Change state"
       },
       {
         "command": "bookmarksh.todoState.Todo",
@@ -474,7 +430,7 @@
       },
       {
         "id": "bookmarksh.todo.changeState.submenu",
-        "label": "Change state"
+        "label": "Change state="
       }
     ],
     "views": {

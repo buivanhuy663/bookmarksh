@@ -2,6 +2,10 @@ import { TreeMode } from "../bookmark-provider/data/shared_data/TreeMode"
 import { Color, Icons, KeyBinding } from "./Constant"
 import { ContextBookmark } from "./ContextValue"
 
+class When {
+	static readonly editorTextFocus = 'editorTextFocus'
+}
+
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
 
@@ -44,21 +48,21 @@ export class Commands {
 			'title': 'Toggle Bookmark',
 			'key': KeyBinding.toggleBookmark,
 			"category": "Bookmarks Tree",
-			'when': 'editorTextFocus',
+			'when': When.editorTextFocus,
 		},
 		forceAddBookmark: {
 			'command': Commands.nameExtension + '.forceAddBookmark',
 			'title': 'Force and Add Bookmark',
 			'key': KeyBinding.forceAddBookmark,
 			"category": "Bookmarks Tree",
-			'when': 'editorTextFocus',
+			'when': When.editorTextFocus,
 		},
 		forceDeleteBookmark: {
 			'command': Commands.nameExtension + '.forceDeleteBookmark',
 			'title': 'Force and Delete Bookmark',
 			'key': KeyBinding.forceDeleteBookmark,
 			"category": "Bookmarks Tree",
-			'when': 'editorTextFocus',
+			'when': When.editorTextFocus,
 		},
 
 		// Button on item
@@ -167,13 +171,6 @@ export class Commands {
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
 		},
-
-		// Todo change satte
-		changeStateTodo: {
-			'command': Commands.nameExtension + '.changeStateTodo',
-			'title': 'Change state',
-			'when': `${this.viewTodosTreeView}`,
-		},
 	}
 
 	static todoCommands = {
@@ -249,6 +246,7 @@ export class Commands {
 		this.commands.exportBookmark,
 		this.commands.addToWatcher,
 		this.commands.removeWatcher,
+		{submenu : 'bookmarksh.todo.changeState.submenu'}
 	]
 
 	static bookmarksh_todo_changeState_submenu = [
