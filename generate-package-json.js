@@ -34,59 +34,9 @@ const customPackageJson = {
       id.commands.forceDeleteBookmark,
     ],
     menus: {
-      commandPalett: [
-        {
-          command: id.commands.toggleBookmark.command,
-        },
-        {
-          command: id.commands.forceAddBookmark.command,
-        },
-        {
-          command: id.commands.forceDeleteBookmark.command,
-        },
-        {
-          command: id.commands.removeAllBookmark.command,
-        },
-        {
-          command: id.commands.exportAllBookmark.command,
-        },
-        {
-          command: id.commands.importBookmark.command,
-        },
-        {
-          command: id.commands.filterAll.command,
-        },
-        {
-          command: id.commands.filterFile.command,
-        },
-        {
-          command: id.commands.filterTree.command,
-        },
-        {
-          command: id.commands.refresh.command,
-        },
-        {
-          command: id.commands.removeAllWatcher.command,
-        },
-      ],
-      "view/title": [
-        id.commands.removeAllBookmark,
-        id.commands.exportAllBookmark,
-        id.commands.importBookmark,
-        id.commands.filterAll,
-        id.commands.filterFile,
-        id.commands.filterTree,
-        id.commands.refresh,
-        id.commands.removeAllWatcher,
-      ],
-      "view/item/context": [
-        id.commands.pinView,
-        id.commands.editBookmark,
-        id.commands.deleteBookmark,
-        id.commands.exportBookmark,
-        id.commands.addToWatcher,
-        id.commands.removeWatcher,
-      ],
+      commandPalett: id.commandPalett,
+      "view/title": id.view_title,
+      "view/item/context": id.view_item_context,
       "editor/context": [
         {
           submenu: Commands_1.Commands.editorContext,
@@ -110,13 +60,18 @@ const customPackageJson = {
           when: "editorTextFocus"
         },
       ],
+      "bookmarksh.todo.changeState.submenu" : id.bookmarksh_todo_changeState_submenu,
     },
     
     submenus: [
       {
         "id": Commands_1.Commands.editorContext,
         "label": "Bookmarks Tree"
-      }
+      },
+      {
+        "id": 'bookmarksh.todo.changeState.submenu',
+        "label": "Change state="
+      },
     ],
     views: {
       bookmarksh: id.bookmarksh

@@ -21,6 +21,7 @@ export class Commands {
 
 	static viewBookmarkTreeView = `(view == ${this.bookmarkTreeViewName})`
 	static viewWatcherTreeView = `(view == ${this.watcherTreeViewName})`
+	static viewTodosTreeView = `(view == ${this.todosTreeViewName})`
 	static bookmarkOnTree = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher} || viewItem == ${ContextBookmark.BookmarkFolder} || viewItem == ${ContextBookmark.BookmarkInvalid}}) `
 	static bookmarkOnAll = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher}) `
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
@@ -36,7 +37,7 @@ export class Commands {
 		refresh: 7,
 	}
 
-	static commands = {
+	static bookmarkCommand = {
 		// keyboard shortcut
 		toggleBookmark: {
 			'command': Commands.nameExtension + '.toggleBookmark',
@@ -166,6 +167,33 @@ export class Commands {
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
 		},
+
+		// Todo change satte
+		changeStateTodo: {
+			'command': Commands.nameExtension + '.changeStateTodo',
+			'title': 'Change state',
+			'when': `${this.viewTodosTreeView}`,
+		},
+	}
+
+	static todoCommands = {
+		Todo: {
+			'command': Commands.nameExtension + '.todoState' + '.Todo',
+			'title': "Todo",
+		},
+		InProgress: {
+			'command': Commands.nameExtension + '.todoState' + '.InProgress',
+			'title': "InProgress",
+		},
+		Hold: {
+			'command': Commands.nameExtension + '.todoState' + '.Hold',
+			'title': "Hold",
+		},
+	}
+
+	static commands = {
+		...this.bookmarkCommand,
+		...this.todoCommands,
 	}
 
 	static bookmarksh = [
@@ -187,6 +215,53 @@ export class Commands {
 		},
 	]
 
+
+
+	static commandPalett = [
+		{ command: this.commands.toggleBookmark.command },
+		{ command: this.commands.forceAddBookmark.command },
+		{ command: this.commands.forceDeleteBookmark.command },
+		{ command: this.commands.removeAllBookmark.command },
+		{ command: this.commands.exportAllBookmark.command },
+		{ command: this.commands.importBookmark.command },
+		{ command: this.commands.filterAll.command },
+		{ command: this.commands.filterFile.command },
+		{ command: this.commands.filterTree.command },
+		{ command: this.commands.refresh.command },
+		{ command: this.commands.removeAllWatcher.command },
+	]
+
+	static view_title = [
+		this.commands.removeAllBookmark,
+		this.commands.exportAllBookmark,
+		this.commands.importBookmark,
+		this.commands.filterAll,
+		this.commands.filterFile,
+		this.commands.filterTree,
+		this.commands.refresh,
+		this.commands.removeAllWatcher,
+	]
+
+	static view_item_context = [
+		this.commands.pinView,
+		this.commands.editBookmark,
+		this.commands.deleteBookmark,
+		this.commands.exportBookmark,
+		this.commands.addToWatcher,
+		this.commands.removeWatcher,
+	]
+
+	static bookmarksh_todo_changeState_submenu = [
+		{
+			"command": this.todoCommands.Todo.command,
+			"group": "changeState.submenu@2"
+		},
+		{
+			"command": this.todoCommands.InProgress.command,
+			"group": "changeState.submenu@2"
+		},
+	]
+
 	static configuration = {
 		"type": "object",
 		"title": "Auto export to json file",
@@ -198,6 +273,12 @@ export class Commands {
 			}
 		}
 	}
+
+	static submenuChangeStateToto = [
+		{
+
+		}
+	]
 
 	static allColor = [
 		Color.Todo,
@@ -213,3 +294,4 @@ export class Commands {
 		Color.Red,
 	]
 }
+

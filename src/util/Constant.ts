@@ -1,5 +1,3 @@
-import { Commands } from "./Commands"
-
 export class KeyBinding {
 	static readonly toggleBookmark = 'ctrl+alt+h'
 	static readonly forceAddBookmark = 'ctrl+alt+shift+h'
@@ -9,10 +7,10 @@ export class KeyBinding {
 export class Color {
 	static readonly prefix = 'bookmarksh.color.'
 	static readonly value = {
-		red : '#ff0000',
-		yellow : '#ffff00',
-		green : '#00ff00',
-		blue : '#009eff',
+		red: '#ff0000',
+		yellow: '#ffff00',
+		green: '#00ff00',
+		blue: '#009eff',
 	}
 	static readonly Red = {
 		id: this.prefix + 'Red',
@@ -26,7 +24,7 @@ export class Color {
 	}
 	static readonly InProgress = {
 		id: this.prefix + 'InProgress',
-		defaults: { dark: this.value.yellow, light: this.value.yellow},
+		defaults: { dark: this.value.yellow, light: this.value.yellow },
 		description: "green",
 	}
 	static readonly Hold = {

@@ -8,3 +8,8 @@ export enum ContextBookmark {
 	BookmarkInvalid = 'bookmarkInvalid',
 }
 
+export enum ContextTodo {
+	Todo = 'todo',
+	File = 'file',
+}
+

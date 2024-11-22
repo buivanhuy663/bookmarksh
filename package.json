@@ -210,6 +210,23 @@
         },
         "category": "Bookmarks Tree",
         "group": "navigation@4"
+      },
+      {
+        "command": "bookmarksh.changeStateTodo",
+        "title": "Change state",
+        "when": "(view == bookmarkshTodos)"
+      },
+      {
+        "command": "bookmarksh.todoState.Todo",
+        "title": "Todo"
+      },
+      {
+        "command": "bookmarksh.todoState.InProgress",
+        "title": "InProgress"
+      },
+      {
+        "command": "bookmarksh.todoState.Hold",
+        "title": "Hold"
       }
     ],
     "keybindings": [
@@ -411,6 +428,9 @@
           },
           "when": "(view == bookmarkshWatcherTree)  && viewItem == watcher",
           "group": "inline@1"
+        },
+        {
+          "submenu": "bookmarksh.todo.changeState.submenu"
         }
       ],
       "editor/context": [
@@ -435,12 +455,26 @@
           "group": "bookmarksh@3",
           "when": "editorTextFocus"
         }
+      ],
+      "bookmarksh.todo.changeState.submenu": [
+        {
+          "command": "bookmarksh.todoState.Todo",
+          "group": "changeState.submenu@2"
+        },
+        {
+          "command": "bookmarksh.todoState.InProgress",
+          "group": "changeState.submenu@2"
+        }
       ]
     },
     "submenus": [
       {
         "id": "bookmarksh.editor.context",
         "label": "Bookmarks Tree"
+      },
+      {
+        "id": "bookmarksh.todo.changeState.submenu",
+        "label": "Change state"
       }
     ],
     "views": {

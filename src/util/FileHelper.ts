@@ -78,7 +78,7 @@ class FileHelper {
 					logger.infor("Open file: " + this.relativeToAbsolute(item.path))
 				}
 				if (doc) {
-					if(doc.lineCount <= item.start.line){
+					if (doc.lineCount <= item.start.line) {
 						item.contextValue = ContextBookmark.BookmarkInvalid
 						continue
 					}
@@ -159,10 +159,10 @@ class FileHelper {
 		return true
 	}
 
-	 getAllTodoInRoot(
-		root:string,
+	getAllTodoInRoot(
+		root: string,
 		findTodo: (todo: TodoNode) => void,
-	){
+	) {
 		const items = fs.readdirSync(root);
 		items.forEach(async item => {
 			const fullPath = path.join(root, item);
@@ -173,19 +173,18 @@ class FileHelper {
 				this.getAllTodoInRoot(fullPath, findTodo);
 			} else {
 				// Nếu là file, thêm vào danh sách
-				if(todoSupporEx.has(path.extname(fullPath))){
-					await this.getTodoInfile(fullPath,findTodo)
+				if (todoSupporEx.has(path.extname(fullPath))) {
+					await this.getTodoInfile(fullPath, findTodo)
 				}
 			}
 		});
 	}
 
 
-
 	async getTodoInfile(
-		filePath:string,
+		filePath: string,
 		findTodo: (todo: TodoNode) => void,
-	){
+	) {
 		const regex = /todo\s*(?:\[.*\])?\s*:.*/i
 		const fileStream = fs.createReadStream(filePath)
 		const readline = require('readline')
@@ -195,9 +194,9 @@ class FileHelper {
 		})
 		let lineNumber = 0
 		for await (const line of rl) {
-			if((line as string).match(regex)?.length??0 > 0){
+			if ((line as string).match(regex)?.length ?? 0 > 0) {
 				console.log(`find: ${line}`)
-				const todoNode = new TodoNode({path: filePath, line: lineNumber,content: line})
+				const todoNode = new TodoNode({ path: filePath, line: lineNumber, content: line })
 				findTodo(todoNode)
 			}
 			lineNumber++
