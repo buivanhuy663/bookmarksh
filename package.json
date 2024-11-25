@@ -174,11 +174,35 @@
       },
       {
         "command": "bookmarksh.todoState.InProgress",
-        "title": "InProgress"
+        "title": "In-Progress"
       },
       {
         "command": "bookmarksh.todoState.Hold",
         "title": "Hold"
+      },
+      {
+        "command": "bookmarksh.todoState.Warning",
+        "title": "Warning"
+      },
+      {
+        "command": "bookmarksh.todoState.Error",
+        "title": "Error"
+      },
+      {
+        "command": "bookmarksh.todoState.Done",
+        "title": "Done"
+      },
+      {
+        "command": "bookmarksh.todoState.NeedReview",
+        "title": "Need-Review"
+      },
+      {
+        "command": "bookmarksh.todoState.NeedRemove",
+        "title": "Need-Remove"
+      },
+      {
+        "command": "bookmarksh.todoState.NeedImprove",
+        "title": "Need-Improve"
       }
     ],
     "keybindings": [
@@ -382,7 +406,8 @@
           "group": "inline@1"
         },
         {
-          "submenu": "bookmarksh.todo.changeState.submenu"
+          "submenu": "bookmarksh.todo.changeState.submenu",
+          "when": "(view == bookmarkshTodos) && (viewItem == todo)"
         }
       ],
       "editor/context": [
@@ -411,11 +436,39 @@
       "bookmarksh.todo.changeState.submenu": [
         {
           "command": "bookmarksh.todoState.Todo",
-          "group": "changeState.submenu@2"
+          "group": "changeState.submenu@1"
         },
         {
           "command": "bookmarksh.todoState.InProgress",
           "group": "changeState.submenu@2"
+        },
+        {
+          "command": "bookmarksh.todoState.Hold",
+          "group": "changeState.submenu@3"
+        },
+        {
+          "command": "bookmarksh.todoState.Warning",
+          "group": "changeState.submenu@4"
+        },
+        {
+          "command": "bookmarksh.todoState.Error",
+          "group": "changeState.submenu@5"
+        },
+        {
+          "command": "bookmarksh.todoState.Done",
+          "group": "changeState.submenu@6"
+        },
+        {
+          "command": "bookmarksh.todoState.NeedReview",
+          "group": "changeState.submenu@7"
+        },
+        {
+          "command": "bookmarksh.todoState.NeedRemove",
+          "group": "changeState.submenu@8"
+        },
+        {
+          "command": "bookmarksh.todoState.NeedImprove",
+          "group": "changeState.submenu@9"
         }
       ]
     },

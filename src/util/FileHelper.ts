@@ -6,6 +6,7 @@ import path = require("path")
 import { TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
 import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
 import { ContextBookmark } from "./ContextValue"
+import { ConstantsValue } from "./constants/ConstantValue"
 
 
 class FileHelper {
@@ -185,7 +186,6 @@ class FileHelper {
 		filePath: string,
 		findTodo: (todo: TodoNode) => void,
 	) {
-		const regex = /todo\s*(?:\[.*\])?\s*:.*/i
 		const fileStream = fs.createReadStream(filePath)
 		const readline = require('readline')
 		const rl = readline.createInterface({
@@ -194,9 +194,9 @@ class FileHelper {
 		})
 		let lineNumber = 0
 		for await (const line of rl) {
-			if ((line as string).match(regex)?.length ?? 0 > 0) {
-				console.log(`find: ${line}`)
-				const todoNode = new TodoNode({ path: filePath, line: lineNumber, content: line })
+			const match = line.match(ConstantsValue.todoRegex)
+			if (match?.length ?? 0 > 0) {
+				const todoNode = new TodoNode({ path: filePath, line: lineNumber, content: match[0] })
 				findTodo(todoNode)
 			}
 			lineNumber++

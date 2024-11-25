@@ -1,5 +1,5 @@
 import { TreeMode } from "../../bookmark-provider/data/shared_data/TreeMode"
-import { ContextBookmark } from "../ContextValue"
+import { ContextBookmark, ContextTodo } from "../ContextValue"
 import { Icons } from "./Icons"
 
 class When {
@@ -29,6 +29,7 @@ export class Commands {
 	static viewTodosTreeView = `(view == ${this.todosTreeViewName})`
 	static bookmarkOnTree = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher} || viewItem == ${ContextBookmark.BookmarkFolder} || viewItem == ${ContextBookmark.BookmarkInvalid}}) `
 	static bookmarkOnAll = `(viewItem == ${ContextBookmark.Bookmark} || viewItem == ${ContextBookmark.Watcher}) `
+	static todoChangeState = `(viewItem == ${ContextTodo.Todo})`
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
 
 	static indexStatusBarButton = {
@@ -181,11 +182,35 @@ export class Commands {
 		},
 		InProgress: {
 			'command': Commands.nameExtension + '.todoState' + '.InProgress',
-			'title': "InProgress",
+			'title': "In-Progress",
 		},
 		Hold: {
 			'command': Commands.nameExtension + '.todoState' + '.Hold',
 			'title': "Hold",
+		},
+		Warning: {
+			'command': Commands.nameExtension + '.todoState' + '.Warning',
+			'title': "Warning",
+		},
+		Error: {
+			'command': Commands.nameExtension + '.todoState' + '.Error',
+			'title': "Error",
+		},
+		Done: {
+			'command': Commands.nameExtension + '.todoState' + '.Done',
+			'title': "Done",
+		},
+		NeedReview: {
+			'command': Commands.nameExtension + '.todoState' + '.NeedReview',
+			'title': "Need-Review",
+		},
+		NeedRemove: {
+			'command': Commands.nameExtension + '.todoState' + '.NeedRemove',
+			'title': "Need-Remove",
+		},
+		NeedImprove: {
+			'command': Commands.nameExtension + '.todoState' + '.NeedImprove',
+			'title': "Need-Improve",
 		},
 	}
 
@@ -224,8 +249,6 @@ export class Commands {
 		}
 	]
 
-
-
 	static commandPalett = [
 		{ command: this.commands.toggleBookmark.command },
 		{ command: this.commands.forceAddBookmark.command },
@@ -258,15 +281,18 @@ export class Commands {
 		this.commands.exportBookmark,
 		this.commands.addToWatcher,
 		this.commands.removeWatcher,
-		{ submenu: this.submenu_changeStateTodo }
+		{
+			submenu: this.submenu_changeStateTodo,
+			'when': `${this.viewTodosTreeView} && ${this.todoChangeState}`
+		}
 	]
 
 	static editor_context = [
-        {
-          submenu: this.editorContextSubmenu,
-          group: "bookmarksh"
-        }
-      ]
+		{
+			submenu: this.editorContextSubmenu,
+			group: "bookmarksh"
+		}
+	]
 
 	static submenu_bookmarksh_editor_context = [
 		{
@@ -289,11 +315,39 @@ export class Commands {
 	static submenu_bookmarksh_todo_changeState = [
 		{
 			"command": this.todoCommands.Todo.command,
-			"group": "changeState.submenu@2"
+			"group": "changeState.submenu@1"
 		},
 		{
 			"command": this.todoCommands.InProgress.command,
 			"group": "changeState.submenu@2"
+		},
+		{
+			"command": this.todoCommands.Hold.command,
+			"group": "changeState.submenu@3"
+		},
+		{
+			"command": this.todoCommands.Warning.command,
+			"group": "changeState.submenu@4"
+		},
+		{
+			"command": this.todoCommands.Error.command,
+			"group": "changeState.submenu@5"
+		},
+		{
+			"command": this.todoCommands.Done.command,
+			"group": "changeState.submenu@6"
+		},
+		{
+			"command": this.todoCommands.NeedReview.command,
+			"group": "changeState.submenu@7"
+		},
+		{
+			"command": this.todoCommands.NeedRemove.command,
+			"group": "changeState.submenu@8"
+		},
+		{
+			"command": this.todoCommands.NeedImprove.command,
+			"group": "changeState.submenu@9"
 		},
 	]
 
@@ -315,4 +369,3 @@ export class Commands {
 		this.commands.forceDeleteBookmark,
 	]
 }
-
