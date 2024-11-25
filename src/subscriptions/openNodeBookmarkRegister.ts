@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode'
 import { Bookmark } from '../bookmark-provider/data/model/Bookmark'
-import { Commands } from '../util/Commands'
+import { Commands } from '../util/constants/Commands'
 import { fileHelper } from '../util/FileHelper'
 
 

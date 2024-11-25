@@ -169,10 +169,6 @@
         }
       },
       {
-        "command": "bookmarksh.changeStateTodo",
-        "title": "Change state"
-      },
-      {
         "command": "bookmarksh.todoState.Todo",
         "title": "Todo"
       },
@@ -398,17 +394,17 @@
       "bookmarksh.editor.context": [
         {
           "command": "bookmarksh.toggleBookmark",
-          "group": "bookmarksh@1",
+          "group": "bookmarksh.editor@1",
           "when": "editorTextFocus"
         },
         {
           "command": "bookmarksh.forceAddBookmark",
-          "group": "bookmarksh@2",
+          "group": "bookmarksh.editor@2",
           "when": "editorTextFocus"
         },
         {
           "command": "bookmarksh.forceDeleteBookmark",
-          "group": "bookmarksh@3",
+          "group": "bookmarksh.editor@3",
           "when": "editorTextFocus"
         }
       ],
@@ -430,7 +426,7 @@
       },
       {
         "id": "bookmarksh.todo.changeState.submenu",
-        "label": "Change state="
+        "label": "Change state"
       }
     ],
     "views": {

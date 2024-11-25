@@ -1,6 +1,6 @@
-import { TreeMode } from "../bookmark-provider/data/shared_data/TreeMode"
-import { Color, Icons, KeyBinding } from "./Constant"
-import { ContextBookmark } from "./ContextValue"
+import { TreeMode } from "../../bookmark-provider/data/shared_data/TreeMode"
+import { ContextBookmark } from "../ContextValue"
+import { Icons } from "./Icons"
 
 class When {
 	static readonly editorTextFocus = 'editorTextFocus'
@@ -9,7 +9,8 @@ class When {
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
 
-	static readonly editorContext = 'bookmarksh.editor.context'
+	static readonly editorContextSubmenu = 'bookmarksh.editor.context'
+	static readonly submenu_changeStateTodo = 'bookmarksh.todo.changeState.submenu'
 
 	static readonly treeAsList = 'bookmarks.var.treeAsList'
 	static readonly hasBookmark = 'bookmarks.var.hasBookmark'
@@ -46,21 +47,21 @@ export class Commands {
 		toggleBookmark: {
 			'command': Commands.nameExtension + '.toggleBookmark',
 			'title': 'Toggle Bookmark',
-			'key': KeyBinding.toggleBookmark,
+			'key': 'ctrl+alt+h',
 			"category": "Bookmarks Tree",
 			'when': When.editorTextFocus,
 		},
 		forceAddBookmark: {
 			'command': Commands.nameExtension + '.forceAddBookmark',
 			'title': 'Force and Add Bookmark',
-			'key': KeyBinding.forceAddBookmark,
+			'key': 'ctrl+alt+shift+h',
 			"category": "Bookmarks Tree",
 			'when': When.editorTextFocus,
 		},
 		forceDeleteBookmark: {
 			'command': Commands.nameExtension + '.forceDeleteBookmark',
 			'title': 'Force and Delete Bookmark',
-			'key': KeyBinding.forceDeleteBookmark,
+			'key': 'ctrl+alt+shift+d',
 			"category": "Bookmarks Tree",
 			'when': When.editorTextFocus,
 		},
@@ -212,6 +213,17 @@ export class Commands {
 		},
 	]
 
+	static submenus = [
+		{
+			"id": this.editorContextSubmenu,
+			"label": "Bookmarks Tree"
+		},
+		{
+			"id": this.submenu_changeStateTodo,
+			"label": "Change state"
+		}
+	]
+
 
 
 	static commandPalett = [
@@ -246,10 +258,35 @@ export class Commands {
 		this.commands.exportBookmark,
 		this.commands.addToWatcher,
 		this.commands.removeWatcher,
-		{submenu : 'bookmarksh.todo.changeState.submenu'}
+		{ submenu: this.submenu_changeStateTodo }
 	]
 
-	static bookmarksh_todo_changeState_submenu = [
+	static editor_context = [
+        {
+          submenu: this.editorContextSubmenu,
+          group: "bookmarksh"
+        }
+      ]
+
+	static submenu_bookmarksh_editor_context = [
+		{
+			"command": this.commands.toggleBookmark.command,
+			"group": "bookmarksh.editor@1",
+			"when": this.commands.forceAddBookmark.when
+		},
+		{
+			"command": this.commands.forceAddBookmark.command,
+			"group": "bookmarksh.editor@2",
+			"when": this.commands.forceAddBookmark.when
+		},
+		{
+			"command": this.commands.forceDeleteBookmark.command,
+			"group": "bookmarksh.editor@3",
+			"when": this.commands.forceAddBookmark.when
+		}
+	]
+
+	static submenu_bookmarksh_todo_changeState = [
 		{
 			"command": this.todoCommands.Todo.command,
 			"group": "changeState.submenu@2"
@@ -272,24 +309,10 @@ export class Commands {
 		}
 	}
 
-	static submenuChangeStateToto = [
-		{
-
-		}
-	]
-
-	static allColor = [
-		Color.Todo,
-		Color.InProgress,
-		Color.Hold,
-		Color.Warning,
-		Color.Error,
-		Color.Done,
-		Color.NeedReview,
-		Color.NeedRemove,
-		Color.NeedImprove,
-
-		Color.Red,
+	static keybindings = [
+		this.commands.toggleBookmark,
+		this.commands.forceAddBookmark,
+		this.commands.forceDeleteBookmark,
 	]
 }
 

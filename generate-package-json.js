@@ -1,19 +1,20 @@
-const Commands_1 = require("./out/util/Commands");
-
 const fs = require('fs');
 const path = require('path');
-const { title } = require("process");
 
-const env = process.env.BUILD_ENV || '';
+const Commands_1 = require("./out/util/constants/Commands");
+const Colors_1 = require("./out/util/constants/Colors");
+const Icons_1 = require("./out/util/constants/Icons");
+const KeyBindings_1 = require("./out/util/constants/KeyBindings");
+const basePackageJsonFile = require("./out/util/constants/BasePackage");
 
-const basePackageJsonPath = path.join(__dirname, 'package.base.json');
 const customPackageJsonPath = path.join(__dirname, 'package.json');
 
-const id = Commands_1.Commands
+const commants = Commands_1.Commands
+const colors = Colors_1.Colors
 
-console.log("nameExtension = " + id.nameExtension)
+console.log("nameExtension = " + commants.nameExtension)
 
-const basePackageJson = require(basePackageJsonPath);
+const basePackageJson = basePackageJsonFile.basePackage;
 
 const customPackageJson = {
   ...basePackageJson,
@@ -22,65 +23,31 @@ const customPackageJson = {
     viewsContainers: {
       activitybar: [
         {
-          "id": id.nameExtension,
+          "id": commants.nameExtension,
           "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg",
         }
       ]
     },
-    commands: Object.values(id.commands).map((e) => { 
-      return { "command": e.command, "title": e.title, "icon": e.icon} 
+    commands: Object.values(commants.commands).map((e) => {
+      return { "command": e.command, "title": e.title, "icon": e.icon }
     }),
-    keybindings: [
-      id.commands.toggleBookmark,
-      id.commands.forceAddBookmark,
-      id.commands.forceDeleteBookmark,
-    ],
+    keybindings: commants.keybindings,
     menus: {
-      commandPalett: id.commandPalett,
-      "view/title": id.view_title,
-      "view/item/context": id.view_item_context,
-      "editor/context": [
-        {
-          submenu: Commands_1.Commands.editorContext,
-          group: "bookmarksh"
-        }
-      ],
-      "bookmarksh.editor.context": [
-        {
-          command: id.commands.toggleBookmark.command,
-          group: "bookmarksh@1",
-          when: "editorTextFocus"
-        },
-        {
-          command: id.commands.forceAddBookmark.command,
-          group: "bookmarksh@2",
-          when: "editorTextFocus"
-        },
-        {
-          command: id.commands.forceDeleteBookmark.command,
-          group: "bookmarksh@3",
-          when: "editorTextFocus"
-        },
-      ],
-      "bookmarksh.todo.changeState.submenu": id.bookmarksh_todo_changeState_submenu,
+      "commandPalett": commants.commandPalett,
+      "view/title": commants.view_title,
+      "view/item/context": commants.view_item_context,
+      "editor/context": commants.editor_context,
+      "bookmarksh.editor.context": commants.submenu_bookmarksh_editor_context,
+      "bookmarksh.todo.changeState.submenu": commants.submenu_bookmarksh_todo_changeState,
     },
 
-    submenus: [
-      {
-        "id": Commands_1.Commands.editorContext,
-        "label": "Bookmarks Tree"
-      },
-      {
-        "id": 'bookmarksh.todo.changeState.submenu',
-        "label": "Change state="
-      },
-    ],
+    submenus: commants.submenus,
     views: {
-      bookmarksh: id.bookmarksh
+      bookmarksh: commants.bookmarksh
     },
-    configuration: id.configuration,
-    colors: id.allColor
+    configuration: commants.configuration,
+    colors: colors.colors
   }
 };
 
