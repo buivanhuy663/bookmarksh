@@ -351,17 +351,30 @@ export class Commands {
 		},
 	]
 
-	static configuration = {
-		"type": "object",
-		"title": "Auto export to json file",
-		"properties": {
-			"bookmarksh.enableAutoExport": {
-				"type": "boolean",
-				"default": false,
-				"description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
+	static configuration = [
+		{
+			"type": "object",
+			"title": "Auto export to json file",
+			"properties": {
+				"bookmarksh.enableAutoExport": {
+					"type": "boolean",
+					"default": false,
+					"description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
+				}
+			}
+		},
+		{
+			"type": "object",
+			"title": "Todo list support",
+			"properties": {
+				"bookmarksh.todoListSupport": {
+					"type": "string",
+					"default": "txt,java,json,c,h,cpp",
+					"description": "Add the extensions you want todo list to support. Separated by ',' "
+				}
 			}
 		}
-	}
+	]
 
 	static keybindings = [
 		this.commands.toggleBookmark,

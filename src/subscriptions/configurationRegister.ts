@@ -3,6 +3,7 @@ import * as vscode from 'vscode'
 import { WatcherTreeViewProvider } from '../bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { Config } from '../bookmark-provider/data/shared_data/Config'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
+import { todoSupporEx } from '../bookmark-provider/data/model/todo/todoSupporEx';
 
 export function configurationRegister(context: vscode.ExtensionContext,
 	treeDataProvider: BookmarksTreeViewProvider,
@@ -20,6 +21,13 @@ export function configurationRegister(context: vscode.ExtensionContext,
 			break;
 	}
 
+	const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
+	todoSupporEx.clear();
+	(todoListSupport as string).split(',').map((e)=> {return `.${e}`}).forEach((ex)=>{
+		todoSupporEx.add(ex)
+	})
+
+
 	const enableAutoExport = vscode.workspace.onDidChangeConfiguration(event => {
 		if (event.affectsConfiguration('bookmarksh.enableAutoExport')) {
 			const enableAutoExport = vscode.workspace.getConfiguration('bookmarksh').get('enableAutoExport');
@@ -34,6 +42,13 @@ export function configurationRegister(context: vscode.ExtensionContext,
 					// vscode.window.showInformationMessage('enableAutoExport is disabled.');
 					break;
 			}
+		}
+		if (event.affectsConfiguration('bookmarksh.todoListSupport')) {
+			const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
+			todoSupporEx.clear();
+			(todoListSupport as string).split(',').map((e)=> {return `.${e}`}).forEach((ex)=>{
+				todoSupporEx.add(ex)
+			})
 		}
 	})
 
