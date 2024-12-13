@@ -43,6 +43,17 @@ export class Commands {
 		refresh: 7,
 	}
 
+	static indexStatusBarTodoButton = {
+		removeAllWatcher: 1,
+		removeAllBookmark: 1,
+		exportAllBookmark: 2,
+		importBookmark: 3,
+		filterAll: 4,
+		filterFile: 4,
+		filterTree: 4,
+		refresh: 7,
+	}
+
 	static bookmarkCommand = {
 		// keyboard shortcut
 		toggleBookmark: {
@@ -140,8 +151,8 @@ export class Commands {
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
 		},
-		refresh: {
-			'command': Commands.nameExtension + '.refresh',
+		refreshBookmark: {
+			'command': Commands.nameExtension + '.refreshBookmark',
 			'title': 'Refresh',
 			'when': `${this.viewBookmarkTreeView} `,
 			'icon': Icons.refresh,
@@ -176,6 +187,15 @@ export class Commands {
 	}
 
 	static todoCommands = {
+		refreshTodo: {
+			'command': Commands.nameExtension + '.refreshTodo',
+			'title': 'Refresh',
+			'when': `${this.viewTodosTreeView} `,
+			'icon': Icons.refresh,
+			"category": "Todos Tree",
+			"group": `navigation@${this.indexStatusBarTodoButton.refresh}`,
+		},
+
 		Todo: {
 			'command': Commands.nameExtension + '.todoState' + '.Todo',
 			'title': "Todo",
@@ -259,8 +279,9 @@ export class Commands {
 		{ command: this.commands.filterAll.command },
 		{ command: this.commands.filterFile.command },
 		{ command: this.commands.filterTree.command },
-		{ command: this.commands.refresh.command },
+		{ command: this.commands.refreshTodo.command },
 		{ command: this.commands.removeAllWatcher.command },
+		{ command: this.commands.refreshTodo.command },
 	]
 
 	static view_title = [
@@ -270,8 +291,10 @@ export class Commands {
 		this.commands.filterAll,
 		this.commands.filterFile,
 		this.commands.filterTree,
-		this.commands.refresh,
+		this.commands.refreshBookmark,
 		this.commands.removeAllWatcher,
+
+		this.commands.refreshTodo,
 	]
 
 	static view_item_context = [
@@ -369,7 +392,7 @@ export class Commands {
 			"properties": {
 				"bookmarksh.todoListSupport": {
 					"type": "string",
-					"default": "txt,java,json,c,h,cpp",
+					"default": "txt, py, js, mjs, jsx, java, c, cpp, hpp, h, cs, php, phtml, swift, rb, go, ts, tsx, m, h, kt, kts, lua, scala, rs, sh, bash, zsh, pl, hs, ex, exs, dart",
 					"description": "Add the extensions you want todo list to support. Separated by ',' "
 				}
 			}

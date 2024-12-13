@@ -7,6 +7,7 @@ import { TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
 import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
 import { ContextBookmark } from "./ContextValue"
 import { ConstantsValue } from "./constants/ConstantValue"
+import { strict } from "assert"
 
 
 class FileHelper {
@@ -196,7 +197,8 @@ class FileHelper {
 		for await (const line of rl) {
 			const match = line.match(ConstantsValue.todoRegex)
 			if (match?.length ?? 0 > 0) {
-				const todoNode = new TodoNode({ path: filePath, line: lineNumber, content: match[0] })
+				const index = (line as String).indexOf(match[0]);
+				const todoNode = new TodoNode({ path: filePath, line: lineNumber, start: index, content: match[0] })
 				findTodo(todoNode)
 			}
 			lineNumber++

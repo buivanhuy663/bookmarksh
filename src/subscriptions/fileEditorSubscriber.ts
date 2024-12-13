@@ -4,14 +4,13 @@ import { fileHelper } from '../util/FileHelper'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 import { TodosViewProvider } from '../bookmark-provider/features/todos/TodosViewProvider'
 
-export function fileEditorRegister(context: vscode.ExtensionContext,
+export function fileEditorSubscriber(context: vscode.ExtensionContext,
 	bookmarkProvider: BookmarksTreeViewProvider,
 	todoProvider: TodosViewProvider,
 ) {
 	vscode.workspace.onDidChangeTextDocument(event => {
 		bookmarkProvider.changeContentFile(event)
 		todoProvider.onChangeFile(event)
-
 	})
 
 	const focusEditor = vscode.window.onDidChangeActiveTextEditor(editor => {

@@ -5,9 +5,7 @@ import { Config } from '../bookmark-provider/data/shared_data/Config'
 import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 import { todoSupporEx } from '../bookmark-provider/data/model/todo/todoSupporEx';
 
-export function configurationRegister(context: vscode.ExtensionContext,
-	treeDataProvider: BookmarksTreeViewProvider,
-	watcherDataProvider: WatcherTreeViewProvider,
+export function configurationSubscriber(context: vscode.ExtensionContext,
 ) {
 	const initEnableAutoExport = vscode.workspace.getConfiguration('bookmarksh').get('enableAutoExport');
 	switch (initEnableAutoExport) {
@@ -23,7 +21,7 @@ export function configurationRegister(context: vscode.ExtensionContext,
 
 	const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
 	todoSupporEx.clear();
-	(todoListSupport as string).split(',').map((e)=> {return `.${e}`}).forEach((ex)=>{
+	(todoListSupport as string).split(',').map((e) => { return `.${e.trim()}` }).forEach((ex) => {
 		todoSupporEx.add(ex)
 	})
 
@@ -46,7 +44,7 @@ export function configurationRegister(context: vscode.ExtensionContext,
 		if (event.affectsConfiguration('bookmarksh.todoListSupport')) {
 			const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
 			todoSupporEx.clear();
-			(todoListSupport as string).split(',').map((e)=> {return `.${e}`}).forEach((ex)=>{
+			(todoListSupport as string).split(',').map((e) => { return `.${e}` }).forEach((ex) => {
 				todoSupporEx.add(ex)
 			})
 		}

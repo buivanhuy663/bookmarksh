@@ -137,7 +137,7 @@
         }
       },
       {
-        "command": "bookmarksh.refresh",
+        "command": "bookmarksh.refreshBookmark",
         "title": "Refresh",
         "icon": {
           "light": "resources/light/refresh.svg",
@@ -166,6 +166,14 @@
         "icon": {
           "light": "resources/light/filter_all.svg",
           "dark": "resources/dark/filter_all.svg"
+        }
+      },
+      {
+        "command": "bookmarksh.refreshTodo",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
         }
       },
       {
@@ -258,10 +266,13 @@
           "command": "bookmarksh.filterTree"
         },
         {
-          "command": "bookmarksh.refresh"
+          "command": "bookmarksh.refreshTodo"
         },
         {
           "command": "bookmarksh.removeAllWatcher"
+        },
+        {
+          "command": "bookmarksh.refreshTodo"
         }
       ],
       "view/title": [
@@ -332,7 +343,7 @@
           "group": "navigation@4 "
         },
         {
-          "command": "bookmarksh.refresh",
+          "command": "bookmarksh.refreshBookmark",
           "title": "Refresh",
           "when": "(view == bookmarkshTreeView) ",
           "icon": {
@@ -352,6 +363,17 @@
           },
           "category": "Bookmarks Tree",
           "group": "navigation@1"
+        },
+        {
+          "command": "bookmarksh.refreshTodo",
+          "title": "Refresh",
+          "when": "(view == bookmarkshTodos) ",
+          "icon": {
+            "light": "resources/light/refresh.svg",
+            "dark": "resources/dark/refresh.svg"
+          },
+          "category": "Todos Tree",
+          "group": "navigation@7"
         }
       ],
       "view/item/context": [
@@ -520,7 +542,7 @@
         "properties": {
           "bookmarksh.todoListSupport": {
             "type": "string",
-            "default": "txt,java,json,c,h,cpp",
+            "default": "txt, py, js, mjs, jsx, java, c, cpp, hpp, h, cs, php, phtml, swift, rb, go, ts, tsx, m, h, kt, kts, lua, scala, rs, sh, bash, zsh, pl, hs, ex, exs, dart",
             "description": "Add the extensions you want todo list to support. Separated by ',' "
           }
         }

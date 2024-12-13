@@ -3,50 +3,51 @@
 import * as vscode from 'vscode'
 
 import { WatcherTreeViewProvider } from './bookmark-provider/features/watchers/WatcherTreeViewProvider'
-import { buttonItemRegister } from './subscriptions/buttonItemRegister'
-import { fileEditorRegister } from './subscriptions/fileEditorRegister'
-import { keyboardShortcutRegister } from './subscriptions/keyboardShortcutRegister'
-import { openNodeBookmarkRegister } from './subscriptions/openNodeBookmarkRegister'
-import { statusBarButtonRegister } from './subscriptions/statusBarButtonRegister'
+import { fileEditorSubscriber } from './subscriptions/fileEditorSubscriber'
 import path = require('path')
-import { configurationRegister } from './subscriptions/configurationRegister'
+import { configurationSubscriber } from './subscriptions/configurationSubscriber'
 import { BookmarksHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/BookmarksHelpAndFeedback'
 import { createTreeBookmark } from './bookmark-provider/features/bookmarks/createTreeBookmark'
 import { createTreeWatcher } from './bookmark-provider/features/watchers/createTreeWatcher'
-import { createTodosTree } from './bookmark-provider/features/todos/createTodosTree'
 import { TodosViewProvider } from './bookmark-provider/features/todos/TodosViewProvider'
 import { BookmarksTreeViewProvider } from './bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
 import { createHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/createHelpAndFeedback'
-import { openTodoNodeRegister } from './bookmark-provider/features/todos/register/openTodoNodeRegister'
-import { acctionTodoRegister } from './bookmark-provider/features/todos/register/acctionTodoRegister'
+import { todoSubscriber } from './bookmark-provider/features/todos/subscriptions/todoSubscriber'
+import { bookmarkSubscriber } from './bookmark-provider/features/bookmarks/subscriptions/bookmarkSubscriber'
+import { createTodosTree } from './bookmark-provider/features/todos/createTodosTree'
+import { watcherSubscriber } from './bookmark-provider/features/watchers/subscriptions/watcherSubscriber'
 
 
 export function activate(context: vscode.ExtensionContext) {
-
+	// bookmark
 	const bookmarkTreeProvider = new BookmarksTreeViewProvider(context)
 	const watcherProvider = new WatcherTreeViewProvider(context, bookmarkTreeProvider)
-	const bookmarksHelpAndFeedback = new BookmarksHelpAndFeedback()
-	const todosViewProvider = new TodosViewProvider(context)
 	bookmarkTreeProvider.setWatcherTreeViewProvider(watcherProvider)
 
+	// bookmark list
 	const treeViewBookmark = createTreeBookmark(context, bookmarkTreeProvider)
+	bookmarkSubscriber(context, bookmarkTreeProvider)
+
+	// bookmark watcher
 	createTreeWatcher(context, watcherProvider)
+	watcherSubscriber(context, watcherProvider)
 
-	fileEditorRegister(context, bookmarkTreeProvider, todosViewProvider)
-	buttonItemRegister(context, bookmarkTreeProvider, watcherProvider)
-	configurationRegister(context, bookmarkTreeProvider, watcherProvider)
-	openNodeBookmarkRegister(context)
-	statusBarButtonRegister(context, bookmarkTreeProvider, watcherProvider, treeViewBookmark)
-	keyboardShortcutRegister(context, bookmarkTreeProvider)
-
+	// todo list
+	const todosViewProvider = new TodosViewProvider(context)
 	createTodosTree(context, todosViewProvider)
-	openTodoNodeRegister(context)
-	acctionTodoRegister(context, todosViewProvider)
+	todoSubscriber(context, todosViewProvider)
 
+	// Help and feedback
+	const bookmarksHelpAndFeedback = new BookmarksHelpAndFeedback()
 	createHelpAndFeedback(context, bookmarksHelpAndFeedback)
 
+	// register common
+	fileEditorSubscriber(context, bookmarkTreeProvider, todosViewProvider)
+	configurationSubscriber(context)
+
+	// init data
 	bookmarkTreeProvider.init(treeViewBookmark)
-	todosViewProvider.initTreeView()
+	todosViewProvider.init()
 }
 
 export function deactivate() {
