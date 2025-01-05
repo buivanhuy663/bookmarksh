@@ -137,7 +137,7 @@
         }
       },
       {
-        "command": "bookmarksh.refreshBookmark",
+        "command": "bookmarksh.bookmark.refresh",
         "title": "Refresh",
         "icon": {
           "light": "resources/light/refresh.svg",
@@ -145,7 +145,7 @@
         }
       },
       {
-        "command": "bookmarksh.filterTree",
+        "command": "bookmarksh.bookmark.filterTree",
         "title": "View as Bookmarks Tree",
         "icon": {
           "light": "resources/light/filter_tree.svg",
@@ -153,7 +153,7 @@
         }
       },
       {
-        "command": "bookmarksh.filterFile",
+        "command": "bookmarksh.bookmark.filterFile",
         "title": "View as Bookmarks Explorer",
         "icon": {
           "light": "resources/light/folder.svg",
@@ -161,7 +161,7 @@
         }
       },
       {
-        "command": "bookmarksh.filterAll",
+        "command": "bookmarksh.bookmark.filterAll",
         "title": "View as List of All Bookmarks",
         "icon": {
           "light": "resources/light/filter_all.svg",
@@ -169,11 +169,35 @@
         }
       },
       {
-        "command": "bookmarksh.refreshTodo",
+        "command": "bookmarksh.todo.refresh",
         "title": "Refresh",
         "icon": {
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "bookmarksh.todo.filterTree",
+        "title": "View as Todo Tree",
+        "icon": {
+          "light": "resources/light/filter_tree.svg",
+          "dark": "resources/dark/filter_tree.svg"
+        }
+      },
+      {
+        "command": "bookmarksh.todo.filterFile",
+        "title": "View as Todo Explorer",
+        "icon": {
+          "light": "resources/light/folder.svg",
+          "dark": "resources/dark/folder.svg"
+        }
+      },
+      {
+        "command": "bookmarksh.todo.filterAll",
+        "title": "View as List of All Todo",
+        "icon": {
+          "light": "resources/light/filter_all.svg",
+          "dark": "resources/dark/filter_all.svg"
         }
       },
       {
@@ -257,29 +281,29 @@
           "command": "bookmarksh.importBookmark"
         },
         {
-          "command": "bookmarksh.filterAll"
+          "command": "bookmarksh.bookmark.filterAll"
         },
         {
-          "command": "bookmarksh.filterFile"
+          "command": "bookmarksh.bookmark.filterFile"
         },
         {
-          "command": "bookmarksh.filterTree"
+          "command": "bookmarksh.bookmark.filterTree"
         },
         {
-          "command": "bookmarksh.refreshTodo"
+          "command": "bookmarksh.bookmark.refresh"
         },
         {
           "command": "bookmarksh.removeAllWatcher"
         },
         {
-          "command": "bookmarksh.refreshTodo"
+          "command": "bookmarksh.todo.refresh"
         }
       ],
       "view/title": [
         {
           "command": "bookmarksh.removeAllBookmark",
           "title": "Delete All Bookmarks",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.hasBookmark",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.bookmark.hasBookmark",
           "icon": {
             "light": "resources/light/remove_all.svg",
             "dark": "resources/dark/remove_all.svg"
@@ -290,7 +314,7 @@
         {
           "command": "bookmarksh.exportAllBookmark",
           "title": "Export All Bookmarks",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.hasBookmark",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.bookmark.hasBookmark",
           "icon": {
             "light": "resources/light/export_json.svg",
             "dark": "resources/dark/export_json.svg"
@@ -310,9 +334,9 @@
           "group": "navigation@3"
         },
         {
-          "command": "bookmarksh.filterAll",
+          "command": "bookmarksh.bookmark.filterAll",
           "title": "View as List of All Bookmarks",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 2",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.bookmark.treeAsList == 2",
           "icon": {
             "light": "resources/light/filter_all.svg",
             "dark": "resources/dark/filter_all.svg"
@@ -321,9 +345,9 @@
           "group": "navigation@4"
         },
         {
-          "command": "bookmarksh.filterFile",
+          "command": "bookmarksh.bookmark.filterFile",
           "title": "View as Bookmarks Explorer",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 3",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.bookmark.treeAsList == 3",
           "icon": {
             "light": "resources/light/folder.svg",
             "dark": "resources/dark/folder.svg"
@@ -332,9 +356,9 @@
           "group": "navigation@4"
         },
         {
-          "command": "bookmarksh.filterTree",
+          "command": "bookmarksh.bookmark.filterTree",
           "title": "View as Bookmarks Tree",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.treeAsList == 1",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.bookmark.treeAsList == 1",
           "icon": {
             "light": "resources/light/filter_tree.svg",
             "dark": "resources/dark/filter_tree.svg"
@@ -343,7 +367,7 @@
           "group": "navigation@4 "
         },
         {
-          "command": "bookmarksh.refreshBookmark",
+          "command": "bookmarksh.bookmark.refresh",
           "title": "Refresh",
           "when": "(view == bookmarkshTreeView) ",
           "icon": {
@@ -356,7 +380,7 @@
         {
           "command": "bookmarksh.removeAllWatcher",
           "title": "Remove All Watchers",
-          "when": "(view == bookmarkshWatcherTree) && bookmarks.var.hasWatcher",
+          "when": "(view == bookmarkshWatcherTree) && bookmarks.var.bookmark.hasWatcher",
           "icon": {
             "light": "resources/light/remove_all.svg",
             "dark": "resources/dark/remove_all.svg"
@@ -365,7 +389,7 @@
           "group": "navigation@1"
         },
         {
-          "command": "bookmarksh.refreshTodo",
+          "command": "bookmarksh.todo.refresh",
           "title": "Refresh",
           "when": "(view == bookmarkshTodos) ",
           "icon": {
@@ -374,6 +398,39 @@
           },
           "category": "Todos Tree",
           "group": "navigation@7"
+        },
+        {
+          "command": "bookmarksh.todo.filterAll",
+          "title": "View as List of All Todo",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 2",
+          "icon": {
+            "light": "resources/light/filter_all.svg",
+            "dark": "resources/dark/filter_all.svg"
+          },
+          "category": "Todo Tree",
+          "group": "navigation@4"
+        },
+        {
+          "command": "bookmarksh.todo.filterFile",
+          "title": "View as Todo Explorer",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 3",
+          "icon": {
+            "light": "resources/light/folder.svg",
+            "dark": "resources/dark/folder.svg"
+          },
+          "category": "Todo Tree",
+          "group": "navigation@4"
+        },
+        {
+          "command": "bookmarksh.todo.filterTree",
+          "title": "View as Todo Tree",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
+          "icon": {
+            "light": "resources/light/filter_tree.svg",
+            "dark": "resources/dark/filter_tree.svg"
+          },
+          "category": "Todo Tree",
+          "group": "navigation@4 "
         }
       ],
       "view/item/context": [

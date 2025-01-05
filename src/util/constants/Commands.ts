@@ -1,4 +1,4 @@
-import { TreeMode } from "../../bookmark-provider/data/shared_data/TreeMode"
+import { TreeModeBookmark, TreeModeTodo } from "../../bookmark-provider/data/shared_data/TreeMode"
 import { ContextBookmark, ContextTodo } from "../ContextValue"
 import { Icons } from "./Icons"
 
@@ -8,13 +8,19 @@ class When {
 
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
+	static readonly nameBookmark = '.bookmark'
+	static readonly nameTodo = '.todo'
 
 	static readonly editorContextSubmenu = 'bookmarksh.editor.context'
 	static readonly submenu_changeStateTodo = 'bookmarksh.todo.changeState.submenu'
 
-	static readonly treeAsList = 'bookmarks.var.treeAsList'
-	static readonly hasBookmark = 'bookmarks.var.hasBookmark'
-	static readonly hasWatcher = 'bookmarks.var.hasWatcher'
+	static readonly varBookmarkTreeAsList = 'bookmarks.var.bookmark.treeAsList'
+	static readonly varHasBookmark = 'bookmarks.var.bookmark.hasBookmark'
+	static readonly varHasWatcher = 'bookmarks.var.bookmark.hasWatcher'
+
+	static readonly varTodoTreeAsList = 'bookmarks.var.todo.treeAsList'
+
+
 
 	static get watcherTreeViewName() { return Commands.nameExtension + 'WatcherTree' }
 	static get bookmarkTreeViewName() { return Commands.nameExtension + 'TreeView' }
@@ -54,7 +60,7 @@ export class Commands {
 		refresh: 7,
 	}
 
-	static bookmarkCommand = {
+	static bookmarkCommands = {
 		// keyboard shortcut
 		toggleBookmark: {
 			'command': Commands.nameExtension + '.toggleBookmark',
@@ -122,7 +128,7 @@ export class Commands {
 		removeAllWatcher: {
 			'command': Commands.nameExtension + '.removeAllWatcher',
 			'title': 'Remove All Watchers',
-			'when': `${this.viewWatcherTreeView} && ${this.hasWatcher}`,
+			'when': `${this.viewWatcherTreeView} && ${this.varHasWatcher}`,
 			'icon': Icons.remove_all,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.removeAllWatcher}`,
@@ -130,7 +136,7 @@ export class Commands {
 		removeAllBookmark: {
 			'command': Commands.nameExtension + '.removeAllBookmark',
 			'title': 'Delete All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} && ${this.hasBookmark}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varHasBookmark}`,
 			'icon': Icons.remove_all,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.removeAllBookmark}`,
@@ -138,7 +144,7 @@ export class Commands {
 		exportAllBookmark: {
 			'command': Commands.nameExtension + '.exportAllBookmark',
 			'title': 'Export All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} && ${this.hasBookmark}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varHasBookmark}`,
 			'icon': Icons.export_json,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.exportAllBookmark}`,
@@ -151,8 +157,8 @@ export class Commands {
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
 		},
-		refreshBookmark: {
-			'command': Commands.nameExtension + '.refreshBookmark',
+		refresh: {
+			'command': Commands.nameExtension + Commands.nameBookmark + '.refresh',
 			'title': 'Refresh',
 			'when': `${this.viewBookmarkTreeView} `,
 			'icon': Icons.refresh,
@@ -161,25 +167,25 @@ export class Commands {
 		},
 
 		filterTree: {
-			'command': Commands.nameExtension + '.filterTree',
+			'command': Commands.nameExtension + Commands.nameBookmark + '.filterTree',
 			'title': 'View as Bookmarks Tree',
-			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.Tree}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varBookmarkTreeAsList} == ${TreeModeBookmark.Tree}`,
 			'icon': Icons.filter_tree,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterTree} `,
 		},
 		filterFile: {
-			'command': Commands.nameExtension + '.filterFile',
+			'command': Commands.nameExtension + Commands.nameBookmark + '.filterFile',
 			'title': 'View as Bookmarks Explorer',
-			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.File}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varBookmarkTreeAsList} == ${TreeModeBookmark.File}`,
 			'icon': Icons.folder,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterFile}`,
 		},
 		filterAll: {
-			'command': Commands.nameExtension + '.filterAll',
+			'command': Commands.nameExtension + Commands.nameBookmark + '.filterAll',
 			'title': 'View as List of All Bookmarks',
-			'when': `${this.viewBookmarkTreeView} && ${this.treeAsList} == ${TreeMode.All}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varBookmarkTreeAsList} == ${TreeModeBookmark.All}`,
 			'icon': Icons.filter_all,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
@@ -187,13 +193,38 @@ export class Commands {
 	}
 
 	static todoCommands = {
-		refreshTodo: {
-			'command': Commands.nameExtension + '.refreshTodo',
+		refresh: {
+			'command': Commands.nameExtension + Commands.nameTodo + '.refresh',
 			'title': 'Refresh',
 			'when': `${this.viewTodosTreeView} `,
 			'icon': Icons.refresh,
 			"category": "Todos Tree",
 			"group": `navigation@${this.indexStatusBarTodoButton.refresh}`,
+		},
+
+		filterTree: {
+			'command': Commands.nameExtension + Commands.nameTodo + '.filterTree',
+			'title': 'View as Todo Tree',
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.Tree}`,
+			'icon': Icons.filter_tree,
+			"category": "Todo Tree",
+			"group": `navigation@${this.indexStatusBarButton.filterTree} `,
+		},
+		filterFile: {
+			'command': Commands.nameExtension + Commands.nameTodo + '.filterFile',
+			'title': 'View as Todo Explorer',
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.File}`,
+			'icon': Icons.folder,
+			"category": "Todo Tree",
+			"group": `navigation@${this.indexStatusBarButton.filterFile}`,
+		},
+		filterAll: {
+			'command': Commands.nameExtension + Commands.nameTodo + '.filterAll',
+			'title': 'View as List of All Todo',
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.All}`,
+			'icon': Icons.filter_all,
+			"category": "Todo Tree",
+			"group": `navigation@${this.indexStatusBarButton.filterAll}`,
 		},
 
 		Todo: {
@@ -234,11 +265,6 @@ export class Commands {
 		},
 	}
 
-	static commands = {
-		...this.bookmarkCommand,
-		...this.todoCommands,
-	}
-
 	static bookmarksh = [
 		{
 			"id": Commands.bookmarkTreeViewName,
@@ -270,40 +296,43 @@ export class Commands {
 	]
 
 	static commandPalett = [
-		{ command: this.commands.toggleBookmark.command },
-		{ command: this.commands.forceAddBookmark.command },
-		{ command: this.commands.forceDeleteBookmark.command },
-		{ command: this.commands.removeAllBookmark.command },
-		{ command: this.commands.exportAllBookmark.command },
-		{ command: this.commands.importBookmark.command },
-		{ command: this.commands.filterAll.command },
-		{ command: this.commands.filterFile.command },
-		{ command: this.commands.filterTree.command },
-		{ command: this.commands.refreshTodo.command },
-		{ command: this.commands.removeAllWatcher.command },
-		{ command: this.commands.refreshTodo.command },
+		{ command: this.bookmarkCommands.toggleBookmark.command },
+		{ command: this.bookmarkCommands.forceAddBookmark.command },
+		{ command: this.bookmarkCommands.forceDeleteBookmark.command },
+		{ command: this.bookmarkCommands.removeAllBookmark.command },
+		{ command: this.bookmarkCommands.exportAllBookmark.command },
+		{ command: this.bookmarkCommands.importBookmark.command },
+		{ command: this.bookmarkCommands.filterAll.command },
+		{ command: this.bookmarkCommands.filterFile.command },
+		{ command: this.bookmarkCommands.filterTree.command },
+		{ command: this.bookmarkCommands.refresh.command },
+		{ command: this.bookmarkCommands.removeAllWatcher.command },
+		{ command: this.todoCommands.refresh.command },
 	]
 
 	static view_title = [
-		this.commands.removeAllBookmark,
-		this.commands.exportAllBookmark,
-		this.commands.importBookmark,
-		this.commands.filterAll,
-		this.commands.filterFile,
-		this.commands.filterTree,
-		this.commands.refreshBookmark,
-		this.commands.removeAllWatcher,
+		this.bookmarkCommands.removeAllBookmark,
+		this.bookmarkCommands.exportAllBookmark,
+		this.bookmarkCommands.importBookmark,
+		this.bookmarkCommands.filterAll,
+		this.bookmarkCommands.filterFile,
+		this.bookmarkCommands.filterTree,
+		this.bookmarkCommands.refresh,
+		this.bookmarkCommands.removeAllWatcher,
 
-		this.commands.refreshTodo,
+		this.todoCommands.refresh,
+		this.todoCommands.filterTree,
+		this.todoCommands.filterAll,
+		this.todoCommands.filterFile,
 	]
 
 	static view_item_context = [
-		this.commands.pinView,
-		this.commands.editBookmark,
-		this.commands.deleteBookmark,
-		this.commands.exportBookmark,
-		this.commands.addToWatcher,
-		this.commands.removeWatcher,
+		this.bookmarkCommands.pinView,
+		this.bookmarkCommands.editBookmark,
+		this.bookmarkCommands.deleteBookmark,
+		this.bookmarkCommands.exportBookmark,
+		this.bookmarkCommands.addToWatcher,
+		this.bookmarkCommands.removeWatcher,
 		{
 			submenu: this.submenu_changeStateTodo,
 			'when': `${this.viewTodosTreeView} && ${this.todoChangeState}`
@@ -319,19 +348,19 @@ export class Commands {
 
 	static submenu_bookmarksh_editor_context = [
 		{
-			"command": this.commands.toggleBookmark.command,
+			"command": this.bookmarkCommands.toggleBookmark.command,
 			"group": "bookmarksh.editor@1",
-			"when": this.commands.forceAddBookmark.when
+			"when": this.bookmarkCommands.forceAddBookmark.when
 		},
 		{
-			"command": this.commands.forceAddBookmark.command,
+			"command": this.bookmarkCommands.forceAddBookmark.command,
 			"group": "bookmarksh.editor@2",
-			"when": this.commands.forceAddBookmark.when
+			"when": this.bookmarkCommands.forceAddBookmark.when
 		},
 		{
-			"command": this.commands.forceDeleteBookmark.command,
+			"command": this.bookmarkCommands.forceDeleteBookmark.command,
 			"group": "bookmarksh.editor@3",
-			"when": this.commands.forceAddBookmark.when
+			"when": this.bookmarkCommands.forceAddBookmark.when
 		}
 	]
 
@@ -400,8 +429,8 @@ export class Commands {
 	]
 
 	static keybindings = [
-		this.commands.toggleBookmark,
-		this.commands.forceAddBookmark,
-		this.commands.forceDeleteBookmark,
+		this.bookmarkCommands.toggleBookmark,
+		this.bookmarkCommands.forceAddBookmark,
+		this.bookmarkCommands.forceDeleteBookmark,
 	]
 }

@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// todo list
 	const todosViewProvider = new TodosViewProvider(context)
-	createTodosTree(context, todosViewProvider)
+	const treeViewTodo = createTodosTree(context, todosViewProvider)
 	todoSubscriber(context, todosViewProvider)
 
 	// Help and feedback
@@ -47,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// init data
 	bookmarkTreeProvider.init(treeViewBookmark)
-	todosViewProvider.init()
+	todosViewProvider.init(treeViewTodo)
 }
 
 export function deactivate() {

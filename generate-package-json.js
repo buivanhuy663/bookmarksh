@@ -3,8 +3,6 @@ const path = require('path');
 
 const Commands_1 = require("./out/util/constants/Commands");
 const Colors_1 = require("./out/util/constants/Colors");
-const Icons_1 = require("./out/util/constants/Icons");
-const KeyBindings_1 = require("./out/util/constants/KeyBindings");
 const basePackageJsonFile = require("./out/util/constants/BasePackage");
 
 const customPackageJsonPath = path.join(__dirname, 'package.json');
@@ -29,9 +27,14 @@ const customPackageJson = {
         }
       ]
     },
-    commands: Object.values(commants.commands).map((e) => {
-      return { "command": e.command, "title": e.title, "icon": e.icon }
-    }),
+    commands: [
+      ...Object.values(commants.bookmarkCommands).map((e) => {
+        return { "command": e.command, "title": e.title, "icon": e.icon }
+      }),
+      ...Object.values(commants.todoCommands).map((e) => {
+        return { "command": e.command, "title": e.title, "icon": e.icon }
+      }),
+    ],
     keybindings: commants.keybindings,
     menus: {
       "commandPalett": commants.commandPalett,

@@ -10,6 +10,8 @@ export enum ContextBookmark {
 
 export enum ContextTodo {
 	Todo = 'todo',
-	File = 'fileInListTodo',
+	File = 'todoFile',
+	Folder = 'todoFolder',
+	FileInList = 'fileInListTodo',
 }
 
