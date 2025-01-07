@@ -161,12 +161,12 @@ class FileHelper {
 		return true
 	}
 
-	getAllTodoInRoot(
+	async getAllTodoInRoot(
 		root: string,
 		findTodo: (todo: TodoNode) => void,
 	) {
 		const items = fs.readdirSync(root);
-		items.forEach(async item => {
+		for (const item of items) {
 			const fullPath = path.join(root, item);
 			const stat = fs.statSync(fullPath);
 
@@ -179,7 +179,7 @@ class FileHelper {
 					await this.getTodoInfile(fullPath, findTodo)
 				}
 			}
-		});
+		}
 	}
 
 
