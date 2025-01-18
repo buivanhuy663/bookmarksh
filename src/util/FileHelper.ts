@@ -165,7 +165,7 @@ class FileHelper {
 
 	async getAllTodoInRoot(
 		root: string,
-		findTodo: (param: LineParam) => void,
+		findTodo: (param: LineParam[]) => void,
 	) {
 		if (root === undefined || root === null || root === '') {
 			return
@@ -177,11 +177,11 @@ class FileHelper {
 
 			if (stat.isDirectory()) {
 				// Nếu là thư mục, đệ quy vào bên trong
-				this.getAllTodoInRoot(fullPath, findTodo);
+				await this.getAllTodoInRoot(fullPath, findTodo);
 			} else {
 				// Nếu là file, thêm vào danh sách
 				if (todoSupporEx.has(path.extname(fullPath))) {
-					this.getTodoInfile(fullPath, findTodo)
+					await this.getTodoInfile(fullPath, findTodo)
 				}
 			}
 		}
@@ -190,7 +190,7 @@ class FileHelper {
 
 	async getTodoInfile(
 		filePath: string,
-		findTodo: (param: LineParam) => void,
+		findTodo: (param: LineParam[]) => void,
 	) {
 
 		const fileStream = fs.createReadStream(filePath);
@@ -198,14 +198,16 @@ class FileHelper {
 			input: fileStream,
 			crlfDelay: Infinity,
 		});
+		const listTodo: LineParam[] = []
 		let lineNumber = 0;
 		for await (const line of rl) {
 			const match = line.match(ConstantsValue.todoRegex);
 			if (match?.length ?? 0 > 0) {
-				findTodo({ line: line, filePath: filePath, lineNum: lineNumber, match: match });
+				listTodo.push({ line: line, filePath: filePath, lineNum: lineNumber, match: match })
 			}
 			lineNumber++;
 		}
+		findTodo(listTodo);
 	}
 }
 
