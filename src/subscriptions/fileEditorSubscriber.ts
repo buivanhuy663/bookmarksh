@@ -52,7 +52,7 @@ class WatcherFileManager {
 		bookmarkProvider: BookmarksTreeViewProvider,
 		todoProvider: TodosViewProvider,
 	) {
-
+		todoProvider.onCreateDirectory(newPath)
 	}
 
 	onMoveDirectory(
@@ -62,6 +62,7 @@ class WatcherFileManager {
 		todoProvider: TodosViewProvider,
 	) {
 		bookmarkProvider.onMoveDirectory(oldPath, newPath)
+		// todoProvider.onMoveDirectory(oldPath, newPath) todo: not implement
 	}
 
 	onRenameDirectory(

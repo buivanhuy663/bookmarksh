@@ -46,8 +46,9 @@ export function activate(context: vscode.ExtensionContext) {
 	configurationSubscriber(context)
 
 	// init data
-	bookmarkTreeProvider.init(treeViewBookmark)
-	todosViewProvider.init(treeViewTodo)
+	bookmarkTreeProvider.init(treeViewBookmark).then(() => {
+		todosViewProvider.init(treeViewTodo)
+	})
 }
 
 export function deactivate() {

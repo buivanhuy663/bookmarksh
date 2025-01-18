@@ -3,11 +3,13 @@ import * as vscode from 'vscode'
 import { SetBookmark } from "../bookmark-provider/data/model/SetBookmark"
 import { logger } from "./LoggerHelper"
 import path = require("path")
-import { TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
+import { LineParam, TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
 import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
-import { ContextBookmark } from "./ContextValue"
+import { ContextBookmark, ContextTodo } from "./ContextValue"
 import { ConstantsValue } from "./constants/ConstantValue"
 import { strict } from "assert"
+const readline = require('readline');
+import { Worker } from 'worker_threads';
 
 
 class FileHelper {
@@ -163,8 +165,11 @@ class FileHelper {
 
 	async getAllTodoInRoot(
 		root: string,
-		findTodo: (todo: TodoNode) => void,
+		findTodo: (param: LineParam) => void,
 	) {
+		if (root === undefined || root === null || root === '') {
+			return
+		}
 		const items = fs.readdirSync(root);
 		for (const item of items) {
 			const fullPath = path.join(root, item);
@@ -176,7 +181,7 @@ class FileHelper {
 			} else {
 				// Nếu là file, thêm vào danh sách
 				if (todoSupporEx.has(path.extname(fullPath))) {
-					await this.getTodoInfile(fullPath, findTodo)
+					this.getTodoInfile(fullPath, findTodo)
 				}
 			}
 		}
@@ -185,23 +190,21 @@ class FileHelper {
 
 	async getTodoInfile(
 		filePath: string,
-		findTodo: (todo: TodoNode) => void,
+		findTodo: (param: LineParam) => void,
 	) {
-		const fileStream = fs.createReadStream(filePath)
-		const readline = require('readline')
+
+		const fileStream = fs.createReadStream(filePath);
 		const rl = readline.createInterface({
 			input: fileStream,
 			crlfDelay: Infinity,
-		})
-		let lineNumber = 0
+		});
+		let lineNumber = 0;
 		for await (const line of rl) {
-			const match = line.match(ConstantsValue.todoRegex)
+			const match = line.match(ConstantsValue.todoRegex);
 			if (match?.length ?? 0 > 0) {
-				const index = (line as string).indexOf(match[0]);
-				const todoNode = new TodoNode({ path: filePath, line: lineNumber, start: index, content: match[0] })
-				findTodo(todoNode)
+				findTodo({ line: line, filePath: filePath, lineNum: lineNumber, match: match });
 			}
-			lineNumber++
+			lineNumber++;
 		}
 	}
 }

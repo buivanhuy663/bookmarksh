@@ -11,7 +11,6 @@ export enum ContextBookmark {
 export enum ContextTodo {
 	Todo = 'todo',
 	Folder = 'folder',
-	BookmarkFolder = 'bookmarkFolder',
 	File = 'file',
 	Watcher = 'watcher',
 	FileInList = 'fileInList',

@@ -33,3 +33,12 @@ cd -
 git pull
 fi
 
+
+if [ "$1" == "push" ]; then
+cd src/bookmark-provider
+git push
+
+cd -
+git push
+fi
+
