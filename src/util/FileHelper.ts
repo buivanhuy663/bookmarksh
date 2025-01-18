@@ -9,7 +9,6 @@ import { ContextBookmark, ContextTodo } from "./ContextValue"
 import { ConstantsValue } from "./constants/ConstantValue"
 import { strict } from "assert"
 const readline = require('readline');
-import { Worker } from 'worker_threads';
 
 
 class FileHelper {
