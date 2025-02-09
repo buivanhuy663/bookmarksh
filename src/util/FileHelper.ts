@@ -165,6 +165,8 @@ class FileHelper {
 	async getAllTodoInRoot(
 		root: string,
 		findTodo: (param: LineParam[]) => void,
+		onFinish?: () => void
+
 	) {
 		if (root === undefined || root === null || root === '') {
 			return
@@ -184,6 +186,7 @@ class FileHelper {
 				}
 			}
 		}
+		onFinish?.()
 	}
 
 

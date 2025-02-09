@@ -48,6 +48,33 @@
           "id": "bookmarksh",
           "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg"
+        },
+        {
+          "id": "todosh",
+          "title": "Todos",
+          "icon": "resources/bookmark_logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "bookmarksh": [
+        {
+          "id": "bookmarkshTreeView",
+          "name": "Bookmarks"
+        },
+        {
+          "id": "bookmarkshWatcherTree",
+          "name": "Watcher"
+        },
+        {
+          "id": "bookmarkshHelpAndFeedback",
+          "name": "Help And Feedback"
+        }
+      ],
+      "todosh": [
+        {
+          "id": "bookmarkshTodos",
+          "name": "Todos"
         }
       ]
     },
@@ -400,6 +427,17 @@
           "group": "navigation@7"
         },
         {
+          "command": "bookmarksh.todo.filterTree",
+          "title": "View as Todo Tree",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
+          "icon": {
+            "light": "resources/light/filter_tree.svg",
+            "dark": "resources/dark/filter_tree.svg"
+          },
+          "category": "Todo Tree",
+          "group": "navigation@4 "
+        },
+        {
           "command": "bookmarksh.todo.filterAll",
           "title": "View as List of All Todo",
           "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 2",
@@ -420,17 +458,6 @@
           },
           "category": "Todo Tree",
           "group": "navigation@4"
-        },
-        {
-          "command": "bookmarksh.todo.filterTree",
-          "title": "View as Todo Tree",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
-          "icon": {
-            "light": "resources/light/filter_tree.svg",
-            "dark": "resources/dark/filter_tree.svg"
-          },
-          "category": "Todo Tree",
-          "group": "navigation@4 "
         }
       ],
       "view/item/context": [
@@ -561,26 +588,6 @@
         "label": "Change state"
       }
     ],
-    "views": {
-      "bookmarksh": [
-        {
-          "id": "bookmarkshTreeView",
-          "name": "Bookmarks"
-        },
-        {
-          "id": "bookmarkshWatcherTree",
-          "name": "Watcher"
-        },
-        {
-          "id": "bookmarkshTodos",
-          "name": "Todos"
-        },
-        {
-          "id": "bookmarkshHelpAndFeedback",
-          "name": "Help And Feedback"
-        }
-      ]
-    },
     "configuration": [
       {
         "type": "object",

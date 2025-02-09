@@ -8,6 +8,7 @@ class When {
 
 export class Commands {
 	static readonly nameExtension = 'bookmarksh'
+	static readonly nameExtensionTodo = 'todosh'
 	static readonly nameBookmark = '.bookmark'
 	static readonly nameTodo = '.todo'
 
@@ -275,12 +276,15 @@ export class Commands {
 			"name": "Watcher"
 		},
 		{
-			"id": Commands.todosTreeViewName,
-			"name": "Todos"
-		},
-		{
 			"id": Commands.helpAndFeedbackTreeViewName,
 			"name": "Help And Feedback"
+		},
+	]
+
+	static todosh = [
+		{
+			"id": Commands.todosTreeViewName,
+			"name": "Todos"
 		},
 	]
 

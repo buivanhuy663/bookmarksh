@@ -24,8 +24,17 @@ const customPackageJson = {
           "id": commants.nameExtension,
           "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg",
+        },
+        {
+          "id": commants.nameExtensionTodo,
+          "title": "Todos",
+          "icon": "resources/bookmark_logo.svg",
         }
       ]
+    },
+    views: {
+      bookmarksh: commants.bookmarksh,
+      todosh: commants.todosh,
     },
     commands: [
       ...Object.values(commants.bookmarkCommands).map((e) => {
@@ -46,9 +55,6 @@ const customPackageJson = {
     },
 
     submenus: commants.submenus,
-    views: {
-      bookmarksh: commants.bookmarksh
-    },
     configuration: commants.configuration,
     colors: colors.colors
   }
