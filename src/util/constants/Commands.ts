@@ -414,7 +414,7 @@ export class Commands {
 			"properties": {
 				"bookmarksh.enableAutoExport": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
 				}
 			}
