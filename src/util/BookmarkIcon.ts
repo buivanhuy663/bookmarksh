@@ -7,7 +7,7 @@ export class BookmarkIcon {
 		const decorationSigle: vscode.DecorationOptions[] = []
 		const decorationMulti: vscode.DecorationOptions[] = []
 		for (const line of set) {
-			if(editor.document.lineCount <= line.line) continue
+			if (editor.document.lineCount <= line.line) continue
 			const content = editor.document.lineAt(line.line)
 			const range = new vscode.Range(content.range.start, content.range.end)
 			if (line.ids.length > 1) {
@@ -29,8 +29,8 @@ export class BookmarkIcon {
 		return vscode.window.createTextEditorDecorationType({
 			gutterIconPath: this.getIcon(multible ? IconType.bookmarks_gutter : IconType.bookmark_gutter),
 			overviewRulerLane: vscode.OverviewRulerLane.Center,
-			overviewRulerColor: 'rgba(0,255,0, 0.7)', 
-			border: 'none', // Không có border để tránh làm nổi bật dòng
+			overviewRulerColor: 'rgba(0,255,0, 0.7)',
+			border: 'none', // Không có border để tránh làm nổi bật dòng,
 		})
 	}
 

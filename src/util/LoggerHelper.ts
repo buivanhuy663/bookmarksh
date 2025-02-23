@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 class LoggerHelper {
-	private canLog: boolean = true;
+	private canLog: boolean = false;
 
 	infor(message: any) {
 		if (this.canLog)

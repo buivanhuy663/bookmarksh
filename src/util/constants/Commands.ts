@@ -293,10 +293,10 @@ export class Commands {
 			"id": this.editorContextSubmenu,
 			"label": "Bookmarks Tree"
 		},
-		{
-			"id": this.submenu_changeStateTodo,
-			"label": "Change state"
-		}
+		// {
+		// 	"id": this.submenu_changeStateTodo,
+		// 	"label": "Change state"
+		// }
 	]
 
 	static commandPalett = [
@@ -311,7 +311,7 @@ export class Commands {
 		{ command: this.bookmarkCommands.filterTree.command },
 		{ command: this.bookmarkCommands.refresh.command },
 		{ command: this.bookmarkCommands.removeAllWatcher.command },
-		{ command: this.todoCommands.refresh.command },
+		// { command: this.todoCommands.refresh.command },
 	]
 
 	static view_title = [
@@ -324,10 +324,10 @@ export class Commands {
 		this.bookmarkCommands.refresh,
 		this.bookmarkCommands.removeAllWatcher,
 
-		this.todoCommands.refresh,
-		this.todoCommands.filterTree,
-		this.todoCommands.filterAll,
-		this.todoCommands.filterFile,
+		// this.todoCommands.refresh,
+		// this.todoCommands.filterTree,
+		// this.todoCommands.filterAll,
+		// this.todoCommands.filterFile,
 	]
 
 	static view_item_context = [
@@ -337,10 +337,10 @@ export class Commands {
 		this.bookmarkCommands.exportBookmark,
 		this.bookmarkCommands.addToWatcher,
 		this.bookmarkCommands.removeWatcher,
-		{
-			submenu: this.submenu_changeStateTodo,
-			'when': `${this.viewTodosTreeView} && ${this.todoChangeState}`
-		}
+		// {
+		// 	submenu: this.submenu_changeStateTodo,
+		// 	'when': `${this.viewTodosTreeView} && ${this.todoChangeState}`
+		// }
 	]
 
 	static editor_context = [
@@ -419,17 +419,17 @@ export class Commands {
 				}
 			}
 		},
-		{
-			"type": "object",
-			"title": "Todo list support",
-			"properties": {
-				"bookmarksh.todoListSupport": {
-					"type": "string",
-					"default": "txt, py, js, mjs, jsx, java, c, cpp, hpp, h, cs, php, phtml, swift, rb, go, ts, tsx, m, h, kt, kts, lua, scala, rs, sh, bash, zsh, pl, hs, ex, exs, dart",
-					"description": "Add the extensions you want todo list to support. Separated by ',' "
-				}
-			}
-		}
+		// {
+		// 	"type": "object",
+		// 	"title": "Todo list support",
+		// 	"properties": {
+		// 		"bookmarksh.todoListSupport": {
+		// 			"type": "string",
+		// 			"default": "txt, py, js, mjs, jsx, java, c, cpp, hpp, h, cs, php, phtml, swift, rb, go, ts, tsx, m, h, kt, kts, lua, scala, rs, sh, bash, zsh, pl, hs, ex, exs, dart",
+		// 			"description": "Add the extensions you want todo list to support. Separated by ',' "
+		// 		}
+		// 	}
+		// }
 	]
 
 	static keybindings = [

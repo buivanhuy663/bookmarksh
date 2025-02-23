@@ -25,24 +25,24 @@ const customPackageJson = {
           "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg",
         },
-        {
-          "id": commants.nameExtensionTodo,
-          "title": "Todos",
-          "icon": "resources/bookmark_logo.svg",
-        }
+        // {
+        //   "id": commants.nameExtensionTodo,
+        //   "title": "Todos",
+        //   "icon": "resources/bookmark_logo.svg",
+        // }
       ]
     },
     views: {
       bookmarksh: commants.bookmarksh,
-      todosh: commants.todosh,
+      // todosh: commants.todosh,
     },
     commands: [
       ...Object.values(commants.bookmarkCommands).map((e) => {
         return { "command": e.command, "title": e.title, "icon": e.icon }
       }),
-      ...Object.values(commants.todoCommands).map((e) => {
-        return { "command": e.command, "title": e.title, "icon": e.icon }
-      }),
+      // ...Object.values(commants.todoCommands).map((e) => {
+      //   return { "command": e.command, "title": e.title, "icon": e.icon }
+      // }),
     ],
     keybindings: commants.keybindings,
     menus: {
@@ -62,7 +62,7 @@ const customPackageJson = {
 
 customPackageJson.name = "bookmarksh";
 customPackageJson.displayName = "Bookmarks Tree";
-customPackageJson.version = "0.1.5";
+customPackageJson.version = "0.1.6";
 
 fs.writeFileSync(customPackageJsonPath, JSON.stringify(customPackageJson, null, 2));
 

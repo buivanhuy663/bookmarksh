@@ -32,22 +32,25 @@ export function activate(context: vscode.ExtensionContext) {
 	createTreeWatcher(context, watcherProvider)
 	watcherSubscriber(context, watcherProvider)
 
-	// todo list
+	// // todo list
 	const todosViewProvider = new TodosViewProvider(context)
-	const treeViewTodo = createTodosTree(context, todosViewProvider)
-	todoSubscriber(context, todosViewProvider)
+	// const treeViewTodo = createTodosTree(context, todosViewProvider)
+	// todoSubscriber(context, todosViewProvider)
 
 	// Help and feedback
 	const bookmarksHelpAndFeedback = new BookmarksHelpAndFeedback()
 	createHelpAndFeedback(context, bookmarksHelpAndFeedback)
 
 	// register common
-	fileEditorSubscriber(context, bookmarkTreeProvider, todosViewProvider)
+	fileEditorSubscriber(context,
+		bookmarkTreeProvider,
+		todosViewProvider,
+	)
 	configurationSubscriber(context)
 
 	// init data
 	bookmarkTreeProvider.init(treeViewBookmark).then(() => {
-		todosViewProvider.init(treeViewTodo)
+		// todosViewProvider.init(treeViewTodo)
 	})
 }
 

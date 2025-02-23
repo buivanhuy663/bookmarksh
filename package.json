@@ -2,7 +2,7 @@
   "name": "bookmarksh",
   "displayName": "Bookmarks Tree",
   "description": "Drag and Drop bookmark, group bookmark, watcher bookmark",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "publisher": "huybui663",
   "private": true,
   "license": "MIT",
@@ -48,11 +48,6 @@
           "id": "bookmarksh",
           "title": "Bookmarks",
           "icon": "resources/bookmark_logo.svg"
-        },
-        {
-          "id": "todosh",
-          "title": "Todos",
-          "icon": "resources/bookmark_logo.svg"
         }
       ]
     },
@@ -69,12 +64,6 @@
         {
           "id": "bookmarkshHelpAndFeedback",
           "name": "Help And Feedback"
-        }
-      ],
-      "todosh": [
-        {
-          "id": "bookmarkshTodos",
-          "name": "Todos"
         }
       ]
     },
@@ -194,74 +183,6 @@
           "light": "resources/light/filter_all.svg",
           "dark": "resources/dark/filter_all.svg"
         }
-      },
-      {
-        "command": "bookmarksh.todo.refresh",
-        "title": "Refresh",
-        "icon": {
-          "light": "resources/light/refresh.svg",
-          "dark": "resources/dark/refresh.svg"
-        }
-      },
-      {
-        "command": "bookmarksh.todo.filterTree",
-        "title": "View as Todo Tree",
-        "icon": {
-          "light": "resources/light/filter_tree.svg",
-          "dark": "resources/dark/filter_tree.svg"
-        }
-      },
-      {
-        "command": "bookmarksh.todo.filterFile",
-        "title": "View as Todo Explorer",
-        "icon": {
-          "light": "resources/light/folder.svg",
-          "dark": "resources/dark/folder.svg"
-        }
-      },
-      {
-        "command": "bookmarksh.todo.filterAll",
-        "title": "View as List of All Todo",
-        "icon": {
-          "light": "resources/light/filter_all.svg",
-          "dark": "resources/dark/filter_all.svg"
-        }
-      },
-      {
-        "command": "bookmarksh.todoState.Todo",
-        "title": "Todo"
-      },
-      {
-        "command": "bookmarksh.todoState.InProgress",
-        "title": "In-Progress"
-      },
-      {
-        "command": "bookmarksh.todoState.Hold",
-        "title": "Hold"
-      },
-      {
-        "command": "bookmarksh.todoState.Warning",
-        "title": "Warning"
-      },
-      {
-        "command": "bookmarksh.todoState.Error",
-        "title": "Error"
-      },
-      {
-        "command": "bookmarksh.todoState.Done",
-        "title": "Done"
-      },
-      {
-        "command": "bookmarksh.todoState.NeedReview",
-        "title": "Need-Review"
-      },
-      {
-        "command": "bookmarksh.todoState.NeedRemove",
-        "title": "Need-Remove"
-      },
-      {
-        "command": "bookmarksh.todoState.NeedImprove",
-        "title": "Need-Improve"
       }
     ],
     "keybindings": [
@@ -321,9 +242,6 @@
         },
         {
           "command": "bookmarksh.removeAllWatcher"
-        },
-        {
-          "command": "bookmarksh.todo.refresh"
         }
       ],
       "view/title": [
@@ -414,50 +332,6 @@
           },
           "category": "Bookmarks Tree",
           "group": "navigation@1"
-        },
-        {
-          "command": "bookmarksh.todo.refresh",
-          "title": "Refresh",
-          "when": "(view == bookmarkshTodos) ",
-          "icon": {
-            "light": "resources/light/refresh.svg",
-            "dark": "resources/dark/refresh.svg"
-          },
-          "category": "Todos Tree",
-          "group": "navigation@7"
-        },
-        {
-          "command": "bookmarksh.todo.filterTree",
-          "title": "View as Todo Tree",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 2",
-          "icon": {
-            "light": "resources/light/filter_tree.svg",
-            "dark": "resources/dark/filter_tree.svg"
-          },
-          "category": "Todo Tree",
-          "group": "navigation@4 "
-        },
-        {
-          "command": "bookmarksh.todo.filterAll",
-          "title": "View as List of All Todo",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 3",
-          "icon": {
-            "light": "resources/light/filter_all.svg",
-            "dark": "resources/dark/filter_all.svg"
-          },
-          "category": "Todo Tree",
-          "group": "navigation@4"
-        },
-        {
-          "command": "bookmarksh.todo.filterFile",
-          "title": "View as Todo Explorer",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
-          "icon": {
-            "light": "resources/light/folder.svg",
-            "dark": "resources/dark/folder.svg"
-          },
-          "category": "Todo Tree",
-          "group": "navigation@4"
         }
       ],
       "view/item/context": [
@@ -510,10 +384,6 @@
           },
           "when": "(view == bookmarkshWatcherTree)  && viewItem == watcher",
           "group": "inline@1"
-        },
-        {
-          "submenu": "bookmarksh.todo.changeState.submenu",
-          "when": "(view == bookmarkshTodos) && (viewItem == todo)"
         }
       ],
       "editor/context": [
@@ -582,10 +452,6 @@
       {
         "id": "bookmarksh.editor.context",
         "label": "Bookmarks Tree"
-      },
-      {
-        "id": "bookmarksh.todo.changeState.submenu",
-        "label": "Change state"
       }
     ],
     "configuration": [
@@ -595,19 +461,8 @@
         "properties": {
           "bookmarksh.enableAutoExport": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "title": "Todo list support",
-        "properties": {
-          "bookmarksh.todoListSupport": {
-            "type": "string",
-            "default": "txt, py, js, mjs, jsx, java, c, cpp, hpp, h, cs, php, phtml, swift, rb, go, ts, tsx, m, h, kt, kts, lua, scala, rs, sh, bash, zsh, pl, hs, ex, exs, dart",
-            "description": "Add the extensions you want todo list to support. Separated by ',' "
           }
         }
       }
