@@ -28,8 +28,8 @@ export class BookmarkIcon {
 	private _getIconGutter(multible: boolean) {
 		return vscode.window.createTextEditorDecorationType({
 			gutterIconPath: this.getIcon(multible ? IconType.bookmarks_gutter : IconType.bookmark_gutter),
-			overviewRulerLane: vscode.OverviewRulerLane.Left,
-			overviewRulerColor: 'rgba(0,255,0, 0.7)', // Màu đỏ với độ mờ 70%
+			overviewRulerLane: vscode.OverviewRulerLane.Center,
+			overviewRulerColor: 'rgba(0,255,0, 0.7)', 
 			border: 'none', // Không có border để tránh làm nổi bật dòng
 		})
 	}

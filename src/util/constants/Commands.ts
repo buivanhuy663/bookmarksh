@@ -206,7 +206,7 @@ export class Commands {
 		filterTree: {
 			'command': Commands.nameExtension + Commands.nameTodo + '.filterTree',
 			'title': 'View as Todo Tree',
-			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.Tree}`,
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.All}`,
 			'icon': Icons.filter_tree,
 			"category": "Todo Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterTree} `,
@@ -214,7 +214,7 @@ export class Commands {
 		filterFile: {
 			'command': Commands.nameExtension + Commands.nameTodo + '.filterFile',
 			'title': 'View as Todo Explorer',
-			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.File}`,
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.Tree}`,
 			'icon': Icons.folder,
 			"category": "Todo Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterFile}`,
@@ -222,7 +222,7 @@ export class Commands {
 		filterAll: {
 			'command': Commands.nameExtension + Commands.nameTodo + '.filterAll',
 			'title': 'View as List of All Todo',
-			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.All}`,
+			'when': `${this.viewTodosTreeView} && ${this.varTodoTreeAsList} == ${TreeModeTodo.File}`,
 			'icon': Icons.filter_all,
 			"category": "Todo Tree",
 			"group": `navigation@${this.indexStatusBarButton.filterAll}`,

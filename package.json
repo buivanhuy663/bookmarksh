@@ -429,7 +429,7 @@
         {
           "command": "bookmarksh.todo.filterTree",
           "title": "View as Todo Tree",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 2",
           "icon": {
             "light": "resources/light/filter_tree.svg",
             "dark": "resources/dark/filter_tree.svg"
@@ -440,7 +440,7 @@
         {
           "command": "bookmarksh.todo.filterAll",
           "title": "View as List of All Todo",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 2",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 3",
           "icon": {
             "light": "resources/light/filter_all.svg",
             "dark": "resources/dark/filter_all.svg"
@@ -451,7 +451,7 @@
         {
           "command": "bookmarksh.todo.filterFile",
           "title": "View as Todo Explorer",
-          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 3",
+          "when": "(view == bookmarkshTodos) && bookmarks.var.todo.treeAsList == 1",
           "icon": {
             "light": "resources/light/folder.svg",
             "dark": "resources/dark/folder.svg"
