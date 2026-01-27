@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { bookmarkRepository } from '../../bookmark-provider/data/repository/BookmarksTreeRepository'
+import { bookmarkRepository } from '../../bookmarks/data/repository/BookmarksTreeRepository'
 
 class IconItem implements vscode.QuickPickItem {
 	label: string

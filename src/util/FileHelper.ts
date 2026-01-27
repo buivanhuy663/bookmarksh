@@ -1,13 +1,13 @@
 import * as fs from "fs"
 import * as vscode from 'vscode'
-import { SetBookmark } from "../bookmark-provider/data/model/SetBookmark"
 import { logger } from "./LoggerHelper"
 import path = require("path")
-import { LineParam, TodoNode } from "../bookmark-provider/data/model/todo/TodoNode"
-import { todoSupporEx } from "../bookmark-provider/data/model/todo/todoSupporEx"
 import { ContextBookmark, ContextTodo } from "./ContextValue"
 import { ConstantsValue } from "./constants/ConstantValue"
 import { strict } from "assert"
+import { SetBookmark } from "../bookmarks/data/model/SetBookmark"
+import { LineParam } from "../bookmarks/data/model/todo/TodoNode"
+import { todoSupportEx } from "../bookmarks/data/model/todo/todoSupportEx"
 const readline = require('readline');
 
 
@@ -181,7 +181,7 @@ class FileHelper {
 				await this.getAllTodoInRoot(fullPath, findTodo);
 			} else {
 				// Nếu là file, thêm vào danh sách
-				if (todoSupporEx.has(path.extname(fullPath))) {
+				if (todoSupportEx.has(path.extname(fullPath))) {
 					await this.getTodoInfile(fullPath, findTodo)
 				}
 			}

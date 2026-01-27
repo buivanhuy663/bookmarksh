@@ -1,10 +1,10 @@
 
 import * as vscode from 'vscode'
 import { fileHelper } from '../util/FileHelper'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
-import { TodosViewProvider } from '../bookmark-provider/features/todos/TodosViewProvider'
 import path = require('path')
 import { logger } from '../util/LoggerHelper'
+import { BookmarksTreeViewProvider } from '../bookmarks/features/bookmarks/BookmarkTreeViewProvider'
+import { TodosViewProvider } from '../bookmarks/features/todos/TodosViewProvider'
 
 class WatcherFileManager {
 	_createPath = ''

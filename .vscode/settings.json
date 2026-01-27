@@ -8,4 +8,8 @@
     "typescript.tsdk": "./node_modules/typescript/lib",
     "typescript.tsc.autoDetect": "off",
     "editor.insertSpaces": false,
+    "cSpell.words": [
+        "bookmarksh",
+        "infor"
+    ],
 }

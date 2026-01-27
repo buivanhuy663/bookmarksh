@@ -1,9 +1,7 @@
 
 import * as vscode from 'vscode'
-import { WatcherTreeViewProvider } from '../bookmark-provider/features/watchers/WatcherTreeViewProvider'
-import { Config } from '../bookmark-provider/data/shared_data/Config'
-import { BookmarksTreeViewProvider } from '../bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
-import { todoSupporEx } from '../bookmark-provider/data/model/todo/todoSupporEx';
+import { Config } from '../bookmarks/data/shared_data/Config'
+import { todoSupportEx } from '../bookmarks/data/model/todo/todoSupportEx'
 
 export function configurationSubscriber(context: vscode.ExtensionContext,
 ) {
@@ -14,7 +12,7 @@ export function configurationSubscriber(context: vscode.ExtensionContext,
 		configurationBookmark.onDidChange(event)
 		// configurationTodo.onDidChange(event)
 	})
-	
+
 	context.subscriptions.push(
 		onDidChange,
 	)
@@ -55,17 +53,17 @@ const configurationBookmark = new ConfigurationBookmark()
 class ConfigurationTodo implements IConfiguration {
 	config(context: vscode.ExtensionContext): void {
 		const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
-		todoSupporEx.clear();
+		todoSupportEx.clear();
 		(todoListSupport as string).split(',').map((e) => { return `.${e.trim()}` }).forEach((ex) => {
-			todoSupporEx.add(ex)
+			todoSupportEx.add(ex)
 		})
 	}
 	onDidChange(event: vscode.ConfigurationChangeEvent): void {
 		if (event.affectsConfiguration('bookmarksh.todoListSupport')) {
 			const todoListSupport = vscode.workspace.getConfiguration('bookmarksh').get('todoListSupport');
-			todoSupporEx.clear();
+			todoSupportEx.clear();
 			(todoListSupport as string).split(',').map((e) => { return `.${e}` }).forEach((ex) => {
-				todoSupporEx.add(ex)
+				todoSupportEx.add(ex)
 			})
 		}
 	}

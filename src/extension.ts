@@ -2,20 +2,18 @@
 
 import * as vscode from 'vscode'
 
-import { WatcherTreeViewProvider } from './bookmark-provider/features/watchers/WatcherTreeViewProvider'
 import { fileEditorSubscriber } from './subscriptions/fileEditorSubscriber'
 import path = require('path')
 import { configurationSubscriber } from './subscriptions/configurationSubscriber'
-import { BookmarksHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/BookmarksHelpAndFeedback'
-import { createTreeBookmark } from './bookmark-provider/features/bookmarks/createTreeBookmark'
-import { createTreeWatcher } from './bookmark-provider/features/watchers/createTreeWatcher'
-import { TodosViewProvider } from './bookmark-provider/features/todos/TodosViewProvider'
-import { BookmarksTreeViewProvider } from './bookmark-provider/features/bookmarks/BookmarkTreeViewProvider'
-import { createHelpAndFeedback } from './bookmark-provider/features/helpAndFeedback/createHelpAndFeedback'
-import { todoSubscriber } from './bookmark-provider/features/todos/subscriptions/todoSubscriber'
-import { bookmarkSubscriber } from './bookmark-provider/features/bookmarks/subscriptions/bookmarkSubscriber'
-import { createTodosTree } from './bookmark-provider/features/todos/createTodosTree'
-import { watcherSubscriber } from './bookmark-provider/features/watchers/subscriptions/watcherSubscriber'
+import { TodosViewProvider } from './bookmarks/features/todos/TodosViewProvider'
+import { BookmarksTreeViewProvider } from './bookmarks/features/bookmarks/BookmarkTreeViewProvider'
+import { createTreeBookmark } from './bookmarks/features/bookmarks/createTreeBookmark'
+import { bookmarkSubscriber } from './bookmarks/features/bookmarks/subscriptions/bookmarkSubscriber'
+import { BookmarksHelpAndFeedback } from './bookmarks/features/helpAndFeedback/BookmarksHelpAndFeedback'
+import { createHelpAndFeedback } from './bookmarks/features/helpAndFeedback/createHelpAndFeedback'
+import { createTreeWatcher } from './bookmarks/features/watchers/createTreeWatcher'
+import { watcherSubscriber } from './bookmarks/features/watchers/subscriptions/watcherSubscriber'
+import { WatcherTreeViewProvider } from './bookmarks/features/watchers/WatcherTreeViewProvider'
 
 
 export function activate(context: vscode.ExtensionContext) {

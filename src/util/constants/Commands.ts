@@ -1,4 +1,4 @@
-import { TreeModeBookmark, TreeModeTodo } from "../../bookmark-provider/data/shared_data/TreeMode"
+import { TreeModeBookmark, TreeModeTodo } from "../../bookmarks/data/shared_data/TreeMode"
 import { ContextBookmark, ContextTodo } from "../ContextValue"
 import { Icons } from "./Icons"
 
