@@ -31,11 +31,11 @@ class FileHelper {
 		context.workspaceState.update(workspace, data)
 	}
 
-	writeGloble(context: vscode.ExtensionContext, workspace: string, data: any) {
+	writeGlobal(context: vscode.ExtensionContext, workspace: string, data: any) {
 		context.globalState.update('bookmarksh_' + workspace, data)
 	}
 
-	readGloble(context: vscode.ExtensionContext, workspace: string) {
+	readGlobal(context: vscode.ExtensionContext, workspace: string) {
 		try {
 			const parsedData = context.globalState.get('bookmarksh_' + workspace)
 			return parsedData
@@ -171,45 +171,63 @@ class FileHelper {
 		if (root === undefined || root === null || root === '') {
 			return
 		}
-		const items = fs.readdirSync(root);
-		for (const item of items) {
-			const fullPath = path.join(root, item);
-			const stat = fs.statSync(fullPath);
+		if (!fs.existsSync(root)) {
+			logger.error(`Path does not exist: ${root}`)
+			return
+		}
+		try {
+			const items = fs.readdirSync(root);
+			for (const item of items) {
+				const fullPath = path.join(root, item);
+				const stat = fs.statSync(fullPath);
 
-			if (stat.isDirectory()) {
-				// Nếu là thư mục, đệ quy vào bên trong
-				await this.getAllTodoInRoot(fullPath, findTodo);
-			} else {
-				// Nếu là file, thêm vào danh sách
-				if (todoSupportEx.has(path.extname(fullPath))) {
-					await this.getTodoInfile(fullPath, findTodo)
+				if (stat.isDirectory()) {
+					// Nếu là thư mục, đệ quy vào bên trong
+					await this.getAllTodoInRoot(fullPath, findTodo);
+				} else {
+					// Nếu là file, thêm vào danh sách
+					if (todoSupportEx.has(path.extname(fullPath))) {
+						await this.getTodoInFile(fullPath, findTodo)
+					}
 				}
 			}
+			onFinish?.()
+		} catch (error) {
+			logger.error(`Error reading directory: ${root}`)
+			logger.error(error)
 		}
-		onFinish?.()
 	}
 
 
-	async getTodoInfile(
+	async getTodoInFile(
 		filePath: string,
 		findTodo: (param: LineParam[]) => void,
 	) {
-
-		const fileStream = fs.createReadStream(filePath);
-		const rl = readline.createInterface({
-			input: fileStream,
-			crlfDelay: Infinity,
-		});
-		const listTodo: LineParam[] = []
-		let lineNumber = 0;
-		for await (const line of rl) {
-			const match = line.match(ConstantsValue.todoRegex);
-			if (match?.length ?? 0 > 0) {
-				listTodo.push({ line: line, filePath: filePath, lineNum: lineNumber, match: match })
-			}
-			lineNumber++;
+		if (!fs.existsSync(filePath)) {
+			logger.error(`File does not exist: ${filePath}`)
+			return
 		}
-		findTodo(listTodo);
+
+		try {
+			const fileStream = fs.createReadStream(filePath);
+			const rl = readline.createInterface({
+				input: fileStream,
+				crlfDelay: Infinity,
+			});
+			const listTodo: LineParam[] = []
+			let lineNumber = 0;
+			for await (const line of rl) {
+				const match = line.match(ConstantsValue.todoRegex);
+				if (match?.length ?? 0 > 0) {
+					listTodo.push({ line: line, filePath: filePath, lineNum: lineNumber, match: match })
+				}
+				lineNumber++;
+			}
+			findTodo(listTodo);
+		} catch (error) {
+			logger.error(`Error reading file: ${filePath}`)
+			logger.error(error)
+		}
 	}
 }
 

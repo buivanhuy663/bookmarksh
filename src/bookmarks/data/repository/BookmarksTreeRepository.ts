@@ -93,11 +93,11 @@ class BookmarksTreeRepository {
 	}
 
 	saveRegularIcon(context: vscode.ExtensionContext, icons: number[]) {
-		fileHelper.writeGloble(context, fileHelper.ICONS_WORKSPACE, icons)
+		fileHelper.writeGlobal(context, fileHelper.ICONS_WORKSPACE, icons)
 	}
 
 	readRegularIcon(context: vscode.ExtensionContext): number[] {
-		const data = fileHelper.readGloble(context, fileHelper.ICONS_WORKSPACE)
+		const data = fileHelper.readGlobal(context, fileHelper.ICONS_WORKSPACE)
 		if (data) {
 			return data as any
 		} else {

@@ -123,7 +123,7 @@ export class TodosViewProvider implements vscode.TreeDataProvider<TodoNode> {
 			} else {
 				const timeChange = setTimeout(async () => {
 					const todos = new SetTodoNode()
-					await fileHelper.getTodoInfile(event.document.uri.fsPath, (param) => {
+					await fileHelper.getTodoInFile(event.document.uri.fsPath, (param) => {
 						for (const todoParam of param) {
 							const todo = TodoNode.stringToTodoNote(todoParam)
 							todos.add(todo)
@@ -233,7 +233,7 @@ export class TodosViewProvider implements vscode.TreeDataProvider<TodoNode> {
 	}
 
 	onCreateDirectory(newPath: string) {
-		fileHelper.getTodoInfile(newPath, (param) => {
+		fileHelper.getTodoInFile(newPath, (param) => {
 			for (const todoParam of param) {
 				const todo = TodoNode.stringToTodoNote(todoParam)
 				this.todoList.add(todo)

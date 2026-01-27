@@ -12,4 +12,5 @@
         "bookmarksh",
         "infor"
     ],
+    "debug.javascript.suppressDeprecationMessages": true
 }
