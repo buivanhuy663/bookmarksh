@@ -27,4 +27,6 @@ export class Icons {
 	static readonly import_json = this.icon('import_json')
 	static readonly export_json = this.icon('export_json')
 	static readonly refresh = this.icon('refresh')
+	static readonly storage_json = this.icon('storage_json')
+	static readonly storage_workspace = this.icon('storage_workspace')
 }

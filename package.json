@@ -153,6 +153,22 @@
         }
       },
       {
+        "command": "bookmarksh.toggleStorageModeJSON",
+        "title": "Storage: JSON File (Click to switch to Workspace)",
+        "icon": {
+          "light": "resources/light/storage_json.svg",
+          "dark": "resources/dark/storage_json.svg"
+        }
+      },
+      {
+        "command": "bookmarksh.toggleStorageModeWorkspace",
+        "title": "Storage: Workspace State (Click to switch to JSON)",
+        "icon": {
+          "light": "resources/light/storage_workspace.svg",
+          "dark": "resources/dark/storage_workspace.svg"
+        }
+      },
+      {
         "command": "bookmarksh.bookmark.refresh",
         "title": "Refresh",
         "icon": {
@@ -277,6 +293,28 @@
           },
           "category": "Bookmarks Tree",
           "group": "navigation@3"
+        },
+        {
+          "command": "bookmarksh.toggleStorageModeJSON",
+          "title": "Storage: JSON File (Click to switch to Workspace)",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.json",
+          "icon": {
+            "light": "resources/light/storage_json.svg",
+            "dark": "resources/dark/storage_json.svg"
+          },
+          "category": "Bookmarks Tree",
+          "group": "navigation@5"
+        },
+        {
+          "command": "bookmarksh.toggleStorageModeWorkspace",
+          "title": "Storage: Workspace State (Click to switch to JSON)",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.workspace",
+          "icon": {
+            "light": "resources/light/storage_workspace.svg",
+            "dark": "resources/dark/storage_workspace.svg"
+          },
+          "category": "Bookmarks Tree",
+          "group": "navigation@5"
         },
         {
           "command": "bookmarksh.bookmark.filterAll",

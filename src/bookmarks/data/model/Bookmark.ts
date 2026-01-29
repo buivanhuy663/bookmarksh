@@ -309,7 +309,7 @@ export class Bookmark extends vscode.TreeItem {
 				Id: data.id,
 				label: data.label,
 				icon: params[BookmarkParam.Icon],
-				path: (data.path as string).replace(/\\/g, path.sep).replace(`__root__${path.sep}`, ''),
+				path: (data.path as string).replace(/\\/g, path.sep).replace(new RegExp(`__root__${path.sep.replace('\\', '\\\\')}`, 'g'), ''),
 				collapsible: data.opened,
 				start: start,
 				end: end,

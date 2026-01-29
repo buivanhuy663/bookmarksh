@@ -1,0 +1,6 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- JSON File Icon -->
+<rect x="3" y="2" width="10" height="12" rx="1" stroke="#424242" stroke-width="1.2" fill="none"/>
+<path d="M5 5h6M5 8h6M5 11h4" stroke="#424242" stroke-width="1" stroke-linecap="round"/>
+<text x="8" y="13" font-family="Arial" font-size="4" fill="#424242" text-anchor="middle" font-weight="bold">JSON</text>
+</svg>

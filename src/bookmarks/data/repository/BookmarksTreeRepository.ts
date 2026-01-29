@@ -5,12 +5,25 @@ import { Bookmark } from "../model/Bookmark"
 import { SetBookmark } from "../model/SetBookmark"
 import { TreeModeBookmark } from '../shared_data/TreeMode'
 import path = require("path")
-import { Config } from '../shared_data/Config'
+import { Config, StorageMode } from '../shared_data/Config'
+import * as fs from 'fs'
 
 class BookmarksTreeRepository {
+	private readonly JSON_FILE_NAME = 'bookmarksh_data.json'
+	private readonly STORAGE_MODE_KEY = 'bookmarksh.storageMode'
+
 	async readBookmarksFromFile(context: vscode.ExtensionContext): Promise<Bookmark[]> {
 		try {
-			const data = fileHelper.readWorkspace(context, fileHelper.BOOKMARKS_WORKSPACE)
+			let data: any
+
+			// Đọc từ JSON hoặc Workspace tùy theo mode
+			if (Config.storageMode === StorageMode.JSON) {
+				const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
+				data = fileHelper.readJsonFile(jsonPath)
+			} else {
+				data = fileHelper.readWorkspace(context, fileHelper.BOOKMARKS_WORKSPACE)
+			}
+
 			if (data) {
 				if (data.mode !== 1 && data.mode !== 2 && data.mode !== 3) {
 					TreeModeBookmark.mode = 1
@@ -34,9 +47,19 @@ class BookmarksTreeRepository {
 			mode: TreeModeBookmark.mode,
 			bookmarks: jsonData
 		}
-		fileHelper.writeWorkspace(context, fileHelper.BOOKMARKS_WORKSPACE, jsonAll)
-		if (Config.autoBackupJson) {
-			this.exportAllBookmark(bookmarks, `bookmarksh_data`, false)
+
+		// Lưu vào JSON hoặc Workspace tùy theo mode
+		if (Config.storageMode === StorageMode.JSON) {
+			fileHelper.createDirectoryIfNotExist('.vscode')
+			const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
+			fileHelper.writeJsonFile(jsonPath, jsonAll)
+		} else {
+			fileHelper.writeWorkspace(context, fileHelper.BOOKMARKS_WORKSPACE, jsonAll)
+
+			// Chỉ backup ra JSON nếu đang ở chế độ Workspace VÀ có enable autoBackupJson
+			if (Config.autoBackupJson) {
+				this.exportAllBookmark(bookmarks, `bookmarksh_data`, false)
+			}
 		}
 	}
 
@@ -102,6 +125,68 @@ class BookmarksTreeRepository {
 			return data as any
 		} else {
 			return []
+		}
+	}
+
+	// Toggle storage mode và migrate data
+	async toggleStorageMode(context: vscode.ExtensionContext, bookmarks: SetBookmark): Promise<void> {
+		try {
+			const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
+
+			if (Config.storageMode === StorageMode.JSON) {
+				// Chuyển từ JSON sang Workspace
+				logger.infor('Switching from JSON to Workspace storage')
+
+				// Lưu data vào workspace
+				Config.storageMode = StorageMode.WORKSPACE
+				await context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.WORKSPACE)
+				await this.saveBookmarksToFile(context, bookmarks)
+
+				// Xóa file JSON
+				if (fs.existsSync(jsonPath)) {
+					fs.unlinkSync(jsonPath)
+					logger.infor('Deleted JSON file: ' + jsonPath)
+				}
+
+				logger.showMessage('Storage mode switched to Workspace State')
+			} else {
+				// Chuyển từ Workspace sang JSON
+				logger.infor('Switching from Workspace to JSON storage')
+
+				// Lưu data vào JSON
+				Config.storageMode = StorageMode.JSON
+				await context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.JSON)
+				await this.saveBookmarksToFile(context, bookmarks)
+
+				logger.showMessage('Storage mode switched to JSON File')
+			}
+		} catch (error) {
+			logger.error('Error toggling storage mode')
+			logger.error(error)
+			logger.showErrorMessage('Failed to toggle storage mode')
+		}
+	}
+
+	// Khởi tạo storage mode dựa vào workspace state hoặc file JSON
+	initStorageMode(context: vscode.ExtensionContext): void {
+		// Ưu tiên đọc từ workspace state (lưu ý: người dùng đã chọn)
+		const savedMode = context.workspaceState.get<string>(this.STORAGE_MODE_KEY)
+
+		if (savedMode) {
+			Config.storageMode = savedMode as StorageMode
+			logger.infor(`Initialized storage mode from saved state: ${savedMode}`)
+		} else {
+			// Fallback: detect dựa vào file JSON có tồn tại không
+			const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
+			if (fs.existsSync(jsonPath)) {
+				Config.storageMode = StorageMode.JSON
+				context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.JSON)
+				logger.infor('Initialized storage mode: JSON (detected from file)')
+			} else {
+				Config.storageMode = StorageMode.WORKSPACE
+				context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.WORKSPACE)
+				logger.infor('Initialized storage mode: Workspace (default)')
+			}
 		}
 	}
 }

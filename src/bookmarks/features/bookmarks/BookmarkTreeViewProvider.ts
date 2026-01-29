@@ -13,7 +13,7 @@ import { TreeModeBookmark } from '../../data/shared_data/TreeMode'
 import path = require('path')
 import { WatcherTreeViewProvider } from '../watchers/WatcherTreeViewProvider'
 import { ContextBookmark } from '../../../util/ContextValue'
-import { Config } from '../../data/shared_data/Config'
+import { Config, StorageMode } from '../../data/shared_data/Config'
 
 export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookmark>, vscode.TreeDragAndDropController<Bookmark> {
 	private _onDidChangeTreeData: vscode.EventEmitter<Bookmark | undefined | null | void> = new vscode.EventEmitter<Bookmark | undefined | null | void>()
@@ -39,6 +39,11 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 	async init(treeView: vscode.TreeView<Bookmark>) {
 		this.treeViewBookmark = treeView
 		iconSymbolQuickPick.loadAllRegularlyFromLocal(this.context)
+
+		// Khởi tạo storage mode dựa vào file JSON có tồn tại không
+		bookmarkRepository.initStorageMode(this.context)
+		this.updateStorageModeIcon()
+
 		await this.initViewEditor()
 	}
 
@@ -134,15 +139,15 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 	}
 	async initViewEditor() {
 		try {
-			if (Config.autoBackupJson) {
-
+			// Chỉ đọc từ autoBackupJson khi ở chế độ Workspace và có enable autoBackupJson
+			if (Config.storageMode === StorageMode.WORKSPACE && Config.autoBackupJson) {
 				const data = await fileHelper.readJsonFile(fileHelper.rootPath + '/.vscode/bookmarksh_data.json')
 				if (data) {
 					this.bookmarksTree.clear()
 					const bookmarks = (data as any).bookmarks.map((item: any) => Bookmark.fromJsonImport(item))
 					this.bookmarksTree.addAll(bookmarks)
 				}
-				bookmarkRepository.saveBookmarksToFile(this.context, this.bookmarksTree)
+				// Không cần saveBookmarksToFile() ở đây vì data sẽ được save ở nơi khác
 			}
 			await this.getBookmarksLocal()
 			this.reFilterData()
@@ -620,5 +625,23 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 			this.saveBookmarksToFile()
 			this.refreshDecoration()
 		}
+	}
+
+	async onToggleStorageMode() {
+		logger.infor('onToggleStorageMode called')
+		await bookmarkRepository.toggleStorageMode(this.context, this.bookmarksTree)
+		await this.updateStorageModeIcon()
+		this._onDidChangeTreeData.fire()
+	}
+
+	private async updateStorageModeIcon() {
+		const isJSON = Config.storageMode === StorageMode.JSON
+		logger.infor(`Updating storage mode icon: ${Config.storageMode} (isJSON: ${isJSON})`)
+
+		vscode.commands.executeCommand('setContext', Commands.varStorageModeJSON, isJSON)
+		vscode.commands.executeCommand('setContext', Commands.varStorageModeWorkspace, !isJSON)
+
+		logger.infor(`Set context: ${Commands.varStorageModeJSON} = ${isJSON}`)
+		logger.infor(`Set context: ${Commands.varStorageModeWorkspace} = ${!isJSON}`)
 	}
 }

@@ -18,6 +18,8 @@ export class Commands {
 	static readonly varBookmarkTreeAsList = 'bookmarks.var.bookmark.treeAsList'
 	static readonly varHasBookmark = 'bookmarks.var.bookmark.hasBookmark'
 	static readonly varHasWatcher = 'bookmarks.var.bookmark.hasWatcher'
+	static readonly varStorageModeJSON = 'bookmarks.var.storageMode.json'
+	static readonly varStorageModeWorkspace = 'bookmarks.var.storageMode.workspace'
 
 	static readonly varTodoTreeAsList = 'bookmarks.var.todo.treeAsList'
 
@@ -47,6 +49,7 @@ export class Commands {
 		filterAll: 4,
 		filterFile: 4,
 		filterTree: 4,
+		toggleStorageMode: 5,
 		refresh: 7,
 	}
 
@@ -157,6 +160,22 @@ export class Commands {
 			'icon': Icons.import_json,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
+		},
+		toggleStorageModeJSON: {
+			'command': Commands.nameExtension + '.toggleStorageModeJSON',
+			'title': 'Storage: JSON File (Click to switch to Workspace)',
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON}`,
+			'icon': Icons.storage_json,
+			"category": "Bookmarks Tree",
+			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,
+		},
+		toggleStorageModeWorkspace: {
+			'command': Commands.nameExtension + '.toggleStorageModeWorkspace',
+			'title': 'Storage: Workspace State (Click to switch to JSON)',
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeWorkspace}`,
+			'icon': Icons.storage_workspace,
+			"category": "Bookmarks Tree",
+			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,
 		},
 		refresh: {
 			'command': Commands.nameExtension + Commands.nameBookmark + '.refresh',
@@ -318,6 +337,8 @@ export class Commands {
 		this.bookmarkCommands.removeAllBookmark,
 		this.bookmarkCommands.exportAllBookmark,
 		this.bookmarkCommands.importBookmark,
+		this.bookmarkCommands.toggleStorageModeJSON,
+		this.bookmarkCommands.toggleStorageModeWorkspace,
 		this.bookmarkCommands.filterAll,
 		this.bookmarkCommands.filterFile,
 		this.bookmarkCommands.filterTree,

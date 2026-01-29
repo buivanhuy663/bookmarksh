@@ -38,6 +38,14 @@ export function statusBarSubscriber(
 		() => {
 			provider.onRemoveAllBookmark()
 		})
+	const toggleStorageModeJSON = vscode.commands.registerCommand(Commands.bookmarkCommands.toggleStorageModeJSON.command,
+		() => {
+			provider.onToggleStorageMode()
+		})
+	const toggleStorageModeWorkspace = vscode.commands.registerCommand(Commands.bookmarkCommands.toggleStorageModeWorkspace.command,
+		() => {
+			provider.onToggleStorageMode()
+		})
 
 	context.subscriptions.push(
 		refreshBookmark,
@@ -46,6 +54,8 @@ export function statusBarSubscriber(
 		filterTree,
 		importBookmark,
 		exportAllBookmark,
-		removeAllBookmark
+		removeAllBookmark,
+		toggleStorageModeJSON,
+		toggleStorageModeWorkspace,
 	)
 }
