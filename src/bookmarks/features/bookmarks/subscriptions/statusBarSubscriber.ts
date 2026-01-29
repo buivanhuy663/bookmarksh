@@ -42,6 +42,10 @@ export function statusBarSubscriber(
 		() => {
 			provider.onToggleStorageMode()
 		})
+	const toggleStorageModeWorkspace = vscode.commands.registerCommand(Commands.bookmarkCommands.toggleStorageModeWorkspace.command,
+		() => {
+			provider.onToggleStorageMode()
+		})
 
 	context.subscriptions.push(
 		refreshBookmark,
@@ -52,5 +56,6 @@ export function statusBarSubscriber(
 		exportAllBookmark,
 		removeAllBookmark,
 		toggleStorageModeJSON,
+		toggleStorageModeWorkspace,
 	)
 }

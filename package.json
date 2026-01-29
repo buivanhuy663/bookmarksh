@@ -153,7 +153,7 @@
         }
       },
       {
-        "command": "bookmarksh.toggleStorageMode",
+        "command": "bookmarksh.toggleStorageModeJSON",
         "title": "Storage: JSON File (Click to switch to Workspace)",
         "icon": {
           "light": "resources/light/storage_json.svg",
@@ -161,7 +161,7 @@
         }
       },
       {
-        "command": "bookmarksh.toggleStorageMode",
+        "command": "bookmarksh.toggleStorageModeWorkspace",
         "title": "Storage: Workspace State (Click to switch to JSON)",
         "icon": {
           "light": "resources/light/storage_workspace.svg",
@@ -270,7 +270,7 @@
             "dark": "resources/dark/remove_all.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@1"
+          "group": "navigation@2"
         },
         {
           "command": "bookmarksh.exportAllBookmark",
@@ -281,7 +281,7 @@
             "dark": "resources/dark/export_json.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@2"
+          "group": "navigation@3"
         },
         {
           "command": "bookmarksh.importBookmark",
@@ -292,29 +292,29 @@
             "dark": "resources/dark/import_json.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@3"
+          "group": "navigation@4"
         },
         {
-          "command": "bookmarksh.toggleStorageMode",
+          "command": "bookmarksh.toggleStorageModeJSON",
           "title": "Storage: JSON File (Click to switch to Workspace)",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.json == true",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.json",
           "icon": {
             "light": "resources/light/storage_json.svg",
             "dark": "resources/dark/storage_json.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@5"
+          "group": "navigation@1"
         },
         {
-          "command": "bookmarksh.toggleStorageMode",
+          "command": "bookmarksh.toggleStorageModeWorkspace",
           "title": "Storage: Workspace State (Click to switch to JSON)",
-          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.json == false",
+          "when": "(view == bookmarkshTreeView) && bookmarks.var.storageMode.workspace",
           "icon": {
             "light": "resources/light/storage_workspace.svg",
             "dark": "resources/dark/storage_workspace.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@5"
+          "group": "navigation@1"
         },
         {
           "command": "bookmarksh.bookmark.filterAll",
@@ -325,7 +325,7 @@
             "dark": "resources/dark/filter_all.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@4"
+          "group": "navigation@5"
         },
         {
           "command": "bookmarksh.bookmark.filterFile",
@@ -336,7 +336,7 @@
             "dark": "resources/dark/folder.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@4"
+          "group": "navigation@5"
         },
         {
           "command": "bookmarksh.bookmark.filterTree",
@@ -347,7 +347,7 @@
             "dark": "resources/dark/filter_tree.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@4 "
+          "group": "navigation@5 "
         },
         {
           "command": "bookmarksh.bookmark.refresh",
@@ -369,7 +369,7 @@
             "dark": "resources/dark/remove_all.svg"
           },
           "category": "Bookmarks Tree",
-          "group": "navigation@1"
+          "group": "navigation@2"
         }
       ],
       "view/item/context": [

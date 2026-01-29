@@ -19,7 +19,7 @@ export class Commands {
 	static readonly varHasBookmark = 'bookmarks.var.bookmark.hasBookmark'
 	static readonly varHasWatcher = 'bookmarks.var.bookmark.hasWatcher'
 	static readonly varStorageModeJSON = 'bookmarks.var.storageMode.json'
-	// static readonly varStorageModeWorkspace = 'bookmarks.var.storageMode.workspace'
+	static readonly varStorageModeWorkspace = 'bookmarks.var.storageMode.workspace'
 
 	static readonly varTodoTreeAsList = 'bookmarks.var.todo.treeAsList'
 
@@ -42,14 +42,14 @@ export class Commands {
 	static bookmarkOrWatcherView = `(${this.viewBookmarkTreeView} || ${this.viewWatcherTreeView})`
 
 	static indexStatusBarButton = {
-		removeAllWatcher: 1,
-		removeAllBookmark: 1,
-		exportAllBookmark: 2,
-		importBookmark: 3,
-		filterAll: 4,
-		filterFile: 4,
-		filterTree: 4,
-		toggleStorageMode: 5,
+		toggleStorageMode: 1,
+		removeAllWatcher: 2,
+		removeAllBookmark: 2,
+		exportAllBookmark: 3,
+		importBookmark: 4,
+		filterAll: 5,
+		filterFile: 5,
+		filterTree: 5,
 		refresh: 7,
 	}
 
@@ -162,17 +162,17 @@ export class Commands {
 			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
 		},
 		toggleStorageModeJSON: {
-			'command': Commands.nameExtension + '.toggleStorageMode',
+			'command': Commands.nameExtension + '.toggleStorageModeJSON',
 			'title': 'Storage: JSON File (Click to switch to Workspace)',
-			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON} == true`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON}`,
 			'icon': Icons.storage_json,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,
 		},
 		toggleStorageModeWorkspace: {
-			'command': Commands.nameExtension + '.toggleStorageMode',
+			'command': Commands.nameExtension + '.toggleStorageModeWorkspace',
 			'title': 'Storage: Workspace State (Click to switch to JSON)',
-			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON} == false`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeWorkspace}`,
 			'icon': Icons.storage_workspace,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,

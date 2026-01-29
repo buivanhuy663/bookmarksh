@@ -167,26 +167,18 @@ class BookmarksTreeRepository {
 		}
 	}
 
-	// Khởi tạo storage mode dựa vào workspace state hoặc file JSON
+	// Khởi tạo storage mode dựa vào file JSON có tồn tại không
 	initStorageMode(context: vscode.ExtensionContext): void {
-		// Ưu tiên đọc từ workspace state (lưu ý: người dùng đã chọn)
-		const savedMode = context.workspaceState.get<string>(this.STORAGE_MODE_KEY)
-
-		if (savedMode) {
-			Config.storageMode = savedMode as StorageMode
-			logger.infor(`Initialized storage mode from saved state: ${savedMode}`)
+		// Kiểm tra file JSON có tồn tại không
+		const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
+		if (fs.existsSync(jsonPath)) {
+			Config.storageMode = StorageMode.JSON
+			context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.JSON)
+			logger.infor('Initialized storage mode: JSON (detected from file)')
 		} else {
-			// Fallback: detect dựa vào file JSON có tồn tại không
-			const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
-			if (fs.existsSync(jsonPath)) {
-				Config.storageMode = StorageMode.JSON
-				context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.JSON)
-				logger.infor('Initialized storage mode: JSON (detected from file)')
-			} else {
-				Config.storageMode = StorageMode.WORKSPACE
-				context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.WORKSPACE)
-				logger.infor('Initialized storage mode: Workspace (default)')
-			}
+			Config.storageMode = StorageMode.WORKSPACE
+			context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.WORKSPACE)
+			logger.infor('Initialized storage mode: Workspace (default)')
 		}
 	}
 }

@@ -639,9 +639,9 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 		logger.infor(`Updating storage mode icon: ${Config.storageMode} (isJSON: ${isJSON})`)
 
 		vscode.commands.executeCommand('setContext', Commands.varStorageModeJSON, isJSON)
-		// vscode.commands.executeCommand('setContext', Commands.varStorageModeWorkspace, !isJSON)
+		vscode.commands.executeCommand('setContext', Commands.varStorageModeWorkspace, !isJSON)
 
 		logger.infor(`Set context: ${Commands.varStorageModeJSON} = ${isJSON}`)
-		// logger.infor(`Set context: ${Commands.varStorageModeWorkspace} = ${!isJSON}`)
+		logger.infor(`Set context: ${Commands.varStorageModeWorkspace} = ${!isJSON}`)
 	}
 }
