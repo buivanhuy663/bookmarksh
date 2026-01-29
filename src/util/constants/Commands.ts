@@ -430,15 +430,15 @@ export class Commands {
 
 	static configuration = [
 		{
-			"type": "object",
-			"title": "Auto export to json file",
-			"properties": {
-				"bookmarksh.enableAutoExport": {
-					"type": "boolean",
-					"default": true,
-					"description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
-				}
-			}
+			// "type": "object",
+			// "title": "Auto export to json file",
+			// "properties": {
+			// 	"bookmarksh.enableAutoExport": {
+			// 		"type": "boolean",
+			// 		"default": true,
+			// 		"description": "If enabled. Bookmarks data will be automatically exported to a json file when there is a change."
+			// 	}
+			// }
 		},
 		// {
 		// 	"type": "object",
