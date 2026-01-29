@@ -4,6 +4,5 @@ export enum StorageMode {
 }
 
 export class Config {
-	static autoBackupJson = false
 	static storageMode: StorageMode = StorageMode.WORKSPACE
 }

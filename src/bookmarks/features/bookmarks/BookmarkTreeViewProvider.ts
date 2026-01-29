@@ -40,10 +40,6 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 		this.treeViewBookmark = treeView
 		iconSymbolQuickPick.loadAllRegularlyFromLocal(this.context)
 
-		// Khởi tạo storage mode dựa vào file JSON có tồn tại không
-		bookmarkRepository.initStorageMode(this.context)
-		this.updateStorageModeIcon()
-
 		await this.initViewEditor()
 	}
 
@@ -139,16 +135,9 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 	}
 	async initViewEditor() {
 		try {
-			// Chỉ đọc từ autoBackupJson khi ở chế độ Workspace và có enable autoBackupJson
-			if (Config.storageMode === StorageMode.WORKSPACE && Config.autoBackupJson) {
-				const data = await fileHelper.readJsonFile(fileHelper.rootPath + '/.vscode/bookmarksh_data.json')
-				if (data) {
-					this.bookmarksTree.clear()
-					const bookmarks = (data as any).bookmarks.map((item: any) => Bookmark.fromJsonImport(item))
-					this.bookmarksTree.addAll(bookmarks)
-				}
-				// Không cần saveBookmarksToFile() ở đây vì data sẽ được save ở nơi khác
-			}
+			// Kiểm tra có file json ở .vscode/bookmarksh_data.json không
+			bookmarkRepository.initStorageMode(this.context)
+			this.updateStorageModeIcon()
 			await this.getBookmarksLocal()
 			this.reFilterData()
 			if (TreeModeBookmark.mode === TreeModeBookmark.Tree) {
@@ -182,6 +171,7 @@ export class BookmarksTreeViewProvider implements vscode.TreeDataProvider<Bookma
 		if (editor) { this.refreshGutter(editor) }
 		this._onDidChangeTreeData.fire()
 		this.watcherTreeViewProvider?.refreshView()
+		
 	}
 
 	deleteBookmarksData(id: string) {

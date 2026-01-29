@@ -55,11 +55,6 @@ class BookmarksTreeRepository {
 			fileHelper.writeJsonFile(jsonPath, jsonAll)
 		} else {
 			fileHelper.writeWorkspace(context, fileHelper.BOOKMARKS_WORKSPACE, jsonAll)
-
-			// Chỉ backup ra JSON nếu đang ở chế độ Workspace VÀ có enable autoBackupJson
-			if (Config.autoBackupJson) {
-				this.exportAllBookmark(bookmarks, `bookmarksh_data`, false)
-			}
 		}
 	}
 
@@ -131,9 +126,9 @@ class BookmarksTreeRepository {
 	// Toggle storage mode và migrate data
 	async toggleStorageMode(context: vscode.ExtensionContext, bookmarks: SetBookmark): Promise<void> {
 		try {
-			const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
 
 			if (Config.storageMode === StorageMode.JSON) {
+				const jsonPath = path.join(fileHelper.rootPath, '.vscode', this.JSON_FILE_NAME)
 				// Chuyển từ JSON sang Workspace
 				logger.infor('Switching from JSON to Workspace storage')
 
@@ -174,6 +169,7 @@ class BookmarksTreeRepository {
 		if (fs.existsSync(jsonPath)) {
 			Config.storageMode = StorageMode.JSON
 			context.workspaceState.update(this.STORAGE_MODE_KEY, StorageMode.JSON)
+			this.toggleStorageMode
 			logger.infor('Initialized storage mode: JSON (detected from file)')
 		} else {
 			Config.storageMode = StorageMode.WORKSPACE
