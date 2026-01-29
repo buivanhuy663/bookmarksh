@@ -19,7 +19,7 @@ export class Commands {
 	static readonly varHasBookmark = 'bookmarks.var.bookmark.hasBookmark'
 	static readonly varHasWatcher = 'bookmarks.var.bookmark.hasWatcher'
 	static readonly varStorageModeJSON = 'bookmarks.var.storageMode.json'
-	static readonly varStorageModeWorkspace = 'bookmarks.var.storageMode.workspace'
+	// static readonly varStorageModeWorkspace = 'bookmarks.var.storageMode.workspace'
 
 	static readonly varTodoTreeAsList = 'bookmarks.var.todo.treeAsList'
 
@@ -162,17 +162,17 @@ export class Commands {
 			"group": `navigation@${this.indexStatusBarButton.importBookmark}`,
 		},
 		toggleStorageModeJSON: {
-			'command': Commands.nameExtension + '.toggleStorageModeJSON',
+			'command': Commands.nameExtension + '.toggleStorageMode',
 			'title': 'Storage: JSON File (Click to switch to Workspace)',
-			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON} == true`,
 			'icon': Icons.storage_json,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,
 		},
 		toggleStorageModeWorkspace: {
-			'command': Commands.nameExtension + '.toggleStorageModeWorkspace',
+			'command': Commands.nameExtension + '.toggleStorageMode',
 			'title': 'Storage: Workspace State (Click to switch to JSON)',
-			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeWorkspace}`,
+			'when': `${this.viewBookmarkTreeView} && ${this.varStorageModeJSON} == false`,
 			'icon': Icons.storage_workspace,
 			"category": "Bookmarks Tree",
 			"group": `navigation@${this.indexStatusBarButton.toggleStorageMode}`,
